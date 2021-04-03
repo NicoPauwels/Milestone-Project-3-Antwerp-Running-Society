@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Nico"
+    return "Pnaaps"
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
