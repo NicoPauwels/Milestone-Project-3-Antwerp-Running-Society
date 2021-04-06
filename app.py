@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-app.secret_key = os.eniron.get("SECRET_KEY")
+app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
@@ -21,6 +21,7 @@ mongo = PyMongo(app)
 def get_run_events():
     run_events = mongo.db.run_events.find()
     return render_template("run_events.html", run_events=run_events)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
