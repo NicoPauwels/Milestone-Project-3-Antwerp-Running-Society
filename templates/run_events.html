@@ -8,13 +8,13 @@
 </head>
 <body>
     {% for run_event in run_events %}
-        {{ run_events.date }}<br>
-        {{ run_events.time }}<br>
-        {{ run_events.location }}<br>
-        {{ run_events.type }}<br> 
-        {{ run_events.distance }}<br>
-        {{ run_events.level }}<br>
-        {{ run_events.participants }}<br>
+        {{ run_event.date }}<br>
+        {{ run_event.time }}<br>
+        {{ run_event.location }}<br>
+        {{ run_event.type }}<br> 
+        {{ run_event.distance }}<br>
+        {{ run_event.level }}<br>
+        {{ run_event.participants }}<br>
     {% endfor %}
 </body>
 </html>
