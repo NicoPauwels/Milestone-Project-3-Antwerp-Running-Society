@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impala</title>
+</head>
+<body>
+    {% for run_event in run_events %}
+        {{ run_events.date }}<br>
+        {{ run_events.time }}<br>
+        {{ run_events.location }}<br>
+        {{ run_events.type }}<br> 
+        {{ run_events.distance }}<br>
+        {{ run_events.level }}<br>
+        {{ run_events.participants }}<br>
+    {% endfor %}
+</body>
+</html>
