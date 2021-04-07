@@ -14,6 +14,36 @@
 </head>
 <body>
 
+    <header>
+        <!-- main navbar -->
+        <nav class="nav-extended grey">
+            <div class="nav-wrapper">
+                <a href="{{ url_for('get_activities') }}" class="brand-logo center">IMPALA</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('get_activities') }}">HOME</a></li>
+                    <li><a href="#">ADD ACTIVITY</a></li>
+                    <li><a href="#">PROFILE</a></li>
+                    <li><a href="#">REGISTER</a></li>
+                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="#">LOGOUT</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- mobile sidenav -->
+        <ul class="sidenav" id="mobile-demo">
+            <li><h4 class="center grey-text">IMPALA</h4></li>
+            <li><a href="{{ url_for('get_activities') }}">HOME</a></li>
+            <li><a href="#">ADD ACTIVITY</a></li>
+            <li><a href="#">PROFILE</a></li>
+            <li><a href="#">REGISTER</a></li>
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">LOGOUT</a></li>
+        </ul>
+
+    </header> 
+
     {% block content %}
     {% endblock %}
 
