@@ -4,34 +4,38 @@
 <h5 class="center-align grey-text">REGISTER</h3>
 
 <div class="row">
-    <form class="col s12 m6 l4 offset-m3 offset-l4 center">
+    <form class="col s12 m6 l4 offset-m3 offset-l4 center" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-user-plus prefix grey-text"></i>
-                    <input id="username" name="username" type="text" class="validate">
+                    <input id="username" name="username" type="text" minlength="5" 
+                        maxlenght="25" pattern="^[a-zA-Z0-9 ]{5,25}$" class="validate" required>
                     <label for="username">Username</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-at prefix grey-text"></i>
-                    <input id="email" name="email" type="text" class="validate">
+                    <input id="email" name="email" type="text" minlength="5" 
+                        maxlenght="25" pattern="^[a-zA-Z0-9@._]{5,25}$" class="validate" required>
                     <label for="email">E-mailadress</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-unlock-alt prefix grey-text"></i>
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Choose a password</label>
+                    <input id="password1" name="password1" type="password" minlenght="5" 
+                        maxlength="25" pattern="^[a-zA-Z0-9]{5,25}$" class="validate" required>
+                    <label for="password1">Choose a password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-unlock-alt prefix grey-text"></i>
-                    <input id="confirmpassword" type="password" class="validate">
-                    <label for="confirmpassword">Confirm password</label>
+                    <input id="password2" name="password2" type="password" minlenght="5" 
+                        maxlength="25" pattern="^[a-zA-Z0-9]{5,25}$" class="validate" required>
+                    <label for="password2">Confirm password</label>
                 </div>
             </div>
             <div class="row">

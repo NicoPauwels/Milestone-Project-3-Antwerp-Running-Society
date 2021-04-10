@@ -26,6 +26,32 @@ def get_activities():
 
 @app.route("/register", methods=["GET","POST"])
 def register():
+    if request.method == "POST":
+        # check if the email is already registered in db
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            flash("That email adress is already in use!")
+            return redirect(url_for("register"))
+
+        password1 = request.form.get("password1")
+        password2 = request.form.get("password2")
+
+        if password1 != password2:
+            flash("Passwords should match!")
+            return redirect(url_for("register"))
+
+        register = {
+            "username": request.form.get("username").lower(),
+            "email": request.form.get("email").lower(),
+            "password": generate_password_hash(request.form.get("password1"))
+        }
+        mongo.db.users.insert_one(register)
+
+        # put user in session cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Succesful!")
     return render_template("register.html")
 
 
