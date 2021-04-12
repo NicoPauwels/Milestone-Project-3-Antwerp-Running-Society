@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h5 class="center-align grey-text">LOG IN</h3>
+
+<div class="row">
+    <form class="col s12 m6 l4 offset-m3 offset-l4 center" method="POST" action="{{ url_for('login') }}">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-at prefix grey-text"></i>
+                    <input id="email" name="email" type="text" minlength="5" 
+                        maxlenght="25" pattern="^[a-zA-Z0-9@._]{5,25}$" class="validate" required>
+                    <label for="email">E-mailadress</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-unlock-alt prefix grey-text"></i>
+                    <input id="password1" name="password1" type="password" minlenght="5" 
+                        maxlength="25" pattern="^[a-zA-Z0-9]{5,25}$" class="validate" required>
+                    <label for="password1">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="col s12 btn-large grey">
+                    Login
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col s12">
+        <p class="center-align">
+            New Here?
+            <a href="{{ url_for('register' )}}" class="grey-text">Register Account</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
