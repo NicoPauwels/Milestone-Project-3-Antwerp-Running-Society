@@ -23,7 +23,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('get_activities') }}">HOME</a></li>
                     <li><a href="#">ADD ACTIVITY</a></li>
-                    <li><a href="#">PROFILE</a></li>
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">PROFILE</a></li>
                     <li><a href="{{ url_for('register') }}">REGISTER</a></li>
                     <li><a href="{{ url_for('login' )}}">LOGIN</a></li>
                     <li><a href="#">LOGOUT</a></li>
@@ -36,7 +36,7 @@
             <li><h4 class="center grey-text">IMPALA</h4></li>
             <li><a href="{{ url_for('get_activities') }}">HOME</a></li>
             <li><a href="#">ADD ACTIVITY</a></li>
-            <li><a href="#">PROFILE</a></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}">PROFILE</a></li>
             <li><a href="{{ url_for('register') }}">REGISTER</a></li>
             <li><a href="{{ url_for('login') }}">LOGIN</a></li>
             <li><a href="#">LOGOUT</a></li>
