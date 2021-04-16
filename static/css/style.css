@@ -1,3 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Open+Sans&display=swap');
+
+body {
+    background-color: #12171E;
+    color: #FFFFFF;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+h2 {
+    margin-bottom: 80px;
+    margin-top: 80px;
+}
+
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.header {
+    border-bottom: solid 1px #1a1f28;
+    text-align: center;
+    background-color: #12171E;
+}
+
+.header-content {
+    align-items: center;
+    min-height: 55px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.branding {
+    font-family: 'Heebo', sans-serif;
+    font-size: x-large;
+    color: #FFFFFF;
+}
+
+.btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btn a {
+    color: #FFFFFF;
+}
+
+.btn:focus, .btn:active {
+    outline: none;
+    box-shadow: none;
+}
+
+#usericon {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#login {
+    background-color: #222730;
+}
+
+#login:hover {
+    background-color: #293340;
+}
+
+#activityiconposition {
+    padding-right: 10px;
+}
+
+#user {
+    min-height: 55px;
+    background: transparent;
+    border-radius: 0;
+    margin-bottom: -1px;
+    color: #FFFFFF;
+}
+
+#user:hover, #user:active, #user:focus {
+    border-left: solid 1px #1A1F28;
+    border-right: solid 1px #1A1F28;
+    border-bottom: solid 1px transparent;
+    color: #293340;
+}
+
+.dropdown-menu {
+    margin-left: -90px;
+    background: #12171E;
+    border: solid 1px #1A1F28;
+    border-radius: 0;
+}
+
+.dropdown-menu[data-bs-popper] {
+    margin-top: 0px;
+}
+
+.dropdown-item {
+    background-color: #12171E;
+    color: #FFFFFF;
+}
+
+.dropdown-item:hover {
+    background-color: #12171E;
+}
+
+.dropdown-item a:hover {
+    color: #00BF00;
+}
+
+.btn-secondary {
+    background-color: #00BF00;
+}
+
+.btn-secondary:hover {
+    background-color: #293340;
+}
+
+.navbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.registerform {
+    width: 50%;
+    max-width: 280px;
+    margin-left: 40px;
+}
+
+.loginform {
+    width: 280px;
+    margin-left: 20px;
+}
+
+.logintext {
+    text-align: center;
+    margin-top: 4px;
+}
+
+.card-body {
+    width: 320px;
+    background-color: #12171E;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.card {
+    background-color: #12171E;
+}
+
+.card-title {
+    text-align: center;
+}
+
+/*
 .flashes h5 {
     line-height: 2;
 }
+*/
+
+/* Media queries */
+
+@media (min-width: 1250px) {
+    .container {
+        width: 1248px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1172px;
+    }
+}
+
+/*
+
+@media (min-width: 992px) {
+    .container {
+        width: 972px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 752px;
+    }
+}
+
+*/
