@@ -70,10 +70,12 @@ def login():
                     return redirect(url_for("get_activities"))
             else:
                 # invalid password
+                flash("The password is not correct!", "loginpassworderror")
                 return redirect(url_for("login"))
 
         else:
             # username does not exist
+            flash("This e-mail address has not been registered yet!", "loginemailerror")
             return redirect(url_for("login"))
 
     return render_template("login.html", isLogin=True)
