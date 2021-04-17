@@ -158,6 +158,11 @@ a:link, a:visited, a:hover, a:active {
     text-align: center;
 }
 
+.formerrormessage {
+    margin-top: 8px;
+    color: red;
+}
+
 /*
 .flashes h5 {
     line-height: 2;
