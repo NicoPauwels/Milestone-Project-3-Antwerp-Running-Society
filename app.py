@@ -2,6 +2,7 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
+from datetime import date
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -17,6 +18,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+now = date.today()
+membersince = now.strftime("%d %B, %Y")
+
+
+
 @app.route("/")
 @app.route("/register", methods=["GET","POST"])
 def register():
@@ -26,23 +32,24 @@ def register():
             {"email": request.form.get("email").lower()})
 
         if existing_user:
-            flash("That email adress is already in use!")
+            flash("That e-mail address is already in use!", "registeremailerror")
             return redirect(url_for("register"))
 
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
 
         if password1 != password2:
-            flash("Passwords should match!")
+            flash("Passwords do not match!", "registerpassworderror")
             return redirect(url_for("register"))
 
         register = {
             "email": request.form.get("email").lower(),
-            "password": generate_password_hash(request.form.get("password1"))
+            "password": generate_password_hash(request.form.get("password1")),
+            "membersince": membersince
         }
         mongo.db.users.insert_one(register)
 
-        # put user in session cookie AND GO TO ACTIVITY PAGE TODO!
+        # put user in session cookie and go to activity page
         session["user"] = request.form.get("email").lower()
         return redirect(url_for("get_activities"))
     return render_template("register.html", isRegister=True)
@@ -54,8 +61,6 @@ def login():
         # check if the email already exists in db
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
-
-        print(existing_user)
         
         if existing_user:
             # check password
@@ -86,8 +91,7 @@ def profile(email):
     # get the session user by registered email address
     email = mongo.db.users.find_one(
         {"email": session["user"]})["email"]
-    )
-    
+
     return render_template("profile.html", email=email, isProfile=True)
 
 
