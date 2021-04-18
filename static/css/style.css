@@ -163,6 +163,11 @@ a:link, a:visited, a:hover, a:active {
     color: red;
 }
 
+#mapid {
+    width: 800px;
+    height: 600px;
+}
+
 /*
 .flashes h5 {
     line-height: 2;
