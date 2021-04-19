@@ -123,8 +123,6 @@ a:link, a:visited, a:hover, a:active {
     background-color:#293340;
 }
 
-
-
 .navbar {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -208,6 +206,18 @@ a:link, a:visited, a:hover, a:active {
     flex-wrap: nowrap;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.leaflet-bar a {
+    background-color: #12171E;
+    color: #00BF00;
+    border: none;
+}
+
+.leaflet-bar a:hover {
+    background-color: #12171E;
+    color: #293340;
+    border: none;
 }
  
 /* Media queries */
