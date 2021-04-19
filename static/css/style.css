@@ -115,13 +115,15 @@ a:link, a:visited, a:hover, a:active {
     color: #00BF00;
 }
 
-.btn-secondary {
+.btn-secondary, .btn-secondary:focus, .btn-secondary:active {
     background-color: #00BF00;
 }
 
 .btn-secondary:hover {
-    background-color: #293340;
+    background-color:#293340;
 }
+
+
 
 .navbar {
     padding-top: 0px;
