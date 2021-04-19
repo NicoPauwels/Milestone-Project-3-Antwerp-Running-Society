@@ -81,7 +81,6 @@ def login():
     return render_template("login.html", isLogin=True)
 
 
-
 @app.route("/get_activities")
 def get_activities():
     activities = mongo.db.activities.find()
