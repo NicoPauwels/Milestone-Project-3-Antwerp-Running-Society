@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="card">
-        <div class="card-body">
-            <h2 class="text-center">Join the herd.<br>Log In</h2>
+    <h2 class="text-center">Join the herd.<br>Log In</h2>
+    <div class="container">
+        <div class="row">
             <form method="POST" action="{{ url_for('login') }}">
                 <div class="mb-3 loginform">
                     <label for="email" class="form-label">Your e-mail address</label>
@@ -29,84 +29,13 @@
                         {% endif %}
                     {% endwith %}
                 </div>
-                <div>
-                    <button type="submit" class="btn btn-secondary loginform">Log In</button>
-                    <p class="loginform logintext">
-                        New here?
-                        <a href="{{ url_for('register' )}}">Register</a>
-                    </p>
-                </div>
+                <button type="submit" class="btn btn-secondary loginform">Log In</button>
+                <p class="loginform logintext">
+                    New here?
+                    <a href="{{ url_for('register' )}}">Register</a>
+                </p>
             </form>
         </div>
     </div>
-
-<!--
-<div class="col">1 of 2</div>
-<div class="col">
-    <form method="POST" action="{{ url_for('register') }}">
-        <div class="mb-3 registerform">
-            <label for="email" class="form-label">Your e-mail address</label>
-            <input type="email" name="email" id="email" class="form-control" min-length="5" max-length="25"
-                pattern="^[a-zA-Z0-9@._]{5,25}$" required>
-        </div>
-        <div class="mb-3 registerform">
-            <label for="password1" class="form-label">Choose a password</label>
-            <input type="password" name="password1" id="password1" class="form-control" minlenght="5" maxlength="25"
-                pattern="^[a-zA-Z0-9]{5,25}$" required>
-        </div>
-        <div class="mb-3 registerform">
-            <label for="password2" class="form-label">Confirm the password</label>
-            <input type="password" name="password2" id="password2" class="form-control" minlenght="5" maxlength="25"
-                pattern="^[a-zA-Z0-9]{5,25}$" required>
-        </div>
-        <div>
-        <button type="submit" class="btn btn-secondary mainbutton registerform">Register</button>
-        <p class="registerform logintext">
-            Already got an account?
-            <a href="{{ url_for('login' )}}">Log in</a>
-        </p>
-    </div>
-    </form>
-</div>
--->
-
-<!--
-<div class="row">
-    <form class="col s12 m6 l4 offset-m3 offset-l4 center" method="POST" action="{{ url_for('login') }}">
-        <div class="card-panel">
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-at prefix grey-text"></i>
-                    <input id="email" name="email" type="text" minlength="5" 
-                        maxlenght="25" pattern="^[a-zA-Z0-9@._]{5,25}$" class="validate" required>
-                    <label for="email">E-mailadress</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-unlock-alt prefix grey-text"></i>
-                    <input id="password1" name="password1" type="password" minlenght="5" 
-                        maxlength="25" pattern="^[a-zA-Z0-9]{5,25}$" class="validate" required>
-                    <label for="password1">Password</label>
-                </div>
-            </div>
-            <div class="row">
-                <button type="submit" class="col s12 btn-large grey">
-                    Login
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-
-<div class="row">
-    <div class="col s12">
-        <p class="center-align">
-            New Here?
-            <a href="{{ url_for('register' )}}" class="grey-text">Register Account</a>
-        </p>
-    </div>
-</div>
--->
 
 {% endblock %}
