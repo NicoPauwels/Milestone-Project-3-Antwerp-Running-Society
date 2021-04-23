@@ -7,3 +7,15 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoibmNwd2xzIiwiYSI6ImNrbmx1YTR1ejBha2gybmt4cDVrcDN6OWgifQ.wmt7OvrQdw7yqsgvK5h_xg'
 }).addTo(mymap);
+
+$('#right-button').click(function() {
+    $('#content').animate({
+      scrollLeft: "+=200px"
+    }, "slow");
+  });
+  
+   $('#left-button').click(function() {
+    $('#content').animate({
+      scrollLeft: "-=200px"
+    }, "slow");
+  });
