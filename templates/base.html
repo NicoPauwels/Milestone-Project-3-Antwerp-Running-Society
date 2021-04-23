@@ -44,7 +44,7 @@
                     <a href="#"><i class="fas fa-plus-circle buttoniconposition"></i>Add Activity</a>
                 </button>
                 <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasScrolling">
-                    <i class="fas fa-eye buttoniconposition"></i>Show Activities
+                    <i class="fas fa-eye buttoniconposition"></i>View Activities
                 </button>
                 <div class="dropdown">
                     <button class="btn" type="button" id="user"
@@ -68,7 +68,13 @@
         </div>
     </header>
 
-    {% block content %}
+    {% block register %}
+    {% endblock %}
+
+    {% block login %}
+    {% endblock %}
+
+    {% block activities %}
     {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
