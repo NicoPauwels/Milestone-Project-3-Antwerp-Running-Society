@@ -145,21 +145,6 @@ a:link, a:visited, a:hover, a:active {
     margin-top: 4px;
 }
 
-.card-body {
-    width: 320px;
-    background-color: #12171E;
-    margin: 0 auto;
-    padding: 0;
-}
-/*
-.card {
-    background-color: #12171E;
-}
-*/
-.card-title {
-    text-align: center;
-}
-
 .formerrormessage {
     margin-top: 8px;
     color: red;
@@ -169,44 +154,6 @@ a:link, a:visited, a:hover, a:active {
     display: block;
     width: 100%;
     height: 100vh;
-}
-
-.offcanvas {
-    background-color: #12171E;
-    opacity: 0.9;
-}
-
-.offcanvas-header {
-    padding-left: 1rem;
-    padding-right: 1rem; 
-    padding-top: 1rem;
-    padding-bottom: 0;
-}
-
-.offcanvas-body {
-    display: flex;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    margin: 0;
-    padding: 0;
-}
-
-.activityoverview {
-    max-width: 20%;
-    padding: 1rem 1rem;
-    margin-bottom: 2rem;
-    border: 0;
-    flex-basis: 33.333%;
-    flex-grow: 0;
-    flex-shrink: 0;
-}
-
-.activitycontainer {
-    align-items: stretch;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .leaflet-bar a {
@@ -220,17 +167,163 @@ a:link, a:visited, a:hover, a:active {
     color: #293340;
     border: none;
 }
- 
-/* Media queries */
 
-@media (min-width: 1250px) {
-    .container {
-        width: 1248px;
-    }
+.offcanvas {
+    background-color: #12171E;
+    display: flex;
 }
+
+.offcanvas-bottom {
+    height: fit-content;
+}
+
+.offcanvas-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 auto;
+}
+
+.offcanvas-body {
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+}
+
+.carousel {
+    display: flex;
+}
+
+.left-button {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.right-button {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.carouselbutton {
+    background: transparent;
+    color: #00BF00;
+    border: none;
+}
+
+.carouselbutton:hover {
+    opacity: 0.5;
+}
+
+.carouselbuttonicon {
+    font-size: 1.5rem;
+}
+
+.left {
+    float: left; 
+    width: auto;
+    height: 100%;
+    display: table;
+}
+   
+.activitycard {
+    width: auto;
+    height: 100%;
+    display: inline-block;
+    background-color: #191E27;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.25rem;
+    border: solid 1px #00BF00;
+    border-left: solid 5px #00BF00;
+}
+   
+.center {
+    float: left; 
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+   
+.right {
+    float: right; 
+    width: auto;
+    height: 100%;
+    display: table;
+}
+
+.cardicon {
+    padding-top: 2px;
+    padding-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+.cardtext {
+    color: #505965;
+    font-weight: 10px;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.cardsubtitle {
+    color: #FFFFFF;
+    font-weight: 10px;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.cardaddress {
+    color: #505965;
+    font-weight: 10px;
+    margin: 0;
+    padding-bottom: 5px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.participantstable {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px; 
+    margin-bottom: 8px;;
+}
+
+.participantsrow {
+    display: table-row;
+}
+
+.carddot {
+    height: 25px;
+    width: 25px;
+    background-color: #505965;
+    border-radius: 50%;
+    text-align:center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+/* Media queries */
 
 @media (min-width: 1200px) {
     .container {
+        width: 1172px;
+    }
+
+    .carousel {
+        width: 1172px;
+    }
+
+    .center {
+        width: 1172px;
+    }
+
+    .offcanvas-header {
         width: 1172px;
     }
 }
