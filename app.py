@@ -51,7 +51,7 @@ def register():
 
         # put user in session cookie and go to activity page
         session["user"] = request.form.get("email").lower()
-        return redirect(url_for("get_activities"))
+        return redirect(url_for("show_map"))
     return render_template("register.html", isRegister=True)
 
 
@@ -67,7 +67,7 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password1")):
                     session["user"] = request.form.get("email").lower()
-                    return redirect(url_for("get_activities"))
+                    return redirect(url_for("show_map"))
             else:
                 # invalid password
                 flash("The password is not correct!", "loginpassworderror")
@@ -81,10 +81,21 @@ def login():
     return render_template("login.html", isLogin=True)
 
 
-@app.route("/get_activities")
-def get_activities():
-    activities = mongo.db.activities.find()
-    return render_template("activities.html", activities=activities, isActivities=True)
+@app.route("/map")
+def show_map():
+    return render_template("map.html")
+
+
+@app.route("/get_runs")
+def get_runs():
+    runs = mongo.db.activities.find()
+    return render_template("upcomingruns.html", runs=runs, isRuns=True)
+
+
+@app.route("/add_run")
+def add_run():
+    runs = mongo.db.activities.find()
+    return render_template("addrun.html", runs=runs, isAddRun=True)
 
 
 @app.route("/profile/<email>", methods=["GET", "POST"])
@@ -93,7 +104,9 @@ def profile(email):
     email = mongo.db.users.find_one(
         {"email": session["user"]})["email"]
 
-    return render_template("profile.html", email=email, isProfile=True)
+    return render_template("profile.html", 
+                            email=email,
+                            isProfile=True)
 
 
 @app.route("/logout")

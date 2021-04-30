@@ -1,0 +1,26 @@
+{% extends "map.html" %}
+{% block upcomingruns %}
+
+<div class="upcomingruns">
+    <div class="upcomingruns-header">
+        <h5 class="upcomingruns-title">Upcoming Runs</h5>
+    </div>
+    <div class="upcomingruns-container">
+        <div class="upcomingruns-content">
+            {% for run in runs %}
+            <div class="runcard">
+            {{ run.date }} - {{ run.time }}<br>
+            {{ run.type }}<br>
+            {{ run.location }}<br>
+            {{ run.city }}<br>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% block addrun %}
+{% endblock %}
+
+{% endblock %}
+

@@ -4,8 +4,8 @@
     <h2 class="text-center">Join the herd.<br>Log In</h2>
     <div class="container">
         <div class="row">
-            <form method="POST" action="{{ url_for('login') }}">
-                <div class="mb-3 loginform">
+            <form class="loginform" method="POST" action="{{ url_for('login') }}">
+                <div class="mb-3">
                     <label for="email" class="form-label">Your e-mail address</label>
                     <input type="email" name="email" id="email" class="form-control" min-length="5" max-length="25"
                         pattern="^[a-zA-Z0-9@._]{5,25}$" required>
@@ -17,7 +17,7 @@
                         {% endif %}
                     {% endwith %}
                 </div>
-                <div class="mb-3 loginform">
+                <div class="mb-3">
                     <label for="password1" class="form-label">Your password</label>
                     <input type="password" name="password1" id="password1" class="form-control" minlenght="5" maxlength="25"
                         pattern="^[a-zA-Z0-9]{5,25}$" required>

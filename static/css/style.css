@@ -5,6 +5,8 @@ body {
     color: #FFFFFF;
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
 }
 
@@ -59,6 +61,10 @@ a:link, a:visited, a:hover, a:active {
     box-shadow: none;
 }
 
+.row {
+    margin: 0;
+}
+
 #usericon {
     padding-left: 10px;
     padding-right: 10px;
@@ -82,6 +88,18 @@ a:link, a:visited, a:hover, a:active {
     border-radius: 0;
     margin-bottom: -1px;
     color: #FFFFFF;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#crew {
+    min-height: 55px;
+    background: transparent;
+    border-radius: 0;
+    margin-bottom: -1px;
+    color: #FFFFFF;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #user:hover, #user:active, #user:focus {
@@ -91,11 +109,19 @@ a:link, a:visited, a:hover, a:active {
     color: #293340;
 }
 
+#crew:hover, #user:active, #user:focus {
+    border-left: solid 1px #1A1F28;
+    border-right: solid 1px #1A1F28;
+    border-bottom: solid 1px transparent;
+    color: #293340;
+}
+
+
 .dropdown-menu {
-    margin-left: -90px;
+    margin-left: -95px;
     background: #12171E;
     border: solid 1px #1A1F28;
-    border-radius: 0;
+    border-radius: 0; 
 }
 
 .dropdown-menu[data-bs-popper] {
@@ -153,7 +179,9 @@ a:link, a:visited, a:hover, a:active {
 #mapid {
     display: block;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    z-index: 0;
+    overflow:hidden;
 }
 
 .leaflet-bar a {
@@ -168,9 +196,128 @@ a:link, a:visited, a:hover, a:active {
     border: none;
 }
 
-.offcanvas {
+.upcomingruns {
+    z-index: 1;
+    position: absolute;
+    top: 55px;
+    width: 300px;
     background-color: #12171E;
+    opacity: 0.9;
+    border: none;
     display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.upcomingruns-header {
+    margin: 1rem 1rem;
+}
+
+.upcomingruns-container {
+    width: 280px;
+    height: 100%;
+    overflow: hidden;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 4rem;
+    overflow-y: scroll;
+}
+
+.upcomingruns-content {
+    overflow: hidden;
+}
+
+.runcard {
+    background-color: #191E27;
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem; 
+    border-left: solid 2px #00BF00;   
+    width: auto;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px#191E27;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00BF00;
+}
+
+.addrun {
+    z-index: 2;
+    position: absolute;
+    opacity: 0.9;
+    left: 50%;
+    top: 50%;
+    margin-top: -250px;
+    margin-left: -150px;
+    width: 300px;
+    height: fit-content;
+    background-color:#191E27;
+    border-radius: 0.25rem;
+}
+
+.addrunform-header {
+    margin: 1rem 1rem;
+}
+
+.addrunforminput {
+    width: 120px;
+}
+
+.inputposition {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.checkboxposition {
+    margin-left: 1rem;
+}
+
+/*
+.addrunform-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/*
+.center {
+    float: left; 
+    width: auto;
+    height: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+*/
+
+
+/*
+
+.offcanvas {
+    background: rgb(18, 23, 30, 0.8);
+    display: flex;
+    overflow: hidden;
+}
+
+.offcanvas-start {
+    top: 55px;
+    width: 33%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .offcanvas-bottom {
@@ -180,6 +327,7 @@ a:link, a:visited, a:hover, a:active {
 .offcanvas-header {
     padding-top: 1rem;
     padding-bottom: 1rem;
+    padding-left: 0;
     margin: 0 auto;
 }
 
@@ -197,11 +345,13 @@ a:link, a:visited, a:hover, a:active {
 .left-button {
     display: table-cell;
     vertical-align: middle;
+    width: 32px;
 }
 
 .right-button {
     display: table-cell;
     vertical-align: middle;
+    width: 32px;
 }
 
 .carouselbutton {
@@ -224,30 +374,94 @@ a:link, a:visited, a:hover, a:active {
     height: 100%;
     display: table;
 }
-   
+
+.addactivitybutton {
+    float: left;
+    width: 125px;
+    height: 200px;
+    background-color: #191E27;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 0.25rem;
+    writing-mode: vertical-rl;
+    background: repeating-linear-gradient(
+        45deg,
+        #191E27,
+        #191E27 16px,
+        #293340 16px,
+        #293340 32px
+      );
+}
+
+.addactivitybutton:active:focus {
+    float: left;
+    width: 330px;
+    height: 200px;
+    background-color: #191E27;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 0.25rem;
+    writing-mode: vertical-rl;
+    background: repeating-linear-gradient(
+        45deg,
+        #191E27,
+        #191E27 16px,
+        #293340 16px,
+        #293340 32px
+      ); 
+}
+
+.addactivitybuttoniconposition {
+    padding-bottom: 5px;
+}
+
 .activitycard {
-    width: auto;
-    height: 100%;
+    width: 220px;
+    margin-right: 16px;
+    height: 200px;
     display: inline-block;
     background-color: #191E27;
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    padding-bottom: 1rem;
     border-radius: 0.25rem;
     border: solid 1px #00BF00;
     border-left: solid 5px #00BF00;
 }
-   
+
+#addactivitycard {
+    position:absolute;
+    width: 220px;
+    margin-right: 16px;
+    height: 200px;
+    display: inline-block;
+    background-color: #191E27;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 0.25rem;
+    border: solid 1px #191E27;
+    border-left: solid 5px #191E27;
+}
+
+#addactivitycard.greenborder {
+    border: solid 1px #00BF00;
+    border-left: solid 5px #00BF00;
+}
+
 .center {
     float: left; 
     width: auto;
-    height: 100%;
+    height: 200px;
     overflow: hidden;
     white-space: nowrap;
     margin-left: 1rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
-    padding-bottom: 1rem;
 }
    
 .right {
@@ -268,7 +482,11 @@ a:link, a:visited, a:hover, a:active {
     color: #505965;
     font-weight: 10px;
     margin: 0;
-    padding-bottom: 5px;
+}
+
+.cardtitle {
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .cardsubtitle {
@@ -291,7 +509,7 @@ a:link, a:visited, a:hover, a:active {
     display: table;
     border-collapse: separate;
     border-spacing: 5px; 
-    margin-bottom: 8px;;
+    margin-bottom: 5px;;
 }
 
 .participantsrow {
@@ -301,29 +519,96 @@ a:link, a:visited, a:hover, a:active {
 .carddot {
     height: 25px;
     width: 25px;
-    background-color: #505965;
+    background-color: #293340;
     border-radius: 50%;
     text-align:center;
     vertical-align: middle;
     display: table-cell;
 }
 
+.container{
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+
+.choice{
+    height: 200px;
+    box-sizing: border-box;
+    padding: 0;
+    overflow: hidden;
+    float: left;
+    align-items: center;
+    transition: width 0.2s;
+  	border-radius:0.25rem;
+    margin-right: 1rem;
+}
+
+.expand{
+    min-width: 250px;
+    margin-right: 1rem;
+}
+
+.unset{
+    min-width: 125px;
+    background-color: #293340;
+    margin-right: 1rem;
+}
+
+.small{
+    min-width: 125px;
+    background-color: #293340;
+}
+
+
+.small>div{
+    opacity: 0;
+}
+
+.unset > div > p{
+    opacity: 0;
+}
+
+.expand > div {
+    transition-delay:  200ms;
+    opacity: 1;
+}
+*/
+
 /* Media queries */
 
-@media (min-width: 1200px) {
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
     .container {
-        width: 1172px;
+        width: 960px;
     }
+}
 
-    .carousel {
-        width: 1172px;
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    .container {
+        width: 960px;
     }
+}
 
-    .center {
-        width: 1172px;
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+    .container {
+        width: 1192px;
     }
+}
 
-    .offcanvas-header {
-        width: 1172px;
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+    .container {
+        width: 1192px;
     }
 }

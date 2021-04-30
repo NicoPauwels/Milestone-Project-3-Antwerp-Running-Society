@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <!--
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin=""/>
-    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/css/tempusdominus-bootstrap-4.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datetimepicker.css') }}"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}" />
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
@@ -25,14 +22,17 @@
     <header class="header">
         <div class="container header-content">
             <div>
-                {% if isActivities %}
-                <a href="{{ url_for('get_activities') }}" class="branding">IMPALA</a>
+                {% if isRuns %}
+                <a href="{{ url_for('get_runs') }}" class="branding">IMPALA</a>
+                {% endif %}
+                {% if isAddRun %}
+                <a href="{{ url_for('get_runs') }}" class="branding">IMPALA</a>
                 {% endif %}
                 {% if isProfile %}
-                <a href="{{ url_for('get_activities') }}" class="branding">IMPALA</a>
+                <a href="{{ url_for('get_runs') }}" class="branding">IMPALA</a>
                 {% endif %}
                 {% if isLogin %}
-                <a href="{{ url_for('register') }}" class ="branding">IMPALA</a>
+                <a href="{{ url_for('register') }}" class="branding">IMPALA</a>
                 {% endif %}
                 {% if isRegister %}
                 <a href="{{ url_for('login') }}" class="branding">IMPALA</a>
@@ -40,28 +40,38 @@
             </div>
             <nav class="navbar">
                 {% if session.user %}
-                <button type="button" class="btn btn-secondary">
-                    <a href="#"><i class="fas fa-plus-circle buttoniconposition"></i>Add Activity</a>
-                </button>
-                <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasScrolling">
-                    <i class="fas fa-eye buttoniconposition"></i>View Activities
-                </button>
+                <a href="{{ url_for('add_run') }}"><button class="btn btn-secondary" type="button"><i class="fas fa-plus-circle buttoniconposition"></i>Add Run</button></a>
+                <a href="{{ url_for('get_runs') }}"><button class="btn btn-secondary" type="button"><i class="fas fa-eye buttoniconposition"></i>Overview Runs</button></a>
                 <div class="dropdown">
-                    <button class="btn" type="button" id="user"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn" type="button" id="crew" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-users" id="usericon"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="crew">
+                        <li><button class="dropdown-item" type="button"><a href="#">My Crew</a></button></li>
+                        <li><button class="dropdown-item" type="button"><a href="#">Search Crews</a></button></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn" type="button" id="user" data-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user" id="usericon"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="user">
-                        <li><button class="dropdown-item" type="button"><a href="{{ url_for('profile', email=session['user']) }}">My Profile</a></button></li>
-                        <li><button class="dropdown-item" type="button"><a href="{{ url_for('logout' )}}">Log Out</a></button></li>
+                        <li><button class="dropdown-item" type="button"><a
+                                    href="{{ url_for('profile', email=session['user']) }}">My Profile</a></button></li>
+                        <li><button class="dropdown-item" type="button"><a
+                                    href="#">My Runs</a></button></li>
+                        <li><button class="dropdown-item" type="button"><a href="{{ url_for('logout' )}}">Log
+                                    Out</a></button></li>
                     </ul>
-                </div>                
+                </div>
                 {% else %}
                 {% if isRegister %}
-                <button type="button" class="btn btn-secondary" id="login"><a href="{{ url_for('login' )}}">Log In</a></button>
+                <button type="button" class="btn btn-secondary" id="login"><a href="{{ url_for('login' )}}">Log
+                        In</a></button>
                 {% endif %}
                 {% if isLogin %}
-                <button type="button" class="btn btn-secondary" id="login"><a href="{{ url_for('register' )}}">Register</a></button>
+                <button type="button" class="btn btn-secondary" id="login"><a
+                        href="{{ url_for('register' )}}">Register</a></button>
                 {% endif %}
                 {% endif %}
             </nav>
@@ -74,18 +84,21 @@
     {% block login %}
     {% endblock %}
 
-    {% block activities %}
+    {% block map %}
     {% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <!--
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
-    -->
+    {% block profile %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.38.0/js/tempusdominus-bootstrap-4.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
