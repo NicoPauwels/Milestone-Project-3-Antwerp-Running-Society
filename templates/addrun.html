@@ -1,0 +1,122 @@
+{% extends "upcomingruns.html" %}
+{% block addrun %}
+
+<div class="addrun">
+    <div class="addrunform-header">
+        <h5>Add Run</h5>
+    </div>
+    <form class="addrunform" method="POST" action="">
+        <div class="row">
+            <label class="form-label">Choose type of run:</label>
+        </div>
+        <div class="row">
+              <div class="inputposition">
+                <select id="types" name="types" class="addrunforminput">
+                    <option value="Tempo">Tempo</option>
+                    <option value="Long Distance">Long Distance</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="form-label">Choose level of run:</label>
+        </div>
+        <div class="row">
+              <div class="inputposition">
+                <select id="levels" name="levels" class="addrunforminput">
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Experienced">Experienced</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label class="form-label">Please pick a date and time:</label>
+            <div class="col mb-3">
+                <input class="addrunforminput" type="date" id="date" name="date" required>
+            </div>
+            <div class="col mb-3 correct">
+                <input class="addrunforminput" type="time" id="time" name="time" required>
+            </div>
+        </div>
+        <div class="row">
+            <label class="form-label">Insert meetingpoint:</label>
+        </div>
+        <div class="row">
+            <div class="inputposition">
+                <input class="addrunforminput" type="text" name="address">
+            </div>
+        </div>
+        <div class="row">
+            <div class="inputposition">
+                <input class="addrunforminput" type="text" name="location">
+            </div>
+        </div>
+        <div class="row">
+            <label class="form-label">Set distance:</label>
+        </div>
+        <div class="row">
+            <div class="inputposition">
+                <input type="range" min="3" max="50" value="10" class="slider" id="setdistance" onchange="updateTextInput(this.value);">
+                <input type="text" id="distance" name="distance" value="">
+            </div>
+        </div>
+        <div class="row">
+            <label class="form-label">Privacy:</label>
+        </div>
+        <div class="row">
+                <div class="checkboxposition">
+                <input type="checkbox" id="private" name="private" value="private">
+                <label for="private">Crew Run?</label>
+                </div>
+        </div>
+        <div class="row">
+            <div class="checkboxposition">
+                <input type="checkbox" id="gender" name="gender" value="gender">
+                <label for="samegender">Same gender only?</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="inputposition">
+                <input type="submit" value="Add Run">
+                <button type="cancel">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!--
+<div class="container">
+    <div class="row">
+        <form class="loginform" method="POST" action="{{ url_for('login') }}">
+            <div class="mb-3">
+                <label for="email" class="form-label">Your e-mail address</label>
+                <input type="email" name="email" id="email" class="form-control" min-length="5" max-length="25"
+                    pattern="^[a-zA-Z0-9@._]{5,25}$" required>
+                {% with loginemailerrors = get_flashed_messages(category_filter=["loginemailerror"]) %}
+                    {% if loginemailerrors %}
+                        {% for message in loginemailerrors %}
+                            <p class="formerrormessage">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="mb-3">
+                <label for="password1" class="form-label">Your password</label>
+                <input type="password" name="password1" id="password1" class="form-control" minlenght="5" maxlength="25"
+                    pattern="^[a-zA-Z0-9]{5,25}$" required>
+                {% with loginpassworderrors = get_flashed_messages(category_filter=["loginpassworderror"]) %}
+                    {% if loginpassworderrors %}
+                        {% for message in loginpassworderrors %}
+                            <p class="formerrormessage">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <button type="submit" class="btn btn-secondary loginform">Log In</button>
+            <p class="loginform logintext">
+                New here?
+                <a href="{{ url_for('register' )}}">Register</a>
+            </p>
+        </form>
+    </div>
+</div>
+-->
+{% endblock %}
