@@ -11,5 +11,5 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // add run form distance slider
 
 function updateTextInput(val) {
-  document.getElementById('distance').value=val; 
+  document.getElementById('distance').value=val + " km"; 
 }
