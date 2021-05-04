@@ -88,14 +88,16 @@ def show_map():
 
 @app.route("/get_runs")
 def get_runs():
-    runs = mongo.db.activities.find()
+    runs = mongo.db.runs.find()
     return render_template("upcomingruns.html", runs=runs, isRuns=True)
 
 
 @app.route("/add_run")
 def add_run():
-    runs = mongo.db.activities.find()
-    return render_template("addrun.html", runs=runs, isAddRun=True)
+    runs = mongo.db.runs.find()
+    run_types = mongo.db.run_types.find().sort("run_type", 1)
+    levels = mongo.db.levels.find()
+    return render_template("addrun.html", runs=runs, run_types=run_types, levels=levels, isAddRun=True)
 
 
 @app.route("/profile/<email>", methods=["GET", "POST"])
