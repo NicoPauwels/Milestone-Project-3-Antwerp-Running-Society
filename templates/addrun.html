@@ -5,41 +5,49 @@
     <div class="addrunform-header">
         <h5>Add Run</h5>
     </div>
-    <form class="addrunform" method="POST" action="">
-        <label class="form-label">Choose type of run:</label>
-            <select id="types" name="types" class="form-control">
-                <option value="Tempo">Tempo</option>
-                <option value="Long Distance">Long Distance</option>
+    <form class="addrunform" method="POST" action="{{ url_for('add_run') }}">
+        <label for="run_type" class="form-label">Choose type of run:</label>
+            <select id="run_type" name="run_type" class="form-control" required>
+                <option value="" disabled selected>Choose Type Of Run</option>
+                {% for run_type in run_types %}
+                    <option value="{{ run_type.run_type }}">{{ run_type.run_type }}</option>
+                {% endfor %}
             </select>
-        <label class="form-label">Choose level of run:</label>
-            <select id="levels" name="levels" class="form-control">
-                <option value="Intermediate">Intermediate</option>
-                <option value="Experienced">Experienced</option>
+        <label for="level" class="form-label">Choose level of run:</label>
+            <select id="level" name="level" class="form-control">
+                <option value="">All Levels</option>
+                {% for level in levels %}
+                    <option value="{{ level.level }}">{{ level.level }}</option>
+                {% endfor %}
             </select>
-        <label class="form-label">Please pick a date and time:</label>
-                <div class="dateandtime">
-                <input class="form-control" type="date" id="date" name="date" required>
-                <input class="form-control" type="time" id="time" name="time" required>
-                </div>
-        <label class="form-label">Insert meetingpoint:</label>
-                <input class="form-control" type="text" name="address" placeholder="Street and housenumber">
-                <input class="form-control" type="text" name="location" placeholder="City">
-        <label class="form-label">Set distance:</label>
-                <div class="distance">
-                <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance" onchange="updateTextInput(this.value);">
-                <input type="text" id="distance" class="form-control" name="distance" value="" placeholder="10 km">
-                </div>
-        <label class="form-label">Privacy:</label>
+        <fieldset>
+            <legend class="form-label">Please pick a date and time:</legend>
+            <input class="form-control" type="date" id="date" name="date" required>
+            <input class="form-control" type="time" id="time" name="time" required> 
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Insert meetingpoint:</legend>
+            <input class="form-control" type="text" name="location" placeholder="Street and housenumber" required>
+            <input class="form-control" type="text" name="city" placeholder="City" required> 
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Set distance:</legend>
+            <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance" onchange="updateTextInput(this.value);">
+            <input type="text" id="distance" class="form-control" name="distance" value="" placeholder="10 km">
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Privacy:</legend>
                 <label class="checkboxcontainer">
                     <label class="checkboxlabel">Crew run?</label>
-                    <input type="checkbox" id="private" name="private">
-                    <span class="checkmark"></span>
+                    <input type="checkbox" id="crew_run" name="crew_run">
+                    <span class="checkmark"></span> 
                 </label>
                 <label class="checkboxcontainer">
                     <label class="checkboxlabel">Same gender only?</label>
                     <input type="checkbox" id="samegender" name="samegender">
                     <span class="checkmark"></span>
                 </label>
+        </fieldset>
         <button class="form-button" type="submit"><i class="fas fa-plus-circle buttoniconposition"></i>Add Run</button>
         <button class="form-button" type="cancel"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</button>
     </form>
