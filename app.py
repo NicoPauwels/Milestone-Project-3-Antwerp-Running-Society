@@ -1,8 +1,9 @@
 import os
+import datetime
+import time
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from datetime import date
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,8 +19,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-now = date.today()
-membersince = now.strftime("%d %B, %Y")
+timestamp = datetime.datetime.now()
+createdon = timestamp.strftime("%d/%m/%Y, %H:%M:%S")
 
 
 
@@ -45,7 +46,7 @@ def register():
         register = {
             "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password1")),
-            "membersince": membersince
+            "membersince": createdon
         }
         mongo.db.users.insert_one(register)
 
@@ -83,31 +84,99 @@ def login():
 
 @app.route("/map")
 def show_map():
-    return render_template("map.html")
+    return render_template("map.html", isMap=True)
 
 
 @app.route("/get_runs")
 def get_runs():
-    runs = mongo.db.runs.find()
+    runs = mongo.db.runs.find().sort("formdate", 1)
     return render_template("upcomingruns.html", runs=runs, isRuns=True)
 
 
-@app.route("/add_run")
+@app.route("/add_run", methods=["GET", "POST"])
 def add_run():
-    runs = mongo.db.runs.find()
-    run_types = mongo.db.run_types.find().sort("run_type", 1)
-    levels = mongo.db.levels.find()
-    return render_template("addrun.html", runs=runs, run_types=run_types, levels=levels, isAddRun=True)
+    if request.method == "POST":
+        crewrun = "on" if request.form.get("crewrun") else "off"
+        samegender = "on" if request.form.get("samegender") else "off"
+        formdate = request.form.get("date")
+        date = datetime.datetime.strptime(formdate, "%Y-%m-%d").strftime("%d/%m/%Y")
+        run = {
+            "runtype": request.form.get("runtype"),
+            "level": request.form.get("level"),
+            "date": date,
+            "formdate": formdate,
+            "time": request.form.get("time"),
+            "location": request.form.get("location"),
+            "city": request.form.get("city"),
+            "distance": request.form.get("distance"),
+            "crewrun": crewrun,
+            "samegender": samegender,
+            "createdby": session["user"],  
+            "createdon": createdon
+        }
+        mongo.db.runs.insert_one(run)
+        return redirect(url_for("get_runs"))
+
+    runs = mongo.db.runs.find().sort("formdate", 1)
+    runtypes = mongo.db.runtypes.find().sort("runtype", 1)
+    levels = mongo.db.levels.find().sort("level", 1)
+    return render_template("addrun.html", runs=runs, runtypes=runtypes, levels=levels, isAddRun=True)
 
 
-@app.route("/profile/<email>", methods=["GET", "POST"])
-def profile(email):
+@app.route("/edit_run/<run_id>", methods=["GET", "POST"])
+def edit_run(run_id):
+    if request.method == "POST":
+        crewrun = "on" if request.form.get("crewrun") else "off"
+        samegender = "on" if request.form.get("samegender") else "off"
+        formdate = request.form.get("date")
+        date = datetime.datetime.strptime(formdate, "%Y-%m-%d").strftime("%d/%m/%Y")
+        submit = {
+            "runtype": request.form.get("runtype"),
+            "level": request.form.get("level"),
+            "date": date,
+            "formdate": formdate,
+            "time": request.form.get("time"),
+            "location": request.form.get("location"),
+            "city": request.form.get("city"),
+            "distance": request.form.get("distance"),
+            "crewrun": crewrun,
+            "samegender": samegender,
+            "createdby": session["user"],  
+            "createdon": createdon
+        }
+        mongo.db.runs.update({"_id": ObjectId(run_id)} , submit)
+        return redirect(url_for("get_runs"))
+
+    run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
+    runs = mongo.db.runs.find().sort("formdate", 1)
+    runtypes = mongo.db.runtypes.find().sort("runtype", 1)
+    levels = mongo.db.levels.find().sort("level", 1)
+    return render_template("editrun.html", run=run, runs=runs, runtypes=runtypes, levels=levels, isEditRun=True)
+
+
+@app.route("/delete_run/<run_id>")
+def delete_run(run_id):
+    run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
+    runs = mongo.db.runs.find().sort("formdate", 1)
+    return render_template("deleterun.html", run=run, runs=runs, isDeleteRun=True)
+
+
+@app.route("/permanently_delete_run/<run_id>")
+def permanently_delete_run(run_id):
+    mongo.db.runs.remove({"_id": ObjectId(run_id)})
+    return redirect(url_for("get_runs")) 
+
+
+@app.route("/profile/<user>", methods=["GET", "POST"])
+def profile(user):
     # get the session user by registered email address
-    email = mongo.db.users.find_one(
-        {"email": session["user"]})["email"]
+    # user = mongo.db.users.find_one(
+    #   {"email": session["user"]})["email"]
+
+    user = mongo.db.users.find_one({"email": user})
 
     return render_template("profile.html", 
-                            email=email,
+                            user=user,
                             isProfile=True)
 
 
