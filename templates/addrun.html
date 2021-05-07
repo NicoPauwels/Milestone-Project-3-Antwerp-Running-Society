@@ -1,23 +1,24 @@
 {% extends "upcomingruns.html" %}
 {% block addrun %}
 
-<div class="addrun">
-    <div class="addrunform-header">
+<div class="message-container">
+    <div class="message-header">
         <h5>Add Run</h5>
+        <a href="{{ url_for('get_runs') }}" class="closebutton"><i class="fas fa-times"></i></a>
     </div>
-    <form class="addrunform" method="POST" action="{{ url_for('add_run') }}">
-        <label for="run_type" class="form-label">Choose type of run:</label>
-            <select id="run_type" name="run_type" class="form-control" required>
+    <form class="form" method="POST" action="{{ url_for('add_run') }}">
+        <label for="runtype" class="form-label">Choose type of run:</label>
+            <select id="runtype" name="runtype" class="form-control" required>
                 <option value="" disabled selected>Choose Type Of Run</option>
-                {% for run_type in run_types %}
-                    <option value="{{ run_type.run_type }}">{{ run_type.run_type }}</option>
+                {% for runtype in runtypes %}
+                <option value="{{ runtype.runtype }}">{{ runtype.runtype }}</option>
                 {% endfor %}
             </select>
         <label for="level" class="form-label">Choose level of run:</label>
-            <select id="level" name="level" class="form-control">
+            <select id="level" name="level" class="form-control" required>
                 <option value="">All Levels</option>
                 {% for level in levels %}
-                    <option value="{{ level.level }}">{{ level.level }}</option>
+                <option value="{{ level.level }}">{{ level.level }}</option>
                 {% endfor %}
             </select>
         <fieldset>
@@ -33,7 +34,7 @@
         <fieldset>
             <legend class="form-label">Set distance:</legend>
             <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance" onchange="updateTextInput(this.value);">
-            <input type="text" id="distance" class="form-control" name="distance" value="" placeholder="10 km">
+            <input type="text" id="distance" class="form-control" name="distance" value="10 km" placeholder="10 km">
         </fieldset>
         <fieldset>
             <legend class="form-label">Privacy:</legend>
@@ -48,9 +49,11 @@
                     <span class="checkmark"></span>
                 </label>
         </fieldset>
-        <button class="form-button" type="submit"><i class="fas fa-plus-circle buttoniconposition"></i>Add Run</button>
-        <button class="form-button" type="cancel"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</button>
+
+        <button class="form-button" type="submit" onclick="checkForm()"><i class="fas fa-plus-circle buttoniconposition"></i>Add Run</button>
+        <a href="{{ url_for('get_runs') }}" class="form-button"><p class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</p></a>
     </form>
+    
 </div>
 
 {% endblock %}
