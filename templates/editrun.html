@@ -1,0 +1,81 @@
+{% extends "upcomingruns.html" %}
+{% block editrun %}
+
+<div class="message-container">
+    <div class="message-header">
+        <h5>Edit Run</h5>
+        <a href="{{ url_for('get_runs') }}" class="closebutton"><i class="fas fa-times"></i></a>
+    </div>
+    <form class="form" method="POST" action="{{ url_for('edit_run', run_id=run._id) }}">
+        <label for="runtype" class="form-label">Choose type of run:</label>
+            <select id="runtype" name="runtype" class="form-control" required>
+                <option value="" disabled>Choose Type Of Run</option>
+                {% for runtype in runtypes %}
+                    {% if runtype.runtype == run.runtype %}
+                        <option value="{{ runtype.runtype }}" selected>{{ runtype.runtype }}</option>
+                    {% else %}
+                        <option value="{{ runtype.runtype }}">{{ runtype.runtype }}</option> 
+                    {% endif %}
+                {% endfor %}
+            </select>
+        <label for="level" class="form-label">Choose level of run:</label>
+            <select id="level" name="level" class="form-control" required>
+                <option value="" disabled>All Levels</option>
+                {% for level in levels %}
+                    {% if level.level == run.level %}
+                        <option value="{{ level.level }}" selected>{{ level.level }}</option>
+                    {% else %}
+                        <option value="{{ level.level }}">{{ level.level }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        <fieldset>
+            <legend class="form-label">Please pick a date and time:</legend>
+            <input class="form-control" type="date" id="date" name="date" value="{{ run.formdate }}" required>
+            <input class="form-control" type="time" id="time" name="time" value="{{ run.time }}" required> 
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Insert meetingpoint:</legend>
+            <input class="form-control" type="text" name="location" placeholder="Street and housenumber" value="{{ run.location }}" required>
+            <input class="form-control" type="text" name="city" placeholder="City" value="{{ run.city }}" required> 
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Set distance:</legend>
+            <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance" onchange="updateTextInput(this.value);">
+            <input type="text" id="distance" class="form-control" name="distance" value="{{ run.distance }}" placeholder="10 km">
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Privacy:</legend>
+            {% if run.crewrun == "on" %}
+                <label class="checkboxcontainer">
+                    <label class="checkboxlabel">Crew run?</label>
+                    <input type="checkbox" id="crewrun" name="crewrun" checked>
+                    <span class="checkmark"></span> 
+                </label>
+            {% else %}
+                <label class="checkboxcontainer">
+                    <label class="checkboxlabel">Crew run?</label>
+                    <input type="checkbox" id="crewrun" name="crewrun">
+                    <span class="checkmark"></span> 
+                </label>
+            {% endif %}
+            {% if run.samegender == "on" %}
+                <label class="checkboxcontainer">
+                    <label class="checkboxlabel">Same gender only?</label>
+                    <input type="checkbox" id="samegender" name="samegender" checked>
+                    <span class="checkmark"></span>
+                </label>
+            {% else %}
+                <label class="checkboxcontainer">
+                    <label class="checkboxlabel">Same gender only?</label>
+                    <input type="checkbox" id="samegender" name="samegender">
+                    <span class="checkmark"></span>
+                </label> 
+            {% endif %}
+        </fieldset>
+        <button class="form-button" type="submit" onclick="checkForm()"><i class="fas fa-pencil-alt buttoniconposition"></i>Edit Run</button>
+        <a href="{{ url_for('get_runs') }}" type="button" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
+    </form>
+</div>
+
+{% endblock %}
