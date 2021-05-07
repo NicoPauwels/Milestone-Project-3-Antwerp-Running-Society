@@ -156,8 +156,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .registerform {
-    width: 50%;
-    max-width: 280px;
+    width: 280px;
     margin-left: 40px;
 }
 
@@ -201,7 +200,7 @@ a:link, a:visited, a:hover, a:active {
     position: absolute;
     top: 55px;
     width: 300px;
-    background-color: rgba(18, 23, 30, 0.8);
+    background-color: rgba(18, 23, 30, 0.9);
     border: none;
     display: flex;
     flex-direction: column;
@@ -234,6 +233,7 @@ a:link, a:visited, a:hover, a:active {
     border-radius: 0.25rem; 
     border-left: solid 2px #00BF00;   
     width: auto;
+    position: relative;
 }
 
 ::-webkit-scrollbar {
@@ -252,25 +252,55 @@ a:link, a:visited, a:hover, a:active {
     background: #00BF00;
 }
 
-.addrun {
+.message-container {
     z-index: 2;
     position: absolute;
     left: 50%;
     top: 50%;
     margin-top: -250px;
-    margin-left: -150px;
+    margin-left: -156px;
     width: fit-content;
     height: fit-content;
-    background-color: rgba(18, 23, 30, 0.8);
+    background-color: rgba(18, 23, 30, 0.9);
     border-radius: 0.25rem;
     border-left: solid 2px #00BF00;
 }
 
-.addrunform-header {
+.deletemessageposition {
+    margin-top: -75px;
+}
+
+.myprofileposition {
+    top: 55px;
+    margin-top: 1rem;
+}
+
+.message-header {
     margin: 1rem 1rem;
 }
 
-.addrunform {
+.message-content {
+    margin: 1rem 1rem;
+}
+
+.message-text {
+    width: 280px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    color: #505965;
+}
+
+.closebutton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.closebutton:hover {
+    color: #00BF00;
+}
+
+.form {
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 1rem;
@@ -305,8 +335,8 @@ a:link, a:visited, a:hover, a:active {
     font-size: 10px;
 }
 
-#types,
-#levels {
+#runtype,
+#level {
     padding-top: 4px;
 }
 
@@ -398,7 +428,6 @@ a:link, a:visited, a:hover, a:active {
     width: 0;
 }
   
-
 .checkmark {
     position: absolute;
     top: 0;
@@ -425,8 +454,8 @@ a:link, a:visited, a:hover, a:active {
 }
   
 .checkboxcontainer .checkmark:after {
-    left: 5px;
-    top: 2px;
+    left: 4px;
+    top: 1px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -447,15 +476,68 @@ a:link, a:visited, a:hover, a:active {
     background-color: #191E27;
     color: #505965;
     border-radius: 0.25rem;
-    min-height: 25px;
+    height: 25px;
     margin-right: 0.5rem;
     margin-top: 0.5rem;
+    margin-bottom: 1rem;
     font-size: 10px;
+    float: left;
+    line-height: 10px;
 }
 
 .form-button:hover {
     color: #00BF00;
 }
+
+.form-link {
+    display: inline-block;
+    color:#505965;
+    vertical-align: middle;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+    padding-top: 7px;
+}
+
+.form-link:hover {
+    color: #00BF00;
+}
+
+.cardicon {
+    padding-top: 2px;
+    padding-right: 0.5rem;
+}
+
+.cardiconposition {
+    margin-left: 1rem;
+}
+
+.runcard .cardtext {
+    color: #505965;
+    margin-bottom: 0.5rem;
+}
+
+.runcard .cardtitle {
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+}
+
+.runcard .details {
+    color: #505965;
+    margin-bottom: 0;
+}
+
+.runcard .editanddelete {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+}
+
+.editanddelete a:hover {
+    color: #00BF00;
+}
+
+
 
 /*
 .addrunform-title {
