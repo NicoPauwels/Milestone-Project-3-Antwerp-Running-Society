@@ -172,6 +172,7 @@ a:link, a:visited, a:hover, a:active {
 
 .formerrormessage {
     margin-top: 8px;
+    width: 280px;
     color: red;
 }
 
@@ -537,7 +538,58 @@ a:link, a:visited, a:hover, a:active {
     color: #00BF00;
 }
 
+.completeprofilemessage {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    color: red;
+    text-align: justify;
+    width: 280px;
+}
 
+.myprofilegroup {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.profilelabel {
+    display: inline-block;
+    width: 120px;
+    margin-bottom: 0.5rem;
+    font-size: 10px;
+    color: #00BF00;
+}
+
+.profileinput {
+    width: 160px;
+    margin-bottom: 1rem;
+    background-color: #191E27;
+    color: #505965;
+    height: 25px;
+    font-size: 10px;
+    border: solid 1px #505965;
+    border-radius: 0.25rem;
+    padding: .375rem .75rem;
+}
+
+.myprofile {
+    border: none;
+    background-color: #12171E;
+    margin-bottom: 0.5rem;
+}
+
+
+/*
+.profileinput::placeholder {
+    padding-left: 1rem;
+}
+
+.profileinput::-webkit-input-placeholder {
+    padding-left: 1rem;
+}
+
+.profileinput:-ms-input-placeholder {
+    padding-left: 1rem;
+}
 
 /*
 .addrunform-title {
