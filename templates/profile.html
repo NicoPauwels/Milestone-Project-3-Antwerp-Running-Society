@@ -1,6 +1,79 @@
 {% extends "base.html" %}
 {% block profile %}
 
-<h2 class="text-center">{{ email }}</h2>
+<div class="message-container myprofileposition">
+
+    <div class="message-header">
+        {% with completeprofilemessages = get_flashed_messages(category_filter=["completeprofilemessage"]) %}
+            {% if completeprofilemessages %}
+                {% for message in completeprofilemessages %}
+                    <p class="completeprofilemessage"><i class="fas fa-exclamation-triangle buttoniconposition"></i>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <form class="form" method="POST" action="{{ url_for('profile', user=session['user']) }}">
+        <h5>My Profile</h5>
+        <div class="myprofilegroup">
+            <div>
+                <label class="profilelabel" for="firstname">First Name:</label>
+                <input class="profileinput myprofile" type="text" id="firstname" name="firstname" value="{{ user.firstname }}" placeholder="First Name" disabled>
+            </div>
+            <div>
+                <label class="profilelabel" for="lastname">Last Name:</label>
+                <input class="profileinput myprofile" type="text" id="lastname" name="lastname" value="{{ user.lastname }}" placeholder="Last Name" disabled>
+            </div>
+            <div>
+                <label class="profilelabel" for="dateofbirth">Date Of Birth:</label>
+                <input class="profileinput myprofile" type="date" id="dateofbirth" name="dateofbirth" value="{{ user.dateofbirth }}" disabled>
+            </div>
+            <div>
+                <label class="profilelabel" for="gender">Gender:</label>
+                <input class="profileinput myprofile" type="text" id="gender" name="gender" value="{{ user.gender }}" disabled>
+            </div>
+            <div>
+                <label class="profilelabel" for="location">Location:</label>
+                <input class="profileinput myprofile" type="text" id="location" name="location" value="{{ user.location }}" placeholder="Location" disbaled>
+            </div>
+        </div>
+        <h5>My Performance</h5>
+        <div class="myprofilegroup">
+            <div>
+                <label class="profilelabel" for="besttime">Best Time On 10 km:</label>
+                <input class="profileinput myprofile" type="time" step="1" min="00:00:00" max="01:30:00" id="besttime" name="besttime" value="{{ user.besttime }}" placeholder="Best Time On 10 km" disabled>
+            </div>
+            <div>
+                <label class="profilelabel" for="userlevel">User Level:</label>
+                <input class="profileinput myprofile" type="text" id="userlevel" name="userlevel" value="{{ user.userlevel }}" placeholder="User Level" disabled>
+            </div>
+        </div>
+        <h5>Crew Info</h5>
+        <div class="myprofilegroup">
+            <div>
+                <label class="profilelabel" for="">Admin Of</label>
+                <input class="profileinput myprofile" type="" id="" name="" value="None" placeholder="" disabled>
+            </div>
+            <div>
+                <label class="profilelabel" for="">Member Of</label>
+                <input class="profileinput myprofile" type="" id="" name="" value="None" placeholder="" disabled>
+            </div>
+        </div>
+        <h5>Account Info</h5>
+        <div class="myprofilegroup">
+            <div>
+                <label class="profilelabel" for="">Registered E-mail</label>
+                <input class="profileinput myprofile" type="" id="" name="" value="{{ user.email }}" placeholder="" disabled>
+            </div>
+            <div>
+                <label class="profilelabel" for="">Member Since</label>
+                <input class="profileinput myprofile" type="" id="" name="" value="{{ user.membersince }}" placeholder="" disabled>
+            </div>
+        </div>
+            <a href="{{ url_for('edit_profile', user=session['user']) }}" type="button" class="form-button"><span class="form-link"><i class="fas fa-pencil-alt buttoniconposition"></i>Edit Profile</span></a>
+            <a href="{{ url_for('get_runs') }}" type="button" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
+    </form>
+
+</div>
 
 {% endblock %}
