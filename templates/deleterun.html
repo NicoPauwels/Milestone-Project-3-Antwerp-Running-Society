@@ -1,15 +1,15 @@
-{% extends "upcomingruns.html" %}
+{% extends "map.html" %}
 {% block deleterun %}
 
 <div class="message-container deletemessageposition">
     <div class="message-header">
         <h5>Delete Run</h5>
-        <a href="{{ url_for('get_runs') }}" class="closebutton"><i class="fas fa-times"></i></a>
+        <a href="{{ url_for('show_map') }}" class="closebutton"><i class="fas fa-times"></i></a>
     </div>
     <div class="message-content">
         <p class="message-text">Are you sure you want to delete this {{ run.runtype }} you have scheduled for {{ run.date }}?</p>
         <a href="{{ url_for('permanently_delete_run', run_id=run._id) }} " type="button" class="form-button"><span class="form-link"><i class="fas fa-trash buttoniconposition"></i>Permanently Delete</span></a>
-        <a href="{{ url_for('get_runs') }}" type="button" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
+        <a href="{{ url_for('show_map') }}" type="button" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
     </div>
 </div>
 
