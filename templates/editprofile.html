@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block editprofile %}
+
+<div class="message-container myprofileposition">
+
+    <div class="message-header">
+        {% with completeprofilemessages = get_flashed_messages(category_filter=["completeprofilemessage"]) %}
+            {% if completeprofilemessages %}
+                {% for message in completeprofilemessages %}
+                    <p class="completeprofilemessage"><i class="fas fa-exclamation-triangle buttoniconposition"></i>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <form class="form" method="POST" action="{{ url_for('edit_profile', user=session['user']) }}">
+        <h5>Edit Profile</h5>
+        <div class="myprofilegroup">
+            <div>
+                <label class="profilelabel" for="firstname">First Name:</label>
+                <input class="profileinput" type="text" id="firstname" name="firstname" value="{{ user.firstname }}" placeholder="First Name" required>
+            </div>
+            <div>
+                <label class="profilelabel" for="lastname">Last Name:</label>
+                <input class="profileinput" type="text" id="lastname" name="lastname" value="{{ user.lastname }}" placeholder="Last Name" required>
+            </div>
+            <div>
+                <label class="profilelabel" for="dateofbirth">Date Of Birth:</label>
+
+                <input class="profileinput birthday" type="number" id="birthday" name="birthday" min="1" max="31" value="{{ user.birthday }}" placeholder="DD" required>
+                
+                <input class="profileinput birthday" type="number" id="birthmonth" name="birthmonth" min="1" max="12" value="{{ user.birthmonth }}" placeholder="MM" required>
+                
+                <input class="profileinput birthday" type="number" id="birthyear" name="birthyear" min="1920" max="2021" value="{{ user.birthyear }}" placeholder="YYYY" required>
+                
+            </div>
+            <div>
+                <label class="profilelabel" for="gender">Gender:</label>
+                <select class="profileinput" id="gender" name="gender" value="" required>
+                    <option value="">Gender</option>
+                    {% for gender in genders %}
+                        {% if gender.gender == user.gender %}
+                            <option value="{{ gender.gender }}" selected>{{ gender.gender }}</option>
+                        {% else %}
+                            <option value="{{ gender.gender }}">{{ gender.gender }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label class="profilelabel" for="location">Location:</label>
+                <input class="profileinput" type="text" id="location" name="location" value="{{ user.location }}" placeholder="Location" required>
+            </div>
+        
+        <div>
+                <label class="profilelabel" for="besttime">Best Time On 10 km:</label>
+                
+                <input class="profileinput besttime" type="number" id="hours" name="hours" min="0" max="1" value="{{ user.hours }}" placeholder="00 H" required>
+                <label class="profilelabel timeunit" for="hours">H</label>
+                
+                <input class="profileinput besttime" type="number" id="minutes" name="minutes" min="0" max="59" value="{{ user.minutes }}"placeholder="00 M" required>
+                <label class="profilelabel timeunit" for="hours">M</label>
+                
+                <input class="profileinput besttime" type="number" id="seconds" name="seconds" min="0" max="59" value="{{ user.seconds }}"placeholder="00 S" required>
+                <label class="profilelabel timeunit" for="hours">S</label>
+        </div>
+        </div>
+        <button class="form-button" type="submit" onclick=""><i class="fas fa-save buttoniconposition"></i></i>Save Profile</button>
+    </form>
+</div>
+
+{% endblock %}
+
