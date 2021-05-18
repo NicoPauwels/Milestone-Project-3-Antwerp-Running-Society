@@ -1,30 +1,17 @@
-{% extends "upcomingruns.html" %}
+{% extends "map.html" %}
 {% block addrun %}
 
 <div class="message-container">
     <div class="message-header">
         <h5>Add Run</h5>
-        <a href="{{ url_for('get_runs') }}" class="closebutton"><i class="fas fa-times"></i></a>
+        <a href="{{ url_for('show_map') }}" class="closebutton"><i class="fas fa-times"></i></a>
     </div>
     <form class="form" method="POST" action="{{ url_for('add_run') }}">
-        <label for="runtype" class="form-label">Choose type of run:</label>
-            <select id="runtype" name="runtype" class="form-control" required>
-                <option value="" disabled selected>Choose Type Of Run</option>
-                {% for runtype in runtypes %}
-                <option value="{{ runtype.runtype }}">{{ runtype.runtype }}</option>
-                {% endfor %}
-            </select>
-        <label for="level" class="form-label">Choose level of run:</label>
-            <select id="level" name="level" class="form-control" required>
-                <option value="">All Levels</option>
-                {% for level in levels %}
-                <option value="{{ level.level }}">{{ level.level }}</option>
-                {% endfor %}
-            </select>
         <fieldset>
             <legend class="form-label">Please pick a date and time:</legend>
             <input class="form-control" type="date" id="date" name="date" required>
-            <input class="form-control" type="time" id="time" name="time" required> 
+            <input class="form-control" type="number" id="hour" name="hour" min="0" max="23" placeholder="HH" required> 
+            <input class="form-control" type="number" id="minute" name="minute" min="0" max="59" placeholder="MM" step="15" required>
         </fieldset>
         <fieldset>
             <legend class="form-label">Insert meetingpoint:</legend>
@@ -32,26 +19,22 @@
             <input class="form-control" type="text" name="city" placeholder="City" required> 
         </fieldset>
         <fieldset>
-            <legend class="form-label">Set distance:</legend>
+            <legend class="form-label">Set planned distance:</legend>
             <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance" onchange="updateTextInput(this.value);">
             <input type="text" id="distance" class="form-control" name="distance" value="10 km" placeholder="10 km">
         </fieldset>
         <fieldset>
-            <legend class="form-label">Privacy:</legend>
+            <legend class="form-label">Level Restriction:</legend>
                 <label class="checkboxcontainer">
-                    <label class="checkboxlabel">Crew run?</label>
-                    <input type="checkbox" id="crew_run" name="crew_run">
+                    <label class="checkboxlabel">Only allow participants from the same level?</label>
+                    <input type="checkbox" id="levelrestriction" name="levelrestriction">
                     <span class="checkmark"></span> 
                 </label>
-                <label class="checkboxcontainer">
-                    <label class="checkboxlabel">Same gender only?</label>
-                    <input type="checkbox" id="samegender" name="samegender">
-                    <span class="checkmark"></span>
-                </label>
         </fieldset>
-
-        <button class="form-button" type="submit" onclick="checkForm()"><i class="fas fa-plus-circle buttoniconposition"></i>Add Run</button>
-        <a href="{{ url_for('get_runs') }}" class="form-button"><p class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</p></a>
+        <div class="buttoncontainer">
+        <button class="form-button" type="submit"><i class="fas fa-plus-circle buttoniconposition"></i>Add Run</button>
+        <a href="{{ url_for('show_map') }}" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
+        </div>
     </form>
     
 </div>
