@@ -2,7 +2,7 @@
 
 body {
     background-color: #12171E;
-    color: #FFFFFF;
+    color: #EAEDF0;
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     width: 100vw;
@@ -21,6 +21,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .container {
+    width: 1500px;
     margin-right: auto;
     margin-left: auto;
     padding-left: 16px;
@@ -31,6 +32,7 @@ a:link, a:visited, a:hover, a:active {
     border-bottom: solid 1px #1a1f28;
     text-align: center;
     background-color: #12171E;
+    z-index: 1;
 }
 
 .header-content {
@@ -44,7 +46,7 @@ a:link, a:visited, a:hover, a:active {
 .branding {
     font-family: 'Heebo', sans-serif;
     font-size: x-large;
-    color: #FFFFFF;
+    color: #EAEDF0;
 }
 
 .btn {
@@ -53,7 +55,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .btn a {
-    color: #FFFFFF;
+    color: #EAEDF0;
 }
 
 .btn:focus, .btn:active {
@@ -87,7 +89,7 @@ a:link, a:visited, a:hover, a:active {
     background: transparent;
     border-radius: 0;
     margin-bottom: -1px;
-    color: #FFFFFF;
+    color: #EAEDF0;
     margin-left: 0px;
     margin-right: 0px;
 }
@@ -97,7 +99,7 @@ a:link, a:visited, a:hover, a:active {
     background: transparent;
     border-radius: 0;
     margin-bottom: -1px;
-    color: #FFFFFF;
+    color: #EAEDF0;
     margin-left: 0px;
     margin-right: 0px;
 }
@@ -130,7 +132,7 @@ a:link, a:visited, a:hover, a:active {
 
 .dropdown-item {
     background-color: #12171E;
-    color: #FFFFFF;
+    color: #EAEDF0;
 }
 
 .dropdown-item:hover {
@@ -182,6 +184,7 @@ a:link, a:visited, a:hover, a:active {
     height: 100%;
     z-index: 0;
     overflow:hidden;
+
 }
 
 .leaflet-bar a {
@@ -232,9 +235,16 @@ a:link, a:visited, a:hover, a:active {
     margin-right: 1rem;
     margin-bottom: 1rem;
     border-radius: 0.25rem; 
-    border-left: solid 2px #00BF00;   
+    border-left: solid 5px #00BF00;   
     width: auto;
     position: relative;
+}
+
+.runcarddetails {
+    background-color: #191E27;
+    width:auto;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
 
 ::-webkit-scrollbar {
@@ -264,7 +274,7 @@ a:link, a:visited, a:hover, a:active {
     height: fit-content;
     background-color: rgba(18, 23, 30, 0.9);
     border-radius: 0.25rem;
-    border-left: solid 2px #00BF00;
+    border-left: solid 5px #00BF00;
 }
 
 .deletemessageposition {
@@ -345,19 +355,22 @@ a:link, a:visited, a:hover, a:active {
     display:block;
 }
 
-#date,
-#time {
+#date {
     width: 132px;
     float: left;
-}
-
-#date {
     margin-right: 0.5rem;
 }
 
-#time {
+#hour,
+#minute {
+    width: 66px;
+    float: left;
+}
+
+#minute {
     margin-left: 0.5rem;
 }
+
 
 ::-webkit-input-placeholder { 
     color:#505965;
@@ -480,9 +493,7 @@ a:link, a:visited, a:hover, a:active {
     height: 25px;
     margin-right: 0.5rem;
     margin-top: 0.5rem;
-    margin-bottom: 1rem;
     font-size: 10px;
-    float: left;
     line-height: 10px;
 }
 
@@ -506,7 +517,8 @@ a:link, a:visited, a:hover, a:active {
 
 .cardicon {
     padding-top: 2px;
-    padding-right: 0.5rem;
+    width: 1rem;
+    font-size: 10px;
 }
 
 .cardiconposition {
@@ -515,12 +527,12 @@ a:link, a:visited, a:hover, a:active {
 
 .runcard .cardtext {
     color: #505965;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .runcard .cardtitle {
     font-size: 16px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
 }
 
 .runcard .details {
@@ -528,10 +540,17 @@ a:link, a:visited, a:hover, a:active {
     margin-bottom: 0;
 }
 
+.runcard .cardfield {
+    color: #EAEDF0;
+    font-size: 10px;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
 .runcard .editanddelete {
     position: absolute;
     right: 1rem;
-    bottom: 1rem;
+    top: 1rem;
 }
 
 .editanddelete a:hover {
@@ -543,7 +562,7 @@ a:link, a:visited, a:hover, a:active {
     margin-left: 1rem;
     color: red;
     text-align: justify;
-    width: 280px;
+    width: 330px;
 }
 
 .myprofilegroup {
@@ -560,7 +579,7 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .profileinput {
-    width: 160px;
+    width: 210px;
     margin-bottom: 1rem;
     background-color: #191E27;
     color: #505965;
@@ -575,6 +594,70 @@ a:link, a:visited, a:hover, a:active {
     border: none;
     background-color: #12171E;
     margin-bottom: 0.5rem;
+}
+
+.besttime {
+    width: 60px;
+    padding-right: 10px;
+}
+
+.birthday {
+    width: 68px;
+}
+
+.timeunit {
+    width: 0.5rem;
+}
+
+.accountinfo {
+    margin-bottom: 0;
+}
+
+.buttoncontainer {
+    display: flex;
+    align-items: center;
+}
+
+.caretbuttonicon {
+    margin-left: 0.5rem;
+    font-size: 12px;
+    color: #00BF00;
+    background-color: rgba(0,191,0,0.2);
+    width:16px;
+    height: 16px;
+    padding: 2px;
+    border-radius: 0.25rem;
+    text-align: center;
+}
+
+.participantstable {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px; 
+    margin-bottom: 5px;
+    margin-left: 19px;
+}
+
+.participantdot {
+    height: 25px;
+    width: 25px;
+    background-color: #293340;
+    border-radius: 50%;
+    text-align:center;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 10px;
+}
+
+.participantdot {
+    height: 25px;
+    width: 25px;
+    background-color: #293340;
+    border-radius: 50%;
+    text-align:center;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 10px;
 }
 
 
@@ -881,40 +964,552 @@ a:link, a:visited, a:hover, a:active {
 }
 */
 
-/* Media queries */
+/*
 
-/* iPads (landscape) ----------- */
-@media only screen 
+/* 
+@media screen 
 and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
+and (max-device-width : 1199px) 
 and (orientation : landscape) {
     .container {
         width: 960px;
     }
+
+    .largedevices {
+        display: none;
+    }
 }
 
-/* iPads (portrait) ----------- */
-@media only screen 
+
+@media screen 
 and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
+and (max-device-width : 1199px) 
 and (orientation : portrait) {
     .container {
         width: 960px;
     }
-}
 
-/* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-    .container {
-        width: 1192px;
+    .largedevices {
+        display: none;
     }
 }
 
-/* Large screens ----------- */
-@media only screen 
-and (min-width : 1824px) {
+
+
+@media screen and (min-width: 1200px) {
     .container {
-        width: 1192px;
+        width: 1140px;
     }
+
+    .smalldevices {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 1600px) {
+    .container {
+        width: 75%;
+        max-width: 75%;
+    }
+
+    .smalldevices {
+        display: none;
+    }
+}
+
+*/
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+    #mapid {
+        display: none;
+    } 
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Portrait */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: portrait) {
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Landscape */
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: landscape) {
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* ----------- Galaxy S6 ----------- */
+
+/* Portrait and Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 4) {
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Portrait */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 4) 
+  and (orientation: portrait) {
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+}
+
+/* Landscape */
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 4) 
+  and (orientation: landscape) {
+    #mapid {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0;
+    }
+
+}
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+} 
+
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+/* ----------- iPad Pro 10.5" ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 1112px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+}
+
+/* Portrait */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 834px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+}
+
+
+/* Landscape */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen 
+  and (min-device-width: 1112px) 
+  and (max-device-width: 1112px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+}
+
+/* ----------- iPad Pro 12.9" ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+}
+
+/* Portrait */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+}
+
+/* Landscape */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
+@media only screen 
+  and (min-device-width: 1366px) 
+  and (max-device-width: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .largedevices {
+        display: none;
+    }
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) { 
+    .smalldevices {
+        display: none;
+    }
+
+    .container {
+        width: 80%;
+        max-width: 80%;
+    }
+
 }
