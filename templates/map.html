@@ -3,7 +3,88 @@
 
 <div id="mapid"></div>
 
-{% block upcomingruns %}
+<div class="upcomingruns">
+    <div class="upcomingruns-header">
+        <h5 class="upcomingruns-title">Upcoming Runs</h5>
+    </div>
+    <div class="upcomingruns-container">
+        <div class="upcomingruns-content">
+            {% for run in runs %}
+            <div class="runcard">
+            <div class="editanddelete">
+                {% if session.user|lower == run.createdby|lower %}
+                    <a href="{{ url_for('edit_run', run_id=run._id) }}"><i class="fas fa-ellipsis-v cardtext"></i></a>
+                {% endif %}
+            </div>
+            <p class="cardtext"><i class="fas fa-calendar cardicon"></i>{{ run.date }}<span class="cardiconposition"><i class="far fa-clock cardicon"></i>{{ run.time }}</span></p>
+            <p class="cardtitle">{{ run.level }} Run<i class="fas fa-arrow-down caretbuttonicon"></i></p>
+            
+            <!--
+            <div class="runcarddetails">
+                <p class="cardtext"><i class="fas fa-map-marked-alt cardicon"></i>Meetingpoint:</p>
+                <p class="cardfield">{{ run.location }}<br>{{ run.city }}</p>
+                <p class="cardtext"><i class="fas fa-route cardicon"></i>Planned distance:</p>
+                <p class="cardfield">{{ run.distance }}</p>
+                <p class="cardtext"><i class="fas fa-running cardicon"></i>{{ run.participants|length}} Participants:</p>
+                <div class="participantstable">
+                    {% for participant in run.participants %}
+                        {% if loop.index <= 5 %}
+                    <div class="participantdot">{{ participant.initials }}</div>
+                        {% endif %}
+                    {% endfor %}
+                        {% if loop.index > 5 %}
+                   <div class="participantdot">+{{ run.participants|length - 5 }}</div>
+                        {% endif %}
+                    <div class="participantdot">+</div>
+                </div>
+            </div>
+
+            <div class="editanddelete">
+                {% if run.isCurrentUser %}
+                <a href="{{ url_for('leave_run', run_id=run._id) }}"><i class="fas fa-sign-out-alt cardicon"></i></a>
+                {% else %}
+                <a href="{{ url_for('join_run', run_id=run._id) }}"><i class="fas fa-sign-in-alt cardicon"></i></a>
+                {% endif %}               
+            </div>
+        -->
+             
+            
+        
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+<script type="text/javascript">
+
+    mymap = L.map('mapid').setView(["{{ user.userlocationlat }}" , "{{ user.userlocationlng }}"], 13);
+    
+    mymap.zoomControl.setPosition('topright');
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    maxZoom: 18,
+    id: 'mapbox/dark-v10',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoibmNwd2xzIiwiYSI6ImNrbmx1YTR1ejBha2gybmt4cDVrcDN6OWgifQ.wmt7OvrQdw7yqsgvK5h_xg'
+}).addTo(mymap);
+
+    {% for run in runs %}
+        marker = L.marker(["{{ run.meetingpointlat }}" , "{{ run.meetingpointlng }}"]).addTo(mymap);  
+    {% endfor %}
+
+</script>
+
+{% block addrun %}
+{% endblock %}
+
+{% block editrun %}
+{% endblock %}
+
+{% block deleterun %}
 {% endblock %}
 
 {% endblock %}
