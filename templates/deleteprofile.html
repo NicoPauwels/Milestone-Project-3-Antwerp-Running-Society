@@ -1,0 +1,6 @@
+{% extends "profile.html" %}
+{% block deleteprofile %}
+
+<p>We are sad to see you go.<br>Are you sure you want to delete your account? This action can not be undone.<a href="{{ url_for('permanently_delete_profile', user=session['user']) }}">Yes</a>/<a href="">No</a></p>
+
+{% endblock %}
