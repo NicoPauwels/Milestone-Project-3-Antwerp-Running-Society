@@ -102,20 +102,6 @@ def show_map():
     return render_template("map.html", runs=runs, user=user, isGetRuns=True)
 
 
-#@app.route("/get_runs")
-def get_runs():
-    runs = list(mongo.db.runs.find({"timestamp": {"$gte": datetime.datetime.today()}}).sort("timestamp", 1))
-    user =  user = mongo.db.users.find_one({"email": session['user']})
-    for run in runs:
-        for participant in run['participants']:
-            if session['user'] == participant['email']:
-                run['isCurrentUser'] = True
-        if not 'isCurrentUser' in run:
-            run['isCurrentUser'] = False
-
-    return render_template("upcomingruns.html", runs=runs, user=user, isGetRuns=True)
-
-
 @app.route("/add_run", methods=["GET", "POST"])
 def add_run():
     if request.method == "POST":
@@ -138,9 +124,6 @@ def add_run():
         participant = mongo.db.users.find_one({"email": session['user']}, {"_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
         creatorrunninglevel = mongo.db.users.find_one({"email": session['user']}).get('userlevel')
        
-        #print(creatorrunninglevel)
-        #print(creatorrunninglevel.get('userlevel'))
-        
         run = {
             "level": creatorrunninglevel,
             "formrundate": formrundate,
