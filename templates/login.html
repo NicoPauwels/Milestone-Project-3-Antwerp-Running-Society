@@ -7,8 +7,8 @@
             <form class="loginform" method="POST" action="{{ url_for('login') }}">
                 <div class="mb-3">
                     <label for="email" class="form-label">Your e-mail address</label>
-                    <input type="email" name="email" id="email" class="form-control" min-length="5" max-length="25"
-                        pattern="^[a-zA-Z0-9@._]{5,25}$" required>
+                    <input type="email" name="email" id="email" class="form-control" min-length="5" max-length="50"
+                        pattern="^[a-zA-Z0-9@._]{5,50}$" required>
                     {% with loginemailerrors = get_flashed_messages(category_filter=["loginemailerror"]) %}
                         {% if loginemailerrors %}
                             {% for message in loginemailerrors %}
