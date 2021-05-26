@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap');
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 
 body {
     background-color: #12171E;
@@ -15,13 +20,27 @@ h2 {
     margin-top: 80px;
 }
 
-a:link, a:visited, a:hover, a:active {
+
+a:link, a:visited, a:active {
     text-decoration: none;
-    color: #FFFFFF;
+    color: #EAEDF0;
+}
+
+a:hover {
+    color: #00BF00;
+}
+
+
+.logintext a {
+    color: #00BF00;
+}
+
+.logintext a:hover {
+    color: #EAEDF0;
 }
 
 .container {
-    width: 1500px;
+    z-index: 2;
     margin-right: auto;
     margin-left: auto;
     padding-left: 16px;
@@ -32,7 +51,7 @@ a:link, a:visited, a:hover, a:active {
     border-bottom: solid 1px #1a1f28;
     text-align: center;
     background-color: #12171E;
-    z-index: 1;
+    z-index: 2;
 }
 
 .header-content {
@@ -43,7 +62,8 @@ a:link, a:visited, a:hover, a:active {
     justify-content: space-between;
 }
 
-.branding {
+.branding,
+.branding:hover {
     font-family: 'Heebo', sans-serif;
     font-size: x-large;
     color: #EAEDF0;
@@ -58,9 +78,27 @@ a:link, a:visited, a:hover, a:active {
     color: #EAEDF0;
 }
 
-.btn:focus, .btn:active {
-    outline: none;
-    box-shadow: none;
+textarea:hover, 
+input:hover, 
+textarea:active, 
+input:active, 
+textarea:focus, 
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active
+select:active,
+select:focus
+{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.form-control:focus {
+    border-color: #505965;
 }
 
 .row {
@@ -155,6 +193,7 @@ a:link, a:visited, a:hover, a:active {
 .navbar {
     padding-top: 0px;
     padding-bottom: 0px;
+    z-index: 2;
 }
 
 .registerform {
@@ -211,8 +250,58 @@ a:link, a:visited, a:hover, a:active {
     height: 100vh;
 }
 
+.mapoverlay {
+    z-index: 1;
+    position: absolute;
+    top: 55px;
+    left: 300px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
 .upcomingruns-header {
     margin: 1rem 1rem;
+    margin-right: 5px;
+}
+
+.upcomingruns-title {
+    display: inline-block;
+}
+
+.filter {
+    display: inline-block;
+    margin-left: 1rem;
+    color: #00BF00;
+    background-color: rgba(0,191,0,0.2);
+    padding: 4px;
+    border-radius: 0.25rem;
+    font-size: 12px;
+}
+
+.filtercard {
+    display: none;
+    background-color: #191E27;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    border-radius: 0.25rem; 
+    border-left: solid 5px #00BF00;   
+    width: auto;
+    position: relative;
+}
+
+.participantscounter {
+    display: inline-block;
+    margin-left: 1rem;
+    color: #00BF00;
+    background-color: rgba(0,191,0,0.2);
+    padding: 3px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 0.25rem; 
+    font-size: 12px;
+    text-align: center;
 }
 
 .upcomingruns-container {
@@ -263,18 +352,99 @@ a:link, a:visited, a:hover, a:active {
     background: #00BF00;
 }
 
-.message-container {
-    z-index: 2;
+.addeditrun-container {
+    z-index: 1;
     position: absolute;
-    left: 50%;
     top: 50%;
-    margin-top: -250px;
-    margin-left: -156px;
-    width: fit-content;
-    height: fit-content;
+    left: 50%;
+    width: 350px;
+    height: 390px;
+    margin: -195px 0 0 -175px;
     background-color: rgba(18, 23, 30, 0.9);
     border-radius: 0.25rem;
     border-left: solid 5px #00BF00;
+}
+
+.filter-container {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 300px;
+    margin: -150px 0 0 -175px;
+    background-color: rgba(18, 23, 30, 0.9);
+    border-radius: 0.25rem;
+    border-left: solid 5px #00BF00;
+}
+
+.delete-container {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 160px;
+    margin: -80px 0 0 -175px;
+    background-color: rgba(18, 23, 30, 0.9);
+    border-radius: 0.25rem;
+    border-left: solid 5px #00BF00;
+}
+
+.profile {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+}
+
+.profile-container {
+    position: absolute;
+    padding-top: 1rem;
+    left: 50%;
+    margin-left: -210px;
+    width: 420px;
+}
+
+.message-container {
+    z-index: 3;
+    position: absolute;
+    padding-top: 1rem;
+    left: 50%;
+    width: fit-content;
+    height: fit-content;
+}
+
+#mainwindowmessage {
+    position: absolute;
+    top: 71px;
+    left: 50%;
+    color: #00BF00;
+    font-weight: bold;
+    font-size: 14px;
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
 }
 
 .deletemessageposition {
@@ -339,6 +509,37 @@ a:link, a:visited, a:hover, a:active {
     margin-bottom: 0.5rem;
     font-size: 10px;
     color: #00BF00;
+}
+
+.filter-label {
+    font-size: 10px;
+    color: #505965;
+    display: block;
+    float: left;
+    padding-top: 5px;
+    margin-right: 0.5rem;
+}
+
+.filter-limit {
+    display: block;
+    float: left;
+    width: 98px;
+}
+
+.mid {
+    margin-left: 0.5rem;
+}
+
+#mindate::-webkit-inner-spin-button,
+#mindate::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+#maxdate::-webkit-inner-spin-button,
+#maxdate::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
 }
 
 .form-checkbox-label {
@@ -453,6 +654,8 @@ a:link, a:visited, a:hover, a:active {
     background-color: #191E27;
 }
 
+
+
 .checkboxcontainer input:checked ~ .checkmark {
     background-color: #00BF00;
 }
@@ -533,6 +736,7 @@ a:link, a:visited, a:hover, a:active {
 .runcard .cardtitle {
     font-size: 16px;
     margin-bottom: 0;
+    font-family: 'Hind Siliguri', sans-serif;
 }
 
 .runcard .details {
@@ -613,6 +817,19 @@ a:link, a:visited, a:hover, a:active {
     margin-bottom: 0;
 }
 
+.permanentlydeleteprofile {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: #505965;
+    text-align: justify;
+    width: 330px;
+    font-size: 10px;
+}
+
+.confirmdeleteposition {
+    padding-left: 0.5rem;
+}
+
 .buttoncontainer {
     display: flex;
     align-items: center;
@@ -620,12 +837,15 @@ a:link, a:visited, a:hover, a:active {
 
 .caretbuttonicon {
     margin-left: 0.5rem;
-    font-size: 12px;
+    font-size: 14px;
     color: #00BF00;
     background-color: rgba(0,191,0,0.2);
-    width:16px;
-    height: 16px;
-    padding: 2px;
+    height: 1px;
+    /*padding: 2px;
+    /*padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    padding-top: 2px;*/
     border-radius: 0.25rem;
     text-align: center;
 }
@@ -658,6 +878,16 @@ a:link, a:visited, a:hover, a:active {
     vertical-align: middle;
     display: table-cell;
     font-size: 10px;
+}
+
+
+
+/*
+#maxdate
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
 }
 
 
@@ -1508,8 +1738,8 @@ and (orientation : portrait) {
     }
 
     .container {
-        width: 80%;
-        max-width: 80%;
+        width: 75%;
+        max-width: 75%;
     }
 
 }
