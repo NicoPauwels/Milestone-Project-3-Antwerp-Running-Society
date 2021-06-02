@@ -1,7 +1,7 @@
 {% extends "map.html" %}
 {% block editrun %}
 
-<div class="message-container">
+<div class="addeditrun-container">
     <div class="message-header">
         <h5>Edit Run</h5>
         <a href="{{ url_for('show_map') }}" class="closebutton"><i class="fas fa-times"></i></a>
@@ -10,39 +10,47 @@
         <fieldset>
             <legend class="form-label">Please pick a date and time:</legend>
             <input class="form-control" type="date" id="date" name="date" value="{{ run.formrundate }}" required>
-            <input class="form-control" type="number" id="hour" name="hour" min="0" max="23" placeholder="HH" value="{{ run.hour }}" required> 
-            <input class="form-control" type="number" id="minute" name="minute" min="0" max="59" placeholder="MM" value="{{ run.minute }}" required>
+            <input class="form-control" type="number" id="hour" name="hour" min="0" max="23" placeholder="HH"
+                value="{{ run.hour }}" required>
+            <input class="form-control" type="number" id="minute" name="minute" min="0" max="59" placeholder="MM"
+                value="{{ run.minute }}" required>
         </fieldset>
         <fieldset>
             <legend class="form-label">Insert meetingpoint:</legend>
-            <input class="form-control" type="text" name="location" placeholder="Street and housenumber" value="{{ run.location }}" required>
-            <input class="form-control" type="text" name="city" placeholder="City" value="{{ run.city }}" required> 
+            <input class="form-control" type="text" name="location" placeholder="Street and housenumber"
+                value="{{ run.location }}" required>
+            <input class="form-control" type="text" name="city" placeholder="City" value="{{ run.city }}" required>
         </fieldset>
         <fieldset>
             <legend class="form-label">Set distance:</legend>
-            <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance" onchange="updateTextInput(this.value);">
-            <input type="text" id="distance" class="form-control" name="distance" value="{{ run.distance }}" placeholder="10 km">
+            <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance"
+                onchange="updateTextInput(this.value);">
+            <input type="text" id="distance" class="form-control" name="distance" value="{{ run.distance }}"
+                placeholder="10 km">
         </fieldset>
         <fieldset>
             <legend class="form-label">Level Restriction:</legend>
             {% if run.levelrestriction == "on" %}
-                <label class="checkboxcontainer">
-                    <label class="checkboxlabel">Only allow participants from the same level?</label>
-                    <input type="checkbox" id="levelrestriction" name="levelrestriction" checked>
-                    <span class="checkmark"></span> 
-                </label>
+            <label class="checkboxcontainer">
+                <label class="checkboxlabel">Only allow participants from the same level?</label>
+                <input type="checkbox" id="levelrestriction" name="levelrestriction" checked>
+                <span class="checkmark"></span>
+            </label>
             {% else %}
-                <label class="checkboxcontainer">
-                    <label class="checkboxlabel">Only allow participants from the same level?</label>
-                    <input type="checkbox" id="levelrestriction" name="levelrestriction">
-                    <span class="checkmark"></span> 
-                </label>
+            <label class="checkboxcontainer">
+                <label class="checkboxlabel">Only allow participants from the same level?</label>
+                <input type="checkbox" id="levelrestriction" name="levelrestriction">
+                <span class="checkmark"></span>
+            </label>
             {% endif %}
         </fieldset>
         <div class="buttoncontainer">
-        <button class="form-button" type="submit"><i class="fas fa-pencil-alt buttoniconposition"></i>Save Changes</button>
-        <a href="{{ url_for('delete_run', run_id=run._id) }}" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Delete Run</span></a>
-        <a href="{{ url_for('show_map') }}" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
+            <button class="form-button" type="submit"><i class="far fa-save buttoniconposition"></i>Save
+                Changes</button>
+            <a href="{{ url_for('delete_run', run_id=run._id) }}" class="form-button"><span class="form-link"><i
+                        class="fas fa-times-circle buttoniconposition"></i>Delete Run</span></a>
+            <a href="{{ url_for('show_map') }}" class="form-button"><span class="form-link"><i
+                        class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
         </div>
     </form>
 </div>
