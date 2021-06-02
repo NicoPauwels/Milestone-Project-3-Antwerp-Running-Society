@@ -10,33 +10,35 @@
         <fieldset>
             <legend class="form-label">Please pick a date and time:</legend>
             <input class="form-control" type="date" id="date" name="date" required>
-            <input class="form-control" type="number" id="hour" name="hour" min="0" max="23" placeholder="HH" required> 
-            <input class="form-control" type="number" id="minute" name="minute" min="0" max="59" placeholder="MM" step="15" required>
+            <input class="form-control" type="number" id="hour" name="hour" min="0" max="23" placeholder="HH" required>
+            <input class="form-control" type="number" id="minute" name="minute" min="0" max="59" placeholder="MM"
+                step="15" required>
         </fieldset>
         <fieldset>
             <legend class="form-label">Insert meetingpoint:</legend>
             <input class="form-control" type="text" name="location" placeholder="Street and housenumber" required>
-            <input class="form-control" type="text" name="city" placeholder="City" required> 
+            <input class="form-control" type="text" name="city" placeholder="City" required>
         </fieldset>
         <fieldset>
             <legend class="form-label">Set planned distance:</legend>
-            <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance" onchange="updateTextInput(this.value);">
+            <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance"
+                onchange="updateTextInput(this.value);">
             <input type="text" id="distance" class="form-control" name="distance" value="10 km" placeholder="10 km">
         </fieldset>
         <fieldset>
             <legend class="form-label">Level Restriction:</legend>
-                <label class="checkboxcontainer">
-                    <label class="checkboxlabel">Only allow participants from the same level?</label>
-                    <input type="checkbox" id="levelrestriction" name="levelrestriction">
-                    <span class="checkmark"></span> 
-                </label>
+            <label class="checkboxcontainer">
+                <label class="checkboxlabel">Only allow participants from the same level?</label>
+                <input type="checkbox" id="levelrestriction" name="levelrestriction">
+                <span class="checkmark"></span>
+            </label>
         </fieldset>
         <div class="buttoncontainer">
-        <button class="form-button" type="submit"><i class="fas fa-plus buttoniconposition"></i>Add Run</button>
-        <a href="{{ url_for('show_map') }}" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
+            <button class="form-button" type="submit"><i class="fas fa-plus buttoniconposition"></i>Add Run</button>
+            <a href="{{ url_for('show_map') }}" class="form-button"><span class="form-link"><i
+                        class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
         </div>
     </form>
-    
 </div>
 
 {% endblock %}
