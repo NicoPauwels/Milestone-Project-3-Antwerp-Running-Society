@@ -1,0 +1,38 @@
+{% extends "map.html" %}
+{% block search %}
+
+<div class="search-container">
+    <div class="message-header">
+        <h5>Search Runs</h5>
+        <a href="{{ url_for('show_map') }}" class="closebutton"><i class="fas fa-times"></i></a>
+    </div>
+    <form class="form" method="POST" action="{{ url_for('search') }}">
+        <fieldset>
+            <legend class="form-label">Location:</legend>
+            <input class="form-control" type="text" id="location" name="location" placeholder="City, Country">
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Date:</legend>
+            <label for="mindate" class="form-label filter-label">Between</label>
+            <input class="form-control filter-limit" type="date" id="mindate" name="mindate" required>
+            <label for="maxdate" class="form-label filter-label mid">and</label>
+            <input class="form-control filter-limit" type="date" id="maxdate" name="maxdate" required>
+        </fieldset>
+        <fieldset>
+            <legend class="form-label">Distance:</legend>
+            <label for="mindistance" class="form-label filter-label">Between</label>
+            <input class="form-control filter-limit" type="number" id="mindistance" name="mindistance"
+                placeholder="5 km" min="0" max="50" required>
+            <label for="maxdistance" class="form-label filter-label mid">and</label>
+            <input class="form-control filter-limit" type="number" id="maxdistance" name="maxdistance"
+                placeholder="15 km" min="0" max="50" required>
+        </fieldset>
+        <div class="buttoncontainer">
+            <button class="form-button" type="submit"><i class="fas fa-search buttoniconposition"></i>Search</button>
+            <a href="{{ url_for('show_map') }}" class="form-button"><span class="form-link"><i
+                        class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
