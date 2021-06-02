@@ -164,32 +164,38 @@ def add_run():
     try:
         if session["user"]:
             if request.method == "POST":
-                levelrestriction = "on" if request.form.get("levelrestriction") else "off"
-                
+                levelrestriction = "on" if request.form.get(
+                    "levelrestriction") else "off"
+
                 formrundate = request.form.get("date")
                 rundate = datetime.strptime(formrundate, "%Y-%m-%d")
                 rundatestring = rundate.strftime("%d-%m-%Y")
-                formruntime = "{}:{}".format(request.form.get("hour"), request.form.get("minute"))
-                
+                formruntime = "{}:{}".format(request.form.get(
+                            "hour"), request.form.get("minute"))
+
                 runtime = datetime.strptime(formruntime, "%H:%M")
                 runtimestring = runtime.strftime("%H:%M")
-                runtimestamp = datetime.strptime(rundatestring + ", " + runtimestring, "%d-%m-%Y, %H:%M")
+                runtimestamp = datetime.strptime(
+                rundatestring + ", " + runtimestring, "%d-%m-%Y, %H:%M")
 
                 runcity = request.form.get("city")
                 runcity_geocode_result = gmaps.geocode(runcity)
                 runcitylat = runcity_geocode_result[0]["geometry"]["location"]["lat"]
                 runcitylng = runcity_geocode_result[0]["geometry"]["location"]["lng"]
 
-                meetingpoint = request.form.get("location")+ ", " + request.form.get("city")        
+                meetingpoint = request.form.get(
+                            "location") + ", " + request.form.get("city")
                 meetingpoint_geocode_result = gmaps.geocode(meetingpoint)
                 meetingpointlat = meetingpoint_geocode_result[0]["geometry"]["location"]["lat"]
                 meetingpointlng = meetingpoint_geocode_result[0]["geometry"]["location"]["lng"]
 
-                participant = mongo.db.users.find_one({"email": session['user']}, {"_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
-                creatorrunninglevel = mongo.db.users.find_one({"email": session['user']}).get('userlevel')
+                participant = mongo.db.users.find_one({"email": session['user']}, {
+                                                            "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
+                creatorrunninglevel = mongo.db.users.find_one(
+                            {"email": session['user']}).get('userlevel')
 
                 distance = int(request.form.get("distance")[:2])
-                    
+
                 run = {
                     "level": creatorrunninglevel,
                     "formrundate": formrundate,
@@ -207,7 +213,7 @@ def add_run():
                     "distance": request.form.get("distance"),
                     "intdistance": distance,
                     "levelrestriction": levelrestriction,
-                    "createdby": session["user"],  
+                    "createdby": session["user"],
                     "createdon": createdon,
                     "participants": [participant]
                 }
@@ -218,21 +224,21 @@ def add_run():
                 mongo.db.runs.insert_one(run)
                 flash("Run added succesfully", "mainwindowmessage")
                 return redirect(url_for("show_map"))
+
+            user = mongo.db.users.find_one({"email": session['user']})
+            runs = list(mongo.db.runs.find({
+                                            "$and": [
+                                                    {"city": user['location']},
+                                                    {"timestamp": {"$gte": datetime.today()}}
+                                                ]
+                                                }).sort("timestamp", 1))
+            return render_template("addrun.html", runs=runs, user=user)
     except:
         return render_template("login.html", isLogin=True)
 
     return render_template("login.html", isLogin=True)
 
-    user = mongo.db.users.find_one({"email": session['user']})
-    runs = list(mongo.db.runs.find({
-                                    "$and": [
-                                            {"city": user['location']},
-                                            {"timestamp": {"$gte": datetime.today()}}
-                                        ]
-                                    }).sort("timestamp", 1))
-    return render_template("addrun.html", runs=runs, user=user)
-
-
+    
 @app.route("/join_run/<run_id>", methods=["GET", "POST"])
 def join_run(run_id):
     try:
@@ -310,6 +316,7 @@ def edit_run(run_id):
 
                 participant = mongo.db.users.find_one({"email": session['user']}, {"_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
                 creatorrunninglevel = mongo.db.users.find_one({"email": session['user']}).get('userlevel')
+                
                 distance = int(request.form.get("distance")[:2])
 
                 editrun = {
@@ -436,14 +443,14 @@ def edit_profile(user):
                     "minutes": request.form.get("minutes"),
                     "seconds": request.form.get("seconds"),
                     "userlevel": userlevel,
-                    }
+                }
                 mongo.db.users.update_one({"email": user}, {"$set": completeprofile})
                 flash("Your profile was successfully updated", "mainwindowmessage")
                 return redirect(url_for("show_map", user=session["user"]))
                     
-                genders = mongo.db.genders.find()    
-                user = mongo.db.users.find_one({"email": user})
-                return render_template("editprofile.html", 
+            genders = mongo.db.genders.find()    
+            user = mongo.db.users.find_one({"email": user})
+            return render_template("editprofile.html", 
                                         user=user, genders=genders)
     except:
         return render_template("login.html", isLogin=True)
@@ -486,4 +493,4 @@ def logout():
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
