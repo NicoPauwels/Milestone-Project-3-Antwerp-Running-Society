@@ -1,7 +1,7 @@
 {% extends "map.html" %}
 {% block addrun %}
 
-<div class="message-container">
+<div class="addeditrun-container">
     <div class="message-header">
         <h5>Add Run</h5>
         <a href="{{ url_for('show_map') }}" class="closebutton"><i class="fas fa-times"></i></a>
@@ -32,7 +32,7 @@
                 </label>
         </fieldset>
         <div class="buttoncontainer">
-        <button class="form-button" type="submit"><i class="fas fa-plus-circle buttoniconposition"></i>Add Run</button>
+        <button class="form-button" type="submit"><i class="fas fa-plus buttoniconposition"></i>Add Run</button>
         <a href="{{ url_for('show_map') }}" class="form-button"><span class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Cancel</span></a>
         </div>
     </form>
