@@ -1,16 +1,16 @@
 // leaflet map
 
-var mymap = L.map('mapid').setView([51.208, 4.425], 13);
+// var mymap = L.map('mapid').setView([51.208, 4.425], 13);
 
-mymap.zoomControl.setPosition('topright');
+// mymap.zoomControl.setPosition('topright');
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    maxZoom: 18,
-    id: 'mapbox/dark-v10',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoibmNwd2xzIiwiYSI6ImNrbmx1YTR1ejBha2gybmt4cDVrcDN6OWgifQ.wmt7OvrQdw7yqsgvK5h_xg'
-}).addTo(mymap);
+//L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+//    maxZoom: 18,
+//    id: 'mapbox/dark-v10',
+//    tileSize: 512,
+//    zoomOffset: -1,
+//    accessToken: 'pk.eyJ1IjoibmNwd2xzIiwiYSI6ImNrbmx1YTR1ejBha2gybmt4cDVrcDN6OWgifQ.wmt7OvrQdw7yqsgvK5h_xg'
+//}).addTo(mymap);
 
 // check whether inputdate is bigger than now
 
@@ -25,5 +25,13 @@ function checkDate() {
 // add run form distance slider
 
 function updateTextInput(val) {
-  document.getElementById('distance').value=val + " km"; 
+  document.getElementById('distance').value=val + " km";
+  document.getElementById('distance').style.color = "#00BF00"; 
+}
+
+// show and hide upcomingruns
+
+function showUpcomingRunsPane() {
+  upcomingrunspane = document.getElementById("upcomingruns");
+
 }
