@@ -238,6 +238,27 @@ def add_run():
 
     return render_template("login.html", isLogin=True)
 
+
+@app.route("/expandrun/<run_id>", methods=["GET", "POST"])
+def expand_run(run_id):
+    run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
+    id = run.get('_id')
+    user = mongo.db.users.find_one({"email": session['user']})
+    runs = list(mongo.db.runs.find({
+                                    "$and": [
+                                            {"city": user['location']},
+                                            {"timestamp": {"$gte": datetime.today()}}
+                                            ]
+                                            }).sort("timestamp", 1))
+
+    for participant in run['participants']:
+        if session['user'] == participant['email']:
+            run['isCurrentUser'] = True
+    if not 'isCurrentUser' in run:
+        run['isCurrentUser'] = False
+    
+    return render_template("expandrun.html", run=run, id=id, runs=runs, user=user)
+
     
 @app.route("/join_run/<run_id>", methods=["GET", "POST"])
 def join_run(run_id):
@@ -245,9 +266,6 @@ def join_run(run_id):
         if session["user"]:
             participant = mongo.db.users.find_one({"email": session['user']}, {"_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1, "userlevel": 1})
             run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
-            print(participant['userlevel'])
-            print(run['level'])
-            print(run['levelrestriction'])
             
             if run['levelrestriction'] == "on":
                 if run['level'] == participant['userlevel']:
