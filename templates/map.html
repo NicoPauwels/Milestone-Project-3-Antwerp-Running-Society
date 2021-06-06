@@ -32,47 +32,24 @@
                     <a href="{{ url_for('edit_run', run_id=run._id) }}"><i class="fas fa-ellipsis-v cardtext"></i></a>
                     {% endif %}
                 </div>
+                <a href="{{ url_for('expand_run', _anchor='expandedrun' , run_id=run._id) }}" class="expandrun">
+                <div>
                 <p class="cardtext"><i class="fas fa-calendar cardicon"></i>{{ run.date }}<span
                         class="cardiconposition"><i class="far fa-clock cardicon"></i>{{ run.time }}</span></p>
                 <p class="cardtitle">{{ run.level }} Run - {{ run.distance }}<span class="participantscounter"></i> {{
                         run.participants|length }}<span></p>
-
-                <!--
-            <div class="runcarddetails">
-                <p class="cardtext"><i class="fas fa-map-marked-alt cardicon"></i>Meetingpoint:</p>
-                <p class="cardfield">{{ run.location }}<br>{{ run.city }}</p>
-                <p class="cardtext"><i class="fas fa-route cardicon"></i>Planned distance:</p>
-                <p class="cardfield">{{ run.distance }}</p>
-                <p class="cardtext"><i class="fas fa-running cardicon"></i>{{ run.participants|length}} Participants:</p>
-                <div class="participantstable">
-                    {% for participant in run.participants %}
-                        {% if loop.index <= 5 %}
-                    <div class="participantdot">{{ participant.initials }}</div>
+                            </div></a>
+                        
+                        {% if run._id == id %}
+                            {% block expandrun %}
+                            {% endblock %}
                         {% endif %}
-                    {% endfor %}
-                        {% if loop.index > 5 %}
-                   <div class="participantdot">+{{ run.participants|length - 5 }}</div>
-                        {% endif %}
-                    <div class="participantdot">+</div>
-                </div>
-            </div>
-
-            <div class="editanddelete">
-                {% if run.isCurrentUser %}
-                <a href="{{ url_for('leave_run', run_id=run._id) }}"><i class="fas fa-sign-out-alt cardicon"></i></a>
-                {% else %}
-                <a href="{{ url_for('join_run', run_id=run._id) }}"><i class="fas fa-sign-in-alt cardicon"></i></a>
-                {% endif %}               
-            </div>
-        -->
-
+                        
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
-
-
 
 {% block addrun %}
 {% endblock %}
