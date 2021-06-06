@@ -1,0 +1,66 @@
+{% extends "map.html" %}
+{% block expandrun %}
+
+<div class="mobilecarddetails">
+    <p class="cardtext"><i class="fas fa-map-marked-alt cardicon"></i>Meetingpoint:</p>
+    <p class="cardfield">{{ run.location }}<br>{{ run.city }}</p>
+    <div id="mobilemapid"></div>
+    <p class="cardtext"><i class="fas fa-running cardicon"></i>Participants:</p>
+    <div class="participantstable">
+    {% for participant in run.participants %}
+        {% if loop.index <= 9 %}
+            <div class="participantdot">{{ participant.initials }}</div>
+        {% endif %}
+        {% if loop.index > 9 %}
+            <div class="participantdot">+ {{ run.participants|length - 9}}</div>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <div class="buttoncontainer">
+        {% if run.isCurrentUser %}
+        <a href="{{ url_for('leave_run', run_id=run._id) }}" class="form-button"><span class="form-link expandedrunbutton"><i class='fas fa-times cardicon'></i>Leave Run</span></a>
+        {% else %}
+        <a href="{{ url_for('join_run', run_id=run._id) }}" class="form-button"><span class="form-link expandedrunbutton"><i class='fas fa-check cardicon'></i>Join Run</span></a>
+        {% endif %}
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    // initialize map with default user location
+
+    mymap = L.map('mobilemapid', {zoomControl: false}).setView(["{{ run.meetingpointlat }}", "{{ run.meetingpointlng }}"], 13);
+
+    // map settings
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        maxZoom: 18,
+        id: 'mapbox/dark-v10',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoibmNwd2xzIiwiYSI6ImNrbmx1YTR1ejBha2gybmt4cDVrcDN6OWgifQ.wmt7OvrQdw7yqsgvK5h_xg'
+    }).addTo(mymap);
+
+    // add custom icon to map
+
+    greenIcon = L.icon({
+        iconUrl: "{{ url_for('static', filename="css/images/marker-icon.png") }}",
+        iconSize: [20, 20],
+        iconAnchor: [0, 20],
+        popupAnchor: [121, 8] //point from which the popup should open relative to the iconAnchor
+    });
+
+    // render markers to map
+
+    // create popup
+
+    marker = L.marker(["{{ run.meetingpointlat }}", "{{ run.meetingpointlng }}"], { icon: greenIcon }).addTo(mymap);
+
+</script>
+
+{% endblock %}
