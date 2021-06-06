@@ -3,7 +3,7 @@
 
 <div class="addeditrun-container">
     <div class="message-header">
-        <h5>Edit Run</h5>
+        <h5 class="menuheader">Edit Run</h5>
         <a href="{{ url_for('show_map') }}" class="closebutton"><i class="fas fa-times"></i></a>
     </div>
     <form class="form" method="POST" action="{{ url_for('edit_run', run_id=run._id) }}">
@@ -24,11 +24,11 @@
         <fieldset>
             <legend class="form-label">Set distance:</legend>
             <input type="range" min="3" max="50" value="10" class="form-control slider" id="setdistance"
-                onchange="updateTextInput(this.value);">
+                onchange="updateDistanceInput(this.value);">
             <input type="text" id="distance" class="form-control" name="distance" value="{{ run.distance }}"
                 placeholder="10 km">
         </fieldset>
-        <fieldset>
+        <fieldset class="levelrestriction">
             <legend class="form-label">Level Restriction:</legend>
             {% if run.levelrestriction == "on" %}
             <label class="checkboxcontainer">
@@ -44,7 +44,7 @@
             </label>
             {% endif %}
         </fieldset>
-        <div class="buttoncontainer">
+        <div class="buttoncontainer mobilemargin">
             <button class="form-button" type="submit"><i class="far fa-save buttoniconposition"></i>Save
                 Changes</button>
             <a href="{{ url_for('delete_run', run_id=run._id) }}" class="form-button"><span class="form-link"><i
