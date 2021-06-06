@@ -2,8 +2,7 @@
 {% block editprofile %}
 
 <div class="profile-container">
-
-    <div class="message-header">
+    <div class="profilemessage-header">
         {% with completeprofilemessages = get_flashed_messages(category_filter=["completeprofilemessage"]) %}
         {% if completeprofilemessages %}
         {% for message in completeprofilemessages %}
@@ -13,21 +12,20 @@
         {% endif %}
         {% endwith %}
     </div>
-
     <form class="form" method="POST" action="{{ url_for('edit_profile', user=session['user']) }}">
         <h5>Edit Profile</h5>
         <div class="myprofilegroup">
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="firstname">First Name:</label>
                 <input class="profileinput" type="text" id="firstname" name="firstname" value="{{ user.firstname }}"
                     placeholder="First Name" required>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="lastname">Last Name:</label>
                 <input class="profileinput" type="text" id="lastname" name="lastname" value="{{ user.lastname }}"
                     placeholder="Last Name" required>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="dateofbirth">Date Of Birth:</label>
 
                 <input class="profileinput birthday" type="number" id="birthday" name="birthday" min="1" max="31"
@@ -38,9 +36,8 @@
 
                 <input class="profileinput birthday" type="number" id="birthyear" name="birthyear" min="1920" max="2021"
                     value="{{ user.birthyear }}" placeholder="YYYY" required>
-
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="gender">Gender:</label>
                 <select class="profileinput" id="gender" name="gender" value="" required>
                     <option value="">Gender</option>
@@ -58,21 +55,15 @@
                 <input class="profileinput" type="text" id="location" name="location" value="{{ user.location }}"
                     placeholder="City, Country" required>
             </div>
-
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="besttime">Best Time On 10 km:</label>
 
                 <input class="profileinput besttime" type="number" id="hours" name="hours" min="0" max="1"
-                    value="{{ user.hours }}" placeholder="00" required>
-                <label class="profilelabel timeunit" for="hours">H</label>
-
+                    value="{{ user.hours }}" placeholder="HH" required>
                 <input class="profileinput besttime" type="number" id="minutes" name="minutes" min="0" max="59"
-                    value="{{ user.minutes }}" placeholder="00" required>
-                <label class="profilelabel timeunit" for="hours">M</label>
-
+                    value="{{ user.minutes }}" placeholder="MM" required>
                 <input class="profileinput besttime" type="number" id="seconds" name="seconds" min="0" max="59"
-                    value="{{ user.seconds }}" placeholder="00" required>
-                <label class="profilelabel timeunit" for="hours">S</label>
+                    value="{{ user.seconds }}" placeholder="SS" required>
             </div>
         </div>
         <button class="form-button" type="submit" onclick=""><i class="fas fa-save buttoniconposition"></i></i>Save
@@ -81,4 +72,3 @@
 </div>
 
 {% endblock %}
-
