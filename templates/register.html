@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% block register %}
 
-<h2 class="text-center">Social running starts here.<br>Register</h2>
+<h2 class="registerlogintitle text-center">Social running starts here.<br>Register</h2>
 <div class="container">
     <div class="row">
-        <div class="col">1 of 2</div>
-        <div class="col">
-            <form method="POST" action="{{ url_for('register') }}">
-                <div class="mb-3 registerform">
+            <form class="registerloginform" method="POST" action="{{ url_for('register') }}">
+                <div class="mb-3">
                     <label for="email" class="form-label">Your e-mail address</label>
                     <input type="email" name="email" id="email" class="form-control" min-length="5" max-length="50"
                         pattern="^[a-zA-Z0-9@._]{5,50}$" required>
@@ -19,12 +17,12 @@
                     {% endif %}
                     {% endwith %}
                 </div>
-                <div class="mb-3 registerform">
+                <div class="mb-3">
                     <label for="password1" class="form-label">Choose a password</label>
                     <input type="password" name="password1" id="password1" class="form-control" minlenght="5"
                         maxlength="25" pattern="^[a-zA-Z0-9]{5,25}$" required>
                 </div>
-                <div class="mb-3 registerform">
+                <div class="mb-3">
                     <label for="password2" class="form-label">Confirm the password</label>
                     <input type="password" name="password2" id="password2" class="form-control" minlenght="5"
                         maxlength="25" pattern="^[a-zA-Z0-9]{5,25}$" required>
@@ -36,7 +34,7 @@
                     {% endif %}
                     {% endwith %}
                 </div>
-                <button type="submit" class="btn btn-secondary registerform">Register</button>
+                <button type="submit" class="btn btn-secondary registerloginbutton">Register</button>
                 <p class="registerform logintext">
                     Already got an account?
                     <a href="{{ url_for('login' )}}" class="registerloginlink">Log In</a>
