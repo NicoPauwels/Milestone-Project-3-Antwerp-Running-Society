@@ -35,7 +35,6 @@ days_in_year = 365.2425
 @app.route("/register", methods=["GET","POST"])
 def register():
     if request.method == "POST":
-        # check if the email is already registered in db
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
@@ -57,7 +56,6 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # put user in session cookie and go to complete profile page
         session["user"] = request.form.get("email").lower()
         flash("Please fill out the form below so we can provide you with an optimal application experience.", "completeprofilemessage")
         return redirect(url_for("edit_profile", user=session["user"]))
@@ -67,23 +65,19 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # check if the email already exists in db
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
         
         if existing_user:
-            # check password
             if check_password_hash(
                 existing_user["password"], request.form.get("password1")):
                     session["user"] = request.form.get("email").lower()
                     return redirect(url_for("show_map", user=session["user"]))
             else:
-                # invalid password
                 flash("The password is not correct!", "loginpassworderror")
                 return redirect(url_for("login"))
 
         else:
-            # username does not exist
             flash("This e-mail address has not been registered yet!", "loginemailerror")
             return redirect(url_for("login"))
 
@@ -503,7 +497,6 @@ def permanently_delete_profile(user):
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookie
     session.pop("user")
     return redirect(url_for("login"))
 
