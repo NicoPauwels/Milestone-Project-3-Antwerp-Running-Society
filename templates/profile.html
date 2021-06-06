@@ -2,41 +2,40 @@
 {% block profile %}
 
 <div class="profile-container">
-
     <form class="form" method="POST" action="{{ url_for('profile', user=session['user']) }}">
         <h5>My Profile</h5>
         <div class="myprofilegroup">
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="firstname">First Name:</label>
                 <input class="profileinput myprofile" type="text" id="firstname" name="firstname"
                     value="{{ user.firstname }}" placeholder="First Name" disabled>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="lastname">Last Name:</label>
                 <input class="profileinput myprofile" type="text" id="lastname" name="lastname"
                     value="{{ user.lastname }}" placeholder="Last Name" disabled>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="dateofbirth">Date Of Birth:</label>
                 <input class="profileinput myprofile" type="text" id="dateofbirth" name="dateofbirth"
                     value="{{ user.dateofbirth }}" disabled>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="gender">Gender:</label>
                 <input class="profileinput myprofile" type="text" id="gender" name="gender" value="{{ user.gender }}"
                     disabled>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="location">Location:</label>
                 <input class="profileinput myprofile" type="text" id="location" name="location"
                     value="{{ user.location }}" placeholder="City" disbaled>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="besttime">Best Time On 10 km:</label>
                 <input class="profileinput myprofile" type="text" id="besttime" name="besttime"
                     value="{{ user.besttime }}" placeholder="Best Time On 10 km" disabled>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="userlevel">Running Level:</label>
                 <input class="profileinput myprofile" type="text" id="userlevel" name="userlevel"
                     value="{{ user.userlevel }}" placeholder="User Level" disabled>
@@ -45,13 +44,13 @@
                     class="form-link"><i class="fas fa-pencil-alt buttoniconposition"></i>Edit Profile</span></a>
         </div>
         <h5>Account Info</h5>
-        <div class="myprofilegroup accountinfo">
-            <div>
+        <div class="myprofilegroup bottommargin">
+            <div class="dimension">
                 <label class="profilelabel" for="">Registered E-mail</label>
                 <input class="profileinput myprofile" type="" id="" name="" value="{{ user.email }}" placeholder=""
                     disabled>
             </div>
-            <div>
+            <div class="dimension">
                 <label class="profilelabel" for="">Member Since</label>
                 <input class="profileinput myprofile" type="" id="" name="" value="{{ user.membersince }}"
                     placeholder="" disabled>
