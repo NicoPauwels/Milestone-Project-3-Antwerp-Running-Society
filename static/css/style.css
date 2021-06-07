@@ -716,7 +716,7 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
 .form-button {
     border: solid 1px #4D5765;
     background-color: #191E27;
-    color: #5a5d60;
+    color: #4D5765;
     border-radius: 0.25rem;
     height: 25px;
     margin-right: 0.5rem;
@@ -766,7 +766,7 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
 }
 
 .runcard .details {
-    color: #5a5d60;
+    color: #4D5765;
     margin-bottom: 0;
 }
 
@@ -1040,7 +1040,7 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     }
 
     body {
-        overflow: none;
+        overflow: scroll;
     }
 
     .profile-container {
