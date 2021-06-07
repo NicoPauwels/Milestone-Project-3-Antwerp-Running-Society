@@ -16,7 +16,7 @@
         {% endif %}
     {% endfor %}
     </div>
-    <div class="buttoncontainer">
+    <div class="expandbuttoncontainer">
         {% if run.isCurrentUser %}
         <a href="{{ url_for('leave_run', run_id=run._id) }}" class="form-button"><span class="form-link expandedrunbutton"><i class='fas fa-times cardicon'></i>Leave Run</span></a>
         {% else %}

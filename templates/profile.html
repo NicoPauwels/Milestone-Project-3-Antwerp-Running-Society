@@ -3,7 +3,7 @@
 
 <div class="profile-container">
     <form class="form" method="POST" action="{{ url_for('profile', user=session['user']) }}">
-        <h5>My Profile</h5>
+        <h5 class="menuheader">My Profile</h5>
         <div class="myprofilegroup">
             <div class="dimension">
                 <label class="profilelabel" for="firstname">First Name:</label>
@@ -40,10 +40,12 @@
                 <input class="profileinput myprofile" type="text" id="userlevel" name="userlevel"
                     value="{{ user.userlevel }}" placeholder="User Level" disabled>
             </div>
+            <div class="buttoncontainer">
             <a href="{{ url_for('edit_profile', user=session['user']) }}" type="button" class="form-button"><span
                     class="form-link"><i class="fas fa-pencil-alt buttoniconposition"></i>Edit Profile</span></a>
+            </div>
         </div>
-        <h5>Account Info</h5>
+        <h5 class="menuheader accountinfotop">Account Info</h5>
         <div class="myprofilegroup bottommargin">
             <div class="dimension">
                 <label class="profilelabel" for="">Registered E-mail</label>
@@ -55,8 +57,10 @@
                 <input class="profileinput myprofile" type="" id="" name="" value="{{ user.membersince }}"
                     placeholder="" disabled>
             </div>
+            <div class="buttoncontainer">
             <a href="{{ url_for('delete_profile', user=session['user']) }}" type="button" class="form-button"><span
                     class="form-link"><i class="fas fa-times-circle buttoniconposition"></i>Delete Account</span></a>
+            </div>
 
             {% block deleteprofile %}
             {% endblock %}
