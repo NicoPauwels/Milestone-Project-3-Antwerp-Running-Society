@@ -1078,6 +1078,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     #seconds {
         width: 52px;
     }
+
+    #mainwindowmessage {
+        display: none;
+    }
 }
 
 @media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ 
@@ -1103,6 +1107,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     .upcomingruns-container {
         width: 97vw;
     }
+
+    #mainwindowmessage {
+        display: none;
+    }
 }
 
 @media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
@@ -1122,6 +1130,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
 
     .upcomingruns-container {
         width: width 97vw;
+    }
+
+    #mainwindowmessage {
+        display: none;
     }
 }
 
