@@ -864,6 +864,15 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     align-items: center;
 }
 
+.expandbuttoncontainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; 
+}
+
 .caretbuttonicon {
     margin-left: 0.5rem;
     font-size: 14px;
@@ -905,459 +914,458 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     color: #FFFFFF;
 }
 
-/* Media Queries ----------- */
+@media (min-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    
+    #mapid {
+        display:none;
+    }
 
-/* iPads (portrait and landscape) ----------- */
+    #mobilemapid {
+        width: 90%;
+        height: 150px;
+    }
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .largedevices {
+        display: none;
+    }
+
+    .smalldevices {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .upcomingruns-container {
+        width: 97vw;
+    }
+
+    .expandedrunbutton {
+        padding-top: 4px;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .navbar {
+        padding-right: 0;
+    }
+
+    .registerlogintitle {
+        margin-bottom: 40px;
+        margin-top: 40px;
+        font-size: 24px;
+    }
+
+    .addeditrun-container {
+        z-index: 1;
+        position: absolute;
+        top: 55px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        background-color: rgba(18, 23, 30, 1);
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .addeditrun-container fieldset {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .delete-container {
+        z-index: 1;
+        position: absolute;
+        top: 55px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        background-color: rgba(18, 23, 30, 1);
+        border-left: none;
+    }
+
+    .search-container {
+        z-index: 1;
+        position: absolute;
+        top: 55px;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        background-color: rgba(18, 23, 30, 1);
+        border-left: none;
+    }
+
+    .search-container fieldset {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .form {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .buttoncontainer {
+        width: 280px;
+        margin: 0 auto;
+    }
+
+    .levelrestriction {
+        width: 280px !important;
+    }
+
+    .menuheader {
+        width: 280px;
+        margin: 0 auto;
+    }
+
+    .closebutton {
+        display: none;
+    }
+
+    .message-content {
+        margin: 0 auto;
+        width: 280px;
+    }
+
+    .message-text {
+        margin-left: 0;
+    }
+
+    body {
+        overflow: scroll;
+    }
+
+    .profile-container {
+        position: absolute;
+        left: 0px;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        background-color: rgba(18, 23, 30, 1);
+    }
+
+    .myprofilegroup {
+        margin: 0 auto;
+    }
+
+    .profileinput {
+        width: 160px;
+    }
+
+    .dimension {
+        width: fit-content;
+        margin: 0 auto;
+        margin-top: 0.5rem;
+    }
+
+    .accountinfotop {
+        margin-top: 1rem;
+    }
+
+    #birthday,
+    #birthmonth,
+    #birthyear,
+    #hours,
+    #minutes,
+    #seconds {
+        width: 52px;
+    }
+}
+
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ 
+
+    #mapid {
+        display:none;
+    }
+
+    #mobilemapid {
+        width: 95%;
+        height: 150px;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .smalldevices {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .upcomingruns-container {
+        width: 97vw;
+    }
+}
+
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+
+    #mapid {
+        display: none;
+    }
+
+    #mobilemapid {
+        width: 95%;
+        height: 150px;
+    }
+
+    .largedevices {
+        display: none;
+    }
+
+    .upcomingruns-container {
+        width: width 97vw;
+    }
+}
+
+@media (min-width:768px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+
     #mapid {
         display: block;
     }
-    .mobilecarddetails {
-        display: none;
-    }
-    .expandrun {
-        pointer-events: none;
-    }
-    .largedevices {
-        display: none;
-    }
+
     .upcomingruns-container {
         width: 280px;
     }
-}
 
-/* iPads (landscape) ----------- */
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-    .addeditrun-container {
-        left: 65%;
-    }
-    .delete-container {
-        left: 65%;
-    }
-    .search-container {
-        left: 65%;
-    }
-}
-
-/* iPads (portrait) ----------- */
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-    .addeditrun-container {
-        left: 70%;
-    }
-    .delete-container {
-        left: 70%;
-    }
-    .search-container {
-        left: 70%;
-    }
-}
-
-/* Desktops and laptops ----------- */
-
-@media only screen and (min-width: 1224px) {
     .smalldevices {
+        display: block;
+    }
+
+    .largedevices {
         display: none;
     }
+
     .container {
         width: 80%;
         max-width: 80%;
     }
+
     .mobilecarddetails {
         display: none;
     }
+    
     .expandrun {
         pointer-events: none;
     }
-    .branding {
-        left: 180px;
+
+    body {
+        overflow: hidden;
+    }
+
+    .closebutton {
+        display: block;
+    }
+
+    .addeditrun-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        width: 350px;
+        height: 390px;
+        margin: -195px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
+    }
+    
+    .search-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        width: 350px;
+        height: 300px;
+        margin: -150px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
+    }
+    
+    .delete-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        width: 350px;
+        height: 160px;
+        margin: -80px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
     }
 }
 
-/* Large screens ----------- */
+@media (min-width:1024px) { /* big landscape tablets, laptops, and desktops */ 
 
-@media only screen and (min-width: 1824px) {
     .smalldevices {
         display: none;
     }
+
+    .largedevices {
+        display: block;
+    }
+
+    .addeditrun-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 65%;
+        width: 350px;
+        height: 390px;
+        margin: -195px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
+    }
+    
+    .search-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 65%;
+        width: 350px;
+        height: 300px;
+        margin: -150px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
+    }
+    
+    .delete-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 65%;
+        width: 350px;
+        height: 160px;
+        margin: -80px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
+    }
+}
+
+@media (min-width:1281px) { /* hi-res laptops and desktops */ 
+
+    #mapid {
+        display: block;
+    }
+
+    .upcomingruns-container {
+        width: 280px;
+    }
+
+    .smalldevices {
+        display: none;
+    }
+
+    .largedevices {
+        display: block;
+    }
+
     .container {
         width: 80%;
         max-width: 80%;
     }
+
     .mobilecarddetails {
         display: none;
     }
+
     .expandrun {
         pointer-events: none;
     }
-    .branding {
-        left: 180px;
-    }
-}
 
-/* iPhone 6, 7, 8 ----------- */
-
-@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2) {
-    #mapid {
-        display: none;
-    }
-    #mobilemapid {
-        position: block;
-        width: 270px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        padding-left: 17px;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    .upcomingruns-container {
-        width: 359px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-text {
-        margin-left: 0px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
-    .menuheader {
-        margin-left: 31px;
-    }
-    .mobilemargin {
-        margin-left: 16px;
-    }
-}
-
-@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2) {
-    #mapid {
-        display: none;
-    }
-    #mobilemapid {
-        position: block;
-        width: 270px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    #mobilemapid {
-        position: block;
-        width: 560px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .upcomingruns-container {
-        width: 651px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-text {
-        margin-left: 148px;
-    }
-    .deletelinkposition {
-        margin-left: 148px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
-    .registerlogintitle {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
     body {
-        overflow: scroll;
+        overflow: hidden;
     }
-    .expandedrunbutton {
-        padding-top: 4px !important;
+
+    .addeditrun-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 350px;
+        height: 390px;
+        margin: -195px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
     }
-    .menuheader {
-        margin-left: 177px;
+    
+    .search-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 350px;
+        height: 300px;
+        margin: -150px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
     }
-    .mobilemargin {
-        margin-left: 161px;
+    
+    .delete-container {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 350px;
+        height: 160px;
+        margin: -80px 0 0 -175px;
+        background-color: rgba(18, 23, 30, 0.9);
+        border-radius: 0.25rem;
+        border-left: solid 5px #00BF00;
     }
 }
 
-/* iPhone 6+, 7+, 8+ ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) { /* iPhone X */
 
-@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
+
     #mapid {
-        display: none;
+        display:none;
     }
+
     #mobilemapid {
-        position: block;
-        width: 310px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
+        width: 90%;
+        height: 150px;
     }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
+
     .largedevices {
         display: none;
     }
-    .navbar {
-        padding: 0;
+
+    .smalldevices {
+        margin-left: 5px;
+        margin-right: 5px;
     }
+
+    .upcomingruns-container {
+        width: 97vw;
+    }
+
+    .expandedrunbutton {
+        padding-top: 4px;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .navbar {
+        padding-right: 0;
+    }
+
     .addeditrun-container {
         z-index: 1;
         position: absolute;
@@ -1368,16 +1376,16 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
         margin: 0;
         background-color: rgba(18, 23, 30, 1);
         border-left: none;
+        padding-left: 0;
     }
+
     .addeditrun-container fieldset {
         width: -webkit-fit-content;
         width: -moz-fit-content;
         width: fit-content;
         margin: 0 auto;
     }
-    .form-link {
-        padding-top: 7px;
-    }
+
     .delete-container {
         z-index: 1;
         position: absolute;
@@ -1389,162 +1397,7 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
         background-color: rgba(18, 23, 30, 1);
         border-left: none;
     }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        padding-left: 25px;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    .upcomingruns-container {
-        width: 398px !important;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-header {
-        margin-left: 0px;
-    }
-    .message-text {
-        margin-left: 0px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
-    .menuheader {
-        margin-left: 51px;
-    }
-    .mobilemargin {
-        margin-left: 35px;
-    }
-}
 
-@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
-    #mapid {
-        display: none;
-    }
-    #mobilemapid {
-        position: block;
-        width: 630px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
     .search-container {
         z-index: 1;
         position: absolute;
@@ -1556,904 +1409,83 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
         background-color: rgba(18, 23, 30, 1);
         border-left: none;
     }
+
     .search-container fieldset {
         width: -webkit-fit-content;
         width: -moz-fit-content;
         width: fit-content;
         margin: 0 auto;
     }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    .upcomingruns-container {
-        width: 720px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-text {
-        margin-left: 164px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
-    .registerlogintitle {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    body {
-        overflow: scroll;
-    }
-    .expandedrunbutton {
-        padding-top: 4px !important;
-    }
-    .menuheader {
-        margin-left: 196px;
-    }
-    .mobilemargin {
-        margin-left: 212px;
-    }
-    .deletelinkposition {
-        margin-left: 164px;
-    }
+
     .form {
-        margin-left: 208px;
-    }
-}
-
-/* iPhone X ----------- */
-
-@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
-    #mapid {
-        display: none;
-    }
-    #mobilemapid {
-        position: block;
-        width: 270px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
         padding-right: 0;
         padding-left: 0;
     }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
+
+    .buttoncontainer {
+        width: 280px;
         margin: 0 auto;
     }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
+
     .levelrestriction {
         width: 280px !important;
     }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        padding-left: 17px;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    .upcomingruns-container {
-        width: 359px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-header {
-        margin-left: 0px;
-    }
-    .message-text {
-        margin-left: 0px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
+
     .menuheader {
-        margin-left: 47px;
+        width: 280px;
+        margin: 0 auto;
     }
-    .mobilemargin {
-        margin-left: 19px;
-    }
-}
 
-@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
-    #mapid {
+    .closebutton {
         display: none;
     }
-    #mobilemapid {
-        position: block;
-        width: 630px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    .upcomingruns-container {
-        width: 796px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-text {
-        margin-left: 164px;
-    }
+
     .message-content {
-        padding-left: 2rem;
+        margin: 0 auto;
+        width: 280px;
     }
-    .registerlogintitle {
-        margin-top: 20px;
-        margin-bottom: 20px;
+
+    .message-text {
+        margin-left: 0;
     }
+
     body {
         overflow: scroll;
     }
-    .expandedrunbutton {
-        padding-top: 4px !important;
-    }
-    .menuheader {
-        margin-left: 196px;
-    }
-    .mobilemargin {
-        margin-left: 212px;
-    }
-    .deletelinkposition {
-        margin-left: 164px;
-    }
-    .form {
-        margin-left: 208px;
-    }
-}
 
-/* Samsung Galaxy S5 ----------- */
-
-@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3) {
-    #mapid {
-        display: none;
-    }
-    #mobilemapid {
-        position: block;
-        width: 270px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 0.5rem;
-    }
     .profile-container {
         position: absolute;
-        top: 0px;
         left: 0px;
         width: 100vw;
         height: 100vh;
-        padding-top: 0;
         margin: 0;
-        overflow: scroll;
+        background-color: rgba(18, 23, 30, 1);
     }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    .upcomingruns-container {
-        width: 344px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-text {
-        margin-left: 0px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
-    .menuheader {
-        margin-left: 24px;
-    }
-}
 
-@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3) {
-    #mapid {
-        display: none;
-    }
-    #mobilemapid {
-        position: block;
-        width: 270px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
+    .myprofilegroup {
         margin: 0 auto;
     }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .profileinput {
-        width: 200px;
-    }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
-    .dimension {
-        height: 40px;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    #mobilemapid {
-        position: block;
-        width: 560px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .upcomingruns-container {
-        width: 624px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-text {
-        margin-left: 148px;
-    }
-    .deletelinkposition {
-        margin-left: 148px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
-    .registerlogintitle {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    body {
-        overflow: scroll;
-    }
-    .expandedrunbutton {
-        padding-top: 4px !important;
-    }
-    .menuheader {
-        margin-left: 177px;
-    }
-    .mobilemargin {
-        margin-left: 161px;
-    }
-}
 
-/* Smartphones (portrait) ----------- */
-
-@media only screen and (max-width: 320px) {
-    #mapid {
-        display: none;
-    }
-    #mobilemapid {
-        position: block;
-        width: 210px;
-        height: 200px;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        overflow: hidden;
-    }
-    .registerlogintitle {
-        font-size: 1.5rem;
-    }
-    .container {
-        width: 100%;
-        padding-right: 0;
-        padding-left: 0;
-    }
-    .branding {
-        margin-left: 12px;
-    }
-    .largedevices {
-        display: none;
-    }
-    .navbar {
-        padding: 0;
-    }
-    .addeditrun-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .addeditrun-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .form-link {
-        padding-top: 7px;
-    }
-    .delete-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container {
-        z-index: 1;
-        position: absolute;
-        top: 55px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        background-color: rgba(18, 23, 30, 1);
-        border-left: none;
-    }
-    .search-container fieldset {
-        width: -webkit-fit-content;
-        width: -moz-fit-content;
-        width: fit-content;
-        margin: 0 auto;
-    }
-    .levelrestriction {
-        width: 280px !important;
-    }
-    .buttoncontainer {
-        width: 280px !important;
-    }
-    .mobilemargin {
-        margin-left: 1rem;
-    }
-    .profile-container {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100vw;
-        height: 100vh;
-        padding-top: 0;
-        padding-left: 17px;
-        margin: 0;
-        overflow: scroll;
-    }
-    .profile-container form {
-        padding-top: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
     .profileinput {
-        width: 200px;
+        width: 160px;
     }
-    #birthday, #birthmonth, #birthyear {
-        width: 60px;
-    }
-    #birthmonth {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #hours, #minutes, #seconds {
-        width: 60px;
-    }
-    #minutes {
-        margin-left: 7px;
-        margin-right: 7px;
-    }
-    #mainwindowmessage {
-        display: none;
-    }
+
     .dimension {
-        height: 40px;
+        width: fit-content;
+        margin: 0 auto;
+        margin-top: 0.5rem;
     }
-    .form-link {
-        padding-top: 7px;
+
+    .accountinfotop {
+        margin-top: 1rem;
     }
-    .expandedrunbutton {
-        padding-top: 4px;
-    }
-    .upcomingruns-container {
-        width: 304px;
-        overflow: scroll;
-    }
-    .profilemessage-header {
-        display: none;
-    }
-    .message-text {
-        margin-left: 0px;
-    }
-    .message-content {
-        padding-left: 2rem;
-    }
-    .menuheader {
-        margin-left: 31px;
-    }
-    .mobilemargin {
-        margin-left: 16px;
+
+    #birthday,
+    #birthmonth,
+    #birthyear,
+    #hours,
+    #minutes,
+    #seconds {
+        width: 52px;
     }
 }
