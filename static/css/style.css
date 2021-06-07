@@ -1040,7 +1040,7 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     }
 
     body {
-        overflow: scroll;
+        overflow: none;
     }
 
     .profile-container {
