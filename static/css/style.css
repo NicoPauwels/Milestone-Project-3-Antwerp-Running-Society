@@ -440,9 +440,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     position: absolute;
     top: 71px;
     left: 50%;
+    width: 350px;
     color: #00BF00;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     /* Firefox */
     -webkit-animation: cssAnimation 0s ease-in 5s forwards;
     /* Safari and Chrome */
@@ -1220,6 +1221,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
         border-radius: 0.25rem;
         border-left: solid 5px #00BF00;
     }
+
+    #mainwindowmessage {
+        display: block;
+    }
 }
 
 @media (min-width:1024px) { /* big landscape tablets, laptops, and desktops */ 
@@ -1269,6 +1274,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
         background-color: rgba(18, 23, 30, 0.9);
         border-radius: 0.25rem;
         border-left: solid 5px #00BF00;
+    }
+
+    #mainwindowmessage {
+        display: block;
     }
 }
 
@@ -1344,6 +1353,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
         background-color: rgba(18, 23, 30, 0.9);
         border-radius: 0.25rem;
         border-left: solid 5px #00BF00;
+    }
+
+    #mainwindowmessage {
+        display: block;
     }
 }
 
