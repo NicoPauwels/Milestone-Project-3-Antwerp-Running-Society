@@ -28,7 +28,7 @@
             <div class="dimension">
                 <label class="profilelabel" for="location">Location:</label>
                 <input class="profileinput myprofile" type="text" id="location" name="location"
-                    value="{{ user.location }}" placeholder="City" disbaled>
+                    value="{{ user.location }}" placeholder="City" disabled>
             </div>
             <div class="dimension">
                 <label class="profilelabel" for="besttime">Best Time On 10 km:</label>
@@ -48,14 +48,12 @@
         <h5 class="menuheader accountinfotop">Account Info</h5>
         <div class="myprofilegroup bottommargin">
             <div class="dimension">
-                <label class="profilelabel" for="">Registered E-mail</label>
-                <input class="profileinput myprofile" type="" id="" name="" value="{{ user.email }}" placeholder=""
-                    disabled>
+                <label class="profilelabel" for="useremail">Registered E-mail</label>
+                <input class="profileinput myprofile" value="{{ user.email }}" disabled>
             </div>
             <div class="dimension">
-                <label class="profilelabel" for="">Member Since</label>
-                <input class="profileinput myprofile" type="" id="" name="" value="{{ user.membersince }}"
-                    placeholder="" disabled>
+                <label class="profilelabel" for="membersince">Member Since</label>
+                <input class="profileinput myprofile" value="{{ user.membersince }}" disabled>
             </div>
             <div class="buttoncontainer">
             <a href="{{ url_for('delete_profile', user=session['user']) }}" type="button" class="form-button"><span
