@@ -30,16 +30,16 @@ createdondate = timestamp.strftime("%d/%m/%Y")
 days_in_year = 365.2425
 
 
-
 @app.route("/")
-@app.route("/register", methods=["GET","POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
         if existing_user:
-            flash("That e-mail address is already in use!", "registeremailerror")
+            flash("That e-mail address is already in use!",
+                  "registeremailerror")
             return redirect(url_for("register"))
 
         password1 = request.form.get("password1")
@@ -57,7 +57,8 @@ def register():
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("email").lower()
-        flash("Please fill out the form below so we can provide you with an optimal application experience.", "completeprofilemessage")
+        flash("Please fill out the form below so we can provide you with an optimal application experience.",
+              "completeprofilemessage")
         return redirect(url_for("edit_profile", user=session["user"]))
     return render_template("register.html", isRegister=True)
 
@@ -67,18 +68,19 @@ def login():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
-        
+
         if existing_user:
             if check_password_hash(
-                existing_user["password"], request.form.get("password1")):
-                    session["user"] = request.form.get("email").lower()
-                    return redirect(url_for("show_map", user=session["user"]))
+                    existing_user["password"], request.form.get("password1")):
+                session["user"] = request.form.get("email").lower()
+                return redirect(url_for("show_map", user=session["user"]))
             else:
                 flash("The password is not correct!", "loginpassworderror")
                 return redirect(url_for("login"))
 
         else:
-            flash("This e-mail address has not been registered yet!", "loginemailerror")
+            flash("This e-mail address has not been registered yet!",
+                  "loginemailerror")
             return redirect(url_for("login"))
 
     return render_template("login.html", isLogin=True)
@@ -90,22 +92,23 @@ def show_map():
         if session["user"]:
             user = mongo.db.users.find_one({"email": session['user']})
             runs = list(mongo.db.runs.find({
-                                            "$and": [
-                                                    {"city": user['location']},
-                                                    {"timestamp": {"$gte": datetime.today()}}
-                                                ]
-                                            }).sort("timestamp", 1))
+                "$and": [
+                    {"city": user['location']},
+                    {"timestamp": {
+                        "$gte": datetime.today()}}
+                ]
+            }).sort("timestamp", 1))
             for run in runs:
                 for participant in run['participants']:
                     if session['user'] == participant['email']:
                         run['isCurrentUser'] = True
-                if not 'isCurrentUser' in run:
+                if 'isCurrentUser' not in run:
                     run['isCurrentUser'] = False
 
             return render_template("map.html", runs=runs, user=user, isGetRuns=True)
     except:
         return render_template("login.html", isLogin=True)
-    
+
     return render_template("login.html", isLogin=True)
 
 
@@ -116,36 +119,41 @@ def search():
             if request.method == "POST":
                 querylocation = request.form.get("location")
                 formmindate = request.form.get("mindate")
-                querymindate = datetime.strptime(formmindate, "%Y-%m-%d") 
+                querymindate = datetime.strptime(formmindate, "%Y-%m-%d")
                 formmaxdate = request.form.get("maxdate")
-                querymaxdate = datetime.strptime(formmaxdate, "%Y-%m-%d") + timedelta(days=1)
+                querymaxdate = datetime.strptime(
+                    formmaxdate, "%Y-%m-%d") + timedelta(days=1)
                 querymindistance = int(request.form.get("mindistance"))
                 querymaxdistance = int(request.form.get("maxdistance"))
 
                 runs = list(mongo.db.runs.find({
-                                            "$and": [
-                                                    {"city": querylocation},
-                                                    {"$and": [{"timestamp": {"$gte": querymindate}} , {"timestamp": {"$lte": querymaxdate}}]},
-                                                    {"$and": [{"intdistance": {"$gte": querymindistance}} , {"intdistance": {"$lte": querymaxdistance}}]}
-                                                ]   
-                                            }).sort("timestamp", 1))
-                
+                    "$and": [
+                        {"city": querylocation},
+                        {"$and": [{"timestamp": {"$gte": querymindate}}, {
+                            "timestamp": {"$lte": querymaxdate}}]},
+                        {"$and": [{"intdistance": {"$gte": querymindistance}}, {
+                            "intdistance": {"$lte": querymaxdistance}}]}
+                    ]
+                }).sort("timestamp", 1))
+
                 if len(runs) == 0:
-                    flash("No runs found with such criteria", "mainwindowmessage")
+                    flash("No runs found with such criteria",
+                          "mainwindowmessage")
                     return redirect(url_for("show_map", user=session["user"]))
                 else:
                     user = mongo.db.users.find_one({"email": session['user']})
                     flash("Filter Active", "mainwindowmessage")
                     return render_template("searchresults.html", runs=runs, user=user, isActiveFilter=True)
-            
+
             user = mongo.db.users.find_one({"email": session['user']})
             runs = list(mongo.db.runs.find({
-                                            "$and": [
-                                                    {"city": user['location']},
-                                                    {"timestamp": {"$gte": datetime.today()}}
-                                                ]
-                                            }).sort("timestamp", 1))
-            
+                "$and": [
+                    {"city": user['location']},
+                    {"timestamp": {
+                        "$gte": datetime.today()}}
+                ]
+            }).sort("timestamp", 1))
+
             return render_template("search.html", runs=runs, user=user, isActiveFilter=False)
     except:
         return render_template("login.html", isLogin=True)
@@ -165,12 +173,12 @@ def add_run():
                 rundate = datetime.strptime(formrundate, "%Y-%m-%d")
                 rundatestring = rundate.strftime("%d-%m-%Y")
                 formruntime = "{}:{}".format(request.form.get(
-                            "hour"), request.form.get("minute"))
+                    "hour"), request.form.get("minute"))
 
                 runtime = datetime.strptime(formruntime, "%H:%M")
                 runtimestring = runtime.strftime("%H:%M")
                 runtimestamp = datetime.strptime(
-                rundatestring + ", " + runtimestring, "%d-%m-%Y, %H:%M")
+                    rundatestring + ", " + runtimestring, "%d-%m-%Y, %H:%M")
 
                 runcity = request.form.get("city")
                 runcity_geocode_result = gmaps.geocode(runcity)
@@ -178,15 +186,15 @@ def add_run():
                 runcitylng = runcity_geocode_result[0]["geometry"]["location"]["lng"]
 
                 meetingpoint = request.form.get(
-                            "location") + ", " + request.form.get("city")
+                    "location") + ", " + request.form.get("city")
                 meetingpoint_geocode_result = gmaps.geocode(meetingpoint)
                 meetingpointlat = meetingpoint_geocode_result[0]["geometry"]["location"]["lat"]
                 meetingpointlng = meetingpoint_geocode_result[0]["geometry"]["location"]["lng"]
 
                 participant = mongo.db.users.find_one({"email": session['user']}, {
-                                                            "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
+                    "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
                 creatorrunninglevel = mongo.db.users.find_one(
-                            {"email": session['user']}).get('userlevel')
+                    {"email": session['user']}).get('userlevel')
 
                 distance = int(request.form.get("distance")[:2])
 
@@ -212,7 +220,8 @@ def add_run():
                     "participants": [participant]
                 }
                 if runtimestamp.date() < date.today():
-                    flash("Please make sure your run is in the future", "mainwindowmessage")
+                    flash("Please make sure your run is in the future",
+                          "mainwindowmessage")
                     return redirect(url_for("add_run"))
 
                 mongo.db.runs.insert_one(run)
@@ -221,11 +230,12 @@ def add_run():
 
             user = mongo.db.users.find_one({"email": session['user']})
             runs = list(mongo.db.runs.find({
-                                            "$and": [
-                                                    {"city": user['location']},
-                                                    {"timestamp": {"$gte": datetime.today()}}
-                                                ]
-                                                }).sort("timestamp", 1))
+                "$and": [
+                    {"city": user['location']},
+                    {"timestamp": {
+                        "$gte": datetime.today()}}
+                ]
+            }).sort("timestamp", 1))
             return render_template("addrun.html", runs=runs, user=user)
     except:
         return render_template("login.html", isLogin=True)
@@ -239,39 +249,43 @@ def expand_run(run_id):
     id = run.get('_id')
     user = mongo.db.users.find_one({"email": session['user']})
     runs = list(mongo.db.runs.find({
-                                    "$and": [
-                                            {"city": user['location']},
-                                            {"timestamp": {"$gte": datetime.today()}}
-                                            ]
-                                            }).sort("timestamp", 1))
+        "$and": [
+            {"city": user['location']},
+            {"timestamp": {"$gte": datetime.today()}}
+        ]
+    }).sort("timestamp", 1))
 
     for participant in run['participants']:
         if session['user'] == participant['email']:
             run['isCurrentUser'] = True
-    if not 'isCurrentUser' in run:
+    if 'isCurrentUser' not in run:
         run['isCurrentUser'] = False
-    
+
     return render_template("expandrun.html", run=run, id=id, runs=runs, user=user)
 
-    
+
 @app.route("/join_run/<run_id>", methods=["GET", "POST"])
 def join_run(run_id):
     try:
         if session["user"]:
-            participant = mongo.db.users.find_one({"email": session['user']}, {"_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1, "userlevel": 1})
+            participant = mongo.db.users.find_one({"email": session['user']}, {
+                                                  "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1, "userlevel": 1})
             run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
-            
+
             if run['levelrestriction'] == "on":
                 if run['level'] == participant['userlevel']:
-                    flash("You have been added to the participtantslist", "mainwindowmessage")
+                    flash("You have been added to the participtantslist",
+                          "mainwindowmessage")
                     mongo.db.runs.update_one(
                         {"_id": ObjectId(run_id)},
                         {"$push": {"participants": participant}})
                 else:
-                    flash("Only people from the same level can attend this run", "mainwindowmessage")
+                    flash(
+                        "Only people from the same level can attend this run", "mainwindowmessage")
                     return redirect(url_for("show_map"))
             else:
-                flash("You have been added to the participtantslist", "mainwindowmessage")
+                flash("You have been added to the participtantlist",
+                      "mainwindowmessage")
                 mongo.db.runs.update_one(
                     {"_id": ObjectId(run_id)},
                     {"$push": {"participants": participant}})
@@ -279,7 +293,7 @@ def join_run(run_id):
             return redirect(url_for("show_map"))
     except:
         return render_template("login.html", isLogin=True)
-    
+
     return render_template("login.html", isLogin=True)
 
 
@@ -287,16 +301,18 @@ def join_run(run_id):
 def leave_run(run_id):
     try:
         if session["user"]:
-            participant = mongo.db.users.find_one({"email": session['user']}, {"_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
+            participant = mongo.db.users.find_one({"email": session['user']}, {
+                                                  "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
             mongo.db.runs.update_one(
                 {"_id": ObjectId(run_id)},
-                {"$pull": {"participants": participant}} 
+                {"$pull": {"participants": participant}}
             )
-            
+            flash("You have been removed from the participtantlist",
+                  "mainwindowmessage")
             return redirect(url_for("show_map"))
     except:
         return render_template("login.html", isLogin=True)
-    
+
     return render_template("login.html", isLogin=True)
 
 
@@ -305,30 +321,36 @@ def edit_run(run_id):
     try:
         if session["user"]:
             if request.method == "POST":
-                levelrestriction = "on" if request.form.get("levelrestriction") else "off"
+                levelrestriction = "on" if request.form.get(
+                    "levelrestriction") else "off"
 
                 formrundate = request.form.get("date")
                 rundate = datetime.strptime(formrundate, "%Y-%m-%d")
                 rundatestring = rundate.strftime("%d-%m-%Y")
-                formruntime = "{}:{}".format(request.form.get("hour"), request.form.get("minute"))
+                formruntime = "{}:{}".format(request.form.get(
+                    "hour"), request.form.get("minute"))
 
                 runtime = datetime.strptime(formruntime, "%H:%M")
                 runtimestring = runtime.strftime("%H:%M")
-                runtimestamp = datetime.strptime(rundatestring + ", " + runtimestring, "%d-%m-%Y, %H:%M")
+                runtimestamp = datetime.strptime(
+                    rundatestring + ", " + runtimestring, "%d-%m-%Y, %H:%M")
 
                 runcity = request.form.get("city")
                 runcity_geocode_result = gmaps.geocode(runcity)
                 runcitylat = runcity_geocode_result[0]["geometry"]["location"]["lat"]
                 runcitylng = runcity_geocode_result[0]["geometry"]["location"]["lng"]
 
-                meetingpoint = request.form.get("location")+ ", " + request.form.get("city")        
+                meetingpoint = request.form.get(
+                    "location") + ", " + request.form.get("city")
                 geocode_result = gmaps.geocode(meetingpoint)
                 meetingpointlat = geocode_result[0]["geometry"]["location"]["lat"]
                 meetingpointlng = geocode_result[0]["geometry"]["location"]["lng"]
 
-                participant = mongo.db.users.find_one({"email": session['user']}, {"_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
-                creatorrunninglevel = mongo.db.users.find_one({"email": session['user']}).get('userlevel')
-                
+                participant = mongo.db.users.find_one({"email": session['user']}, {
+                                                      "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
+                creatorrunninglevel = mongo.db.users.find_one(
+                    {"email": session['user']}).get('userlevel')
+
                 distance = int(request.form.get("distance")[:2])
 
                 editrun = {
@@ -348,12 +370,13 @@ def edit_run(run_id):
                     "distance": request.form.get("distance"),
                     "intdistance": distance,
                     "levelrestriction": levelrestriction,
-                    "createdby": session["user"],  
+                    "createdby": session["user"],
                     "createdon": createdon,
                     "participants": [participant]
                 }
                 if runtimestamp.date() < date.today():
-                    flash("Please make sure your run is scheduled in the future", "mainwindowmessage")
+                    flash(
+                        "Please make sure your run is scheduled in the future", "mainwindowmessage")
                     return redirect(url_for("edit_run", run_id=run_id))
 
                 mongo.db.runs.update({"_id": ObjectId(run_id)}, editrun)
@@ -363,11 +386,12 @@ def edit_run(run_id):
             user = mongo.db.users.find_one({"email": session['user']})
             run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
             runs = list(mongo.db.runs.find({
-                                            "$and": [
-                                                    {"city": user['location']},
-                                                    {"timestamp": {"$gte": datetime.today()}}
-                                                ]
-                                            }).sort("timestamp", 1))
+                "$and": [
+                    {"city": user['location']},
+                    {"timestamp": {
+                        "$gte": datetime.today()}}
+                ]
+            }).sort("timestamp", 1))
             return render_template("editrun.html", run=run, runs=runs, user=user)
     except:
         return render_template("login.html", isLogin=True)
@@ -380,12 +404,13 @@ def delete_run(run_id):
     try:
         if session["user"]:
             run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
-            runs = list(mongo.db.runs.find({"timestamp": {"$gte": datetime.today()}}).sort("timestamp", 1))
+            runs = list(mongo.db.runs.find(
+                {"timestamp": {"$gte": datetime.today()}}).sort("timestamp", 1))
             user = mongo.db.users.find_one({"email": session['user']})
         return render_template("deleterun.html", run=run, runs=runs, user=user)
     except:
         return render_template("login.html", isLogin=True)
-        
+
     return render_template("login.html", isLogin=True)
 
 
@@ -395,24 +420,25 @@ def permanently_delete_run(run_id):
         if session["user"]:
             mongo.db.runs.remove({"_id": ObjectId(run_id)})
             flash("Run was removed permanently", "mainwindowmessage")
-        return redirect(url_for("show_map")) 
+        return redirect(url_for("show_map"))
     except:
         return render_template("login.html", isLogin=True)
 
     return render_template("login.html", isLogin=True)
 
+
 @app.route("/profile/<user>", methods=["GET", "POST"])
 def profile(user):
     try:
         if session["user"] == user:
-            genders = mongo.db.genders.find()    
+            genders = mongo.db.genders.find()
             user = mongo.db.users.find_one({"email": user})
-                    
-            return render_template("profile.html", 
-                                    user=user, genders=genders)
+
+            return render_template("profile.html",
+                                   user=user, genders=genders)
     except:
         return render_template("login.html", isLogin=True)
-    
+
     return render_template("login.html", isLogin=True)
 
 
@@ -421,19 +447,22 @@ def edit_profile(user):
     try:
         if session["user"] == user:
             if request.method == "POST":
-                formdob = "{}-{}-{}".format(request.form.get("birthday"), request.form.get("birthmonth"), request.form.get("birthyear"))
+                formdob = "{}-{}-{}".format(request.form.get("birthday"), request.form.get(
+                    "birthmonth"), request.form.get("birthyear"))
                 dob = datetime.strptime(formdob, "%d-%m-%Y")
                 dobstring = dob.strftime("%d/%m/%Y")
                 age = int((date.today() - dob.date()).days / days_in_year)
-                        
-                formbesttime = "{}:{}:{}".format(request.form.get("hours"), request.form.get("minutes"), request.form.get("seconds"))
+
+                formbesttime = "{}:{}:{}".format(request.form.get(
+                    "hours"), request.form.get("minutes"), request.form.get("seconds"))
                 besttime = datetime.strptime(formbesttime, "%H:%M:%S")
                 besttimestring = besttime.strftime("%H:%M:%S")
                 userlevel = determine_user_level(age, besttime)
 
-                initials = request.form.get("firstname")[0] + request.form.get("lastname")[0]
+                initials = request.form.get("firstname")[
+                    0] + request.form.get("lastname")[0]
 
-                userlocation = request.form.get("location")      
+                userlocation = request.form.get("location")
                 geocode_result = gmaps.geocode(userlocation)
                 userlocationlat = geocode_result[0]["geometry"]["location"]["lat"]
                 userlocationlng = geocode_result[0]["geometry"]["location"]["lng"]
@@ -451,19 +480,20 @@ def edit_profile(user):
                     "userlocationlat": userlocationlat,
                     "userlocationlng": userlocationlng,
                     "besttime": besttimestring,
-                    "hours" : request.form.get("hours"),
+                    "hours": request.form.get("hours"),
                     "minutes": request.form.get("minutes"),
                     "seconds": request.form.get("seconds"),
                     "userlevel": userlevel,
                 }
-                mongo.db.users.update_one({"email": user}, {"$set": completeprofile})
+                mongo.db.users.update_one(
+                    {"email": user}, {"$set": completeprofile})
                 flash("Your profile was successfully updated", "mainwindowmessage")
                 return redirect(url_for("show_map", user=session["user"]))
-                    
-            genders = mongo.db.genders.find()    
+
+            genders = mongo.db.genders.find()
             user = mongo.db.users.find_one({"email": user})
-            return render_template("editprofile.html", 
-                                        user=user, genders=genders)
+            return render_template("editprofile.html",
+                                   user=user, genders=genders)
     except:
         return render_template("login.html", isLogin=True)
 
@@ -475,11 +505,11 @@ def delete_profile(user):
     try:
         if session["user"] == user:
             user = mongo.db.users.find_one({"email": user})
-            return render_template("deleteprofile.html", 
-                                    user=user)
+            return render_template("deleteprofile.html",
+                                   user=user)
     except:
         return render_template("login.html", isLogin=True)
-    
+
     return render_template("login.html", isLogin=True)
 
 
@@ -504,4 +534,4 @@ def logout():
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
