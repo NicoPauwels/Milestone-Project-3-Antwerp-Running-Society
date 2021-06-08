@@ -134,95 +134,195 @@ Implementation:
 
 Below the wireframes:
 
-* Desktop wireframe - [View](https://github.com/NicoPauwels/Milestone-Project-3-Impala/blob/master/static/readme/impala-desktop-wireframes.png)
-* Tablet wireframe - [View](https://github.com/NicoPauwels/Milestone-Project-2-Breakout/blob/master/assets/images/readme/wireframe-tablet.png)
-* Mobile wireframe - [View](https://github.com/NicoPauwels/Milestone-Project-2-Breakout/blob/master/assets/images/readme/wireframe-mobile.png)
+* Desktop wireframe - [View](https://github.com/NicoPauwels/Milestone-Project-3-Impala/blob/master/readme/images/impala-desktop-wireframes.png)
+* Tablet wireframe - [View](https://github.com/NicoPauwels/Milestone-Project-3-Impala/blob/master/readme/images/impala-tablet-wireframes.png)
+* Mobile wireframe - [View](https://github.com/NicoPauwels/Milestone-Project-3-Impala/blob/master/readme/images/impala-mobile-wireframes.png)
+
+## Datebase Design
+
+MongoDB Object format examples:
+
+**Collection genders:**<br>
+{<br>
+_id: ObjectId("6097fa2bc2c2f86442acab77")<br>
+gender: "M"<br>
+}
+<br><br>
+**Collection levels:**<br>
+{<br>
+_id: ObjectId("60672683f9934b0f30267805")<br>
+level: "Beginner"<br>
+}
+<br><br>
+**Collection runs:**<br>
+{<br>
+_id: ObjectId("60b604946c1f8bdd033318a4")<br>
+level: "Elite"<br>
+formrundate: "2021-06-08"<br>
+date: "08-06-2021"<br>
+time: "09:00"<br>
+hour: "09"<br>
+minute: "00"<br>
+timestamp: 2021-06-08T09:00:00.000+00:00<br>
+location: "Korte Vanruusbroecstraat 6"<br>
+city: "Antwerpen"<br>
+runcitylat: 51.2194475<br>
+runcitylng: 4.4024643<br>
+meetingpointlat: 51.2087416<br>
+meetingpointlng: 4.4251334<br>
+distance: "10 km"<br>
+intdistance: 10<br>
+levelrestriction: "off"<br>
+createdby: "nico_pauwels@hotmail.com"<br>
+createdon: "31/05/2021, 12:37:38"<br>
+participants: Array<br>
+0: Object<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_id: ObjectId("60b5f9d66c1f8bdd0333189e")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: "nico_pauwels@hotmail.com"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstname: "Nico"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;initials: "NP"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastname: "Pauwels"<br>
+}
+<br><br>
+**Collection users:**<br>
+{<br>
+_id: ObejctId("60b5f9d66c1f8bdd0333189e")<br>
+email: "nico_pauwels@hotmail.com"<br>
+password: "pbkdf2:sha256:150000$NHbjcXlN$98b5651996d76f6306870057425a17689cf1722b..."<br>
+membersince: "31/05/2021"<br>
+besttime: "00:40:00"<br>
+birthday: "31"<br>
+birthmonth: "08"<br>
+birthyear: "1987"<br>
+dateofbirth: "31/08/1988"<br>
+firstname: "Nico"<br>
+gender: "M"<br>
+hours: "00"<br>
+initials: "NP"<br>
+lastname: "Pauwels"<br>
+location: "Antwerpen"<br>
+minutes: "40"<br>
+seconds: "00"<br>
+userlevel: "Elite"<br>
+userlocationlat: 50.8686544<br>
+userlocationlng: 5.868221999999999<br>
+}
+
+## Security
+
+Database connection details are set up in env.py for development, for security reasons this is not uploaded to GitHub so that database and connectiondetails are not visible to users. In production these are stored in Heroku.
 
 ## Surface
 
-We want this version of Outbreak to have a more modern look than the original version.
-
 * Colour scheme
-    * The main colour is #0095DD.
-
+    * I chose to keep Impala quite dark with green accents; some colours used:
+        * for backgrounds:
+            * #12171E;
+            * #293340;
+            * #222730;
+        * for text and elements that needed contrast:
+            * #EAEDF0;
+            * #4D5765;
+    
 * Typography
-    * The main font for text paragraphs is Arial and this is the only font used throughout the project.
+    * The main fonts used are Heebo and Hind Siliguri.
 
-# Technologies Used
+# Features
 
-## Languages used
+## Existing Features
+* User registration
+* User login
+* Overview of runs (map on larger screens, list on mobile)
+* Create a run (with or without levelrestriction)
+* Edit a run
+* Remove a run
+* Participate in a run
+* User profile page
+* Edit profile page
+
+## Features left to implement
+I believe a lot is possible with this application. I have tried to set up Impala like this so that additional features can be build quite fluently upon this basis. <br><br>Some possibilities:
+* Better level determination: For now manual user input is used to determine user levels, the application would definitely benefit from data input from applications that keep track of sporting efforts such as Strava;
+* More restrictions: I have implemented a same user level restriction when a run event is being created but this feature easily can be translated to ie. same gender only restriction;
+* Crew or private Runs: Creating user groups to organize crew runs, only members of the crew can view that particular run.
+* Better view on participantslist: For now I have chosen to display the initials of users, but in a future versions profile pictures can be used and the lists become expandable so you can see the name of the users who registered to participate in that particular run.
+
+# Technologies 
 
 * [HTML5](https://en.wikipedia.org/wiki/HTML) 
+    * This project uses HTML as the main language used to complete the structure of the website.
 * [CSS3](https://en.wikipedia.org/wiki/CSS)
-* [Javascript](https://en.wikipedia.org/wiki/JavaScript)
-
-## Frameworks, Libraries & Programs Used
-
+    * This project uses custom written CSS to style the website.
 * [Font Awesome](https://fontawesome.com/start) 
     * Font Awesome was used to import some icons.
-
+* [Google Fonts](https://fonts.google.com/)
+    * Google fonts was used to import some fonts.
+* [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+    * A few lines of Javascript were used for the slider used in the forms.
+* [Leaflet](https://leafletjs.com/)
+    * Leaflet is the leading open-source JavaScript library for mobile-friendly interactive maps. Weighing just about 39 KB of JS, it has all the mapping features most developers ever need.
+* [Mapbox](https://www.mapbox.com/)
+    * Mapbox provides performant and customizable maps that suited the needs of this project.
+* [Blender](https://www.blender.org/)
+    * Blender was used to design the markers for the map.
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+    * This projects core was created using Python, the back-end logic and the means to run/view the website.
+    * Python modules used (these can be found in requirements.txt project file):
+        * certifi==2020.12.5
+        * chardet==4.0.0
+        * click==7.1.2
+        * dnspython==2.1.0
+        * Flask==1.1.2
+        * Flask-PyMongo==2.3.0
+        * googlemaps==4.4.5
+        * idna==2.10
+        * itsdangerous==1.1.0
+        * Jinja2==2.11.3
+        * MarkupSafe==1.1.1
+        * pymongo==3.11.3
+        * requests==2.25.1
+        * urllib3==1.26.4
+        * Werkzeug==1.0.1
+* [MongoDB](https://www.mongodb.com/)
+    * MongoDB was used to create the document based databases (collections) used as data storage for this project.
+* [Heroku](https://www.heroku.com/)
+    * Heroku was used to deploy the live website.
 * [Git](https://git-scm.com/) 
     * Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to Github.
-
 * [Github](https://github.com/) 
     * GitHub is used to store the projects code after being pushed from Git.
-
 * [Balsamiq](https://balsamiq.com/) 
     * Balsamiq was used to create the wireframes during the design process.
-
-# The realisation of this project
-
-* [Tutorial 1:](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
-    I started off the project based on this tutorial, when finalizing this tutorial I wanted to use the gained knowledge to add some powerups, I soon found myself down a rabbithole and I was losing way too much time trying to figure out how to add this powerup functionality to the game. I did manage to hide a few powerups underneath some bricks, and they do fall towards the bottom of the screen. I decided to browse the web to find another tutorial that contained these powerup functionality to see how it is done right and which logic was used.
-
-* [Tutorial 2:](https://www.youtube.com/c/MtFordStudios/videos)
-    As discussed in the previous bulletpoint, a second tutorial was used to gain more insight on how to properly implement powerups into the game. I quickly found myself facing another dilemma: trying to implement the poweruplogic from this tutorial in my already existing javascript code or starting from scratch. I decided to play it safe and start completely based on this tutorial.
-    In the end I am sure this was the right thing to do because this tutorial was approaching some things in a complete different way and features that were being built at the end of the project were based on the solid foundation and logic layed out in the beginning.
-
-* My very own feature:
-     I just had to add a feature of my own to the project. I used to play this game at a very young age on my uncles 486. There was a powerup in the version I used to play that was not a part of this version yet: the multiball. I decided to give it a go and by reverse engineering what was going on in the existing code and some sleepless nights later I was able to implement the multiball feature. Although I have deactivated the spinBall() function to get it to work and some bugs might occur when combined with other powerups, I am happy with the outcome for now. It just comes down to fixing these bugs and refactoring the spinBall() function.
+* [Google Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools)
+    * Google chromes built in developer tools were constantly used throughout the development process to inspect page elements.
+* [Visual Studio Code](https://code.visualstudio.com/)
+    * All code was written in Visual Studio Code.
 
 # Testing
 
-The W3C Markup Validator, W3C CSS Validator and jshint.com services were used to validate every page of the project to ensure there were no syntax errors in the project.
+* [W3C Markup Validator:](https://validator.w3.org/)<br><br>All html templates were manually entered in the HTML checker and inspected individually.<br>Some errors were caused by the Jinja syntax but besides that no errors or warnings were found.<br>
 
-* [W3C Markup Validator](https://validator.w3.org/) - [Results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fnicopauwels.github.io%2FMilestone-Project-2-Breakout%2F)
-* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fnicopauwels.github.io%2FMilestone-Project-2-Breakout%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) 
-* [jshint.com](https://jshint.com/) - There were some warnings but practically all of them were browser warnings.
+
+* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)<br><br>No errors were found in the CSS.
+* [jshint.com](https://jshint.com/)<br><br>No errors were found in the script.js.
+* [PEP8 Validator](http://pep8online.com/)<br><br>The check resulted in a a few errors.<br>All of them said "line too long", as some of them were a bit longer than 79 characters. 
 
 ## Testing user stories discussed earlier
 
 * First time Visitor Goals
-    * As a first time visitor, I want to be able to figure out what the game controls are;
-        * The user is informed on the game controls on the landing page.
-    * As a first time visitor, I want to be able to serve the ball;
-        * When the spacebar is hit (desktop) or the screen is touched (mobile), the user serves the ball.
-    * As a first time visitor, I want to be able to keep the ball inbound using the paddle;
-        * The paddle can be moved to left and right with the corresponding arrow keys (desktop) or touching the left or right side of the screen (mobile) to catch the ball and bounce it back.
-    * As a first time visitor, I want to see the powerups falling down to the bottom of the screen;
-        * There's a 5 percent chance a destroyed brick has a powerup underneath, if this is the case the powerup will fall down towards the bottom of the screen.
-    * As a first time visitor, I want to be able to catch the powerups and experience them in the gameplay;
-        * When a powerup is caught by the paddle, it becomes active:
-            * extra life
-            * extended paddle
-            * sticky paddle (paddle turns red)
-            * superball (ball turns red)
-            * multiball (two extra balls enter the game field)
-    * As a first time visitor, I want to know which level I am playing, how many lives I've got left, my current score, my all time high score and whether the sound is on or off.
-        * The level is being displayed and increases when all bricks have been destroyed, also a new level is being spawned.
-        * The lives decrease when a ball is out of bounds, the game ends when all lives are lost and game over is being displayed.
-        * The current score is being increased depending on the brick that was destroyed its rank.
-        * The all time high score is kept track off by using window.localStorage and thus saves the high score across browser sessions.
-        * Also whether the sound is on or off is being displayed.
+    * As a first time visitor, I want to be able to register for Impala;
+    * As a first time visitor, I want to be able to login to Impala;
+    * As a first time visitor, I want to fill out my profile and have my level determined;
+    * As a first time visitor, I want to get an overview of the scheduled runs in my area on a map on tablet and desktop, and a list overview on mobile;
+    * As a first time visitor, I want to be able to set my attendance for a run;
+    * As a first time visitor, I want to be able to schedule or create a run;
+    * As a first time visitor, I want to be able to make changes or edit a run scheduled by me;
+    * As a first time visitor, I want to be able to remove or delete a run scheduled by me.
+    * As a first time visitor, I want to be able to search for runs in a certain area.
+    * As a first time visitor, I want to be able to logout.
 * Returning Visitor Goals
-    * As a returning visitor, I do not necessarily need to see the game controls;
-        * The user has the option to check the "do not show this message again" checkbox in order to not see the game instructions again when the game is loaded next time.
-    * As a returning visitor, I obviously want the same game experience as a first time visitor;
-        * All of the functionality is in place as discussed above.
-    * As a returning visitor, I want to see my all time high score.
-        * The alltime high score is stored in localstorage and thus across browser sessions.
-* Frequent User Goals
-    * As a frequent user of this game, I want to same user experience as a returning visitor.
+    * As a returning visitor, I obviously want the same application experience as a first time visitor;
+    * As a returning visitor, I want to be able to edit or remove my profile;
 
 ## Further Testing
 
