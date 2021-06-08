@@ -26,20 +26,17 @@
                     placeholder="Last Name" required>
             </div>
             <div class="dimension">
-                <label class="profilelabel" for="dateofbirth">Date Of Birth:</label>
-
+                <label class="profilelabel">Date Of Birth:</label>
                 <input class="profileinput birthday" type="number" id="birthday" name="birthday" min="1" max="31"
                     value="{{ user.birthday }}" placeholder="DD" required>
-
                 <input class="profileinput birthday" type="number" id="birthmonth" name="birthmonth" min="1" max="12"
                     value="{{ user.birthmonth }}" placeholder="MM" required>
-
                 <input class="profileinput birthday" type="number" id="birthyear" name="birthyear" min="1920" max="2021"
                     value="{{ user.birthyear }}" placeholder="YYYY" required>
             </div>
             <div class="dimension">
                 <label class="profilelabel" for="gender">Gender:</label>
-                <select class="profileinput" id="gender" name="gender" value="" required>
+                <select class="profileinput" id="gender" name="gender" required>
                     <option value="">Gender</option>
                     {% for gender in genders %}
                     {% if gender.gender == user.gender %}
@@ -53,11 +50,10 @@
             <div class="dimension">
                 <label class="profilelabel" for="location">Location:</label>
                 <input class="profileinput" type="text" id="location" name="location" value="{{ user.location }}"
-                    placeholder="City, Country" required>
+                    placeholder="City" required>
             </div>
             <div class="dimension">
-                <label class="profilelabel" for="besttime">Best Time On 10 km:</label>
-
+                <label class="profilelabel">Best Time On 10 km:</label>
                 <input class="profileinput besttime" type="number" id="hours" name="hours" min="0" max="1"
                     value="{{ user.hours }}" placeholder="HH" required>
                 <input class="profileinput besttime" type="number" id="minutes" name="minutes" min="0" max="59"
@@ -67,8 +63,8 @@
             </div>
         </div>
         <div class="buttoncontainer">
-        <button class="form-button" type="submit" onclick=""><i class="fas fa-save buttoniconposition"></i></i>Save
-            Profile</button>
+            <button class="form-button" type="submit" onclick=""><i class="fas fa-save buttoniconposition"></i>Save
+                Profile</button>
         </div>
     </form>
 </div>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,13 +12,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.css') }}" />
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    {% block styles %}
-    {% endblock %}
     <title>Impala | Social running starts here.</title>
 </head>
-
 <body>
-
     <header class="header">
         <div class="container header-content">
             <div>
@@ -35,33 +30,25 @@
             </div>
             <nav class="navbar">
                 {% if session.user %}
-                <a href="{{ url_for('add_run') }}"><button class="btn btn-secondary largedevices" type="button"><i
-                            class="fas fa-plus buttoniconposition"></i>Add Run</button></a>
-                <a href="{{ url_for('show_map') }}"><button class="btn btn-secondary largedevices" type="button"><i
-                            class="fas fa-stream buttoniconposition"></i>Upcoming Runs</button></a>
-                <a href="{{ url_for('add_run') }}"><button class="btn btn-secondary smalldevices" type="button"><i
-                            class="fas fa-plus"></i></button></a>
-                <a href="{{ url_for('show_map') }}"><button class="btn btn-secondary smalldevices" type="button"><i
-                            class="fas fa-stream"></i></button></a>
+                <a class="btn btn-secondary largedevices" href="{{ url_for('add_run') }}"><i class="fas fa-plus buttoniconposition"></i>Add Run</a>
+                <a class="btn btn-secondary largedevices" href="{{ url_for('show_map') }}"><i class="fas fa-stream buttoniconposition"></i>Upcoming Runs</a>
+                <a class="btn btn-secondary smalldevices" href="{{ url_for('add_run') }}"><i class="fas fa-plus"></i></a>
+                <a class="btn btn-secondary smalldevices" href="{{ url_for('show_map') }}"><i class="fas fa-stream"></i></a>
                 <div class="dropdown">
                     <button class="btn" type="button" id="user" data-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user" id="usericon"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="user">
-                        <li><button class="dropdown-item" type="button"><a
-                                    href="{{ url_for('profile', user=session['user']) }}">My Profile</a></button></li>
-                        <li><button class="dropdown-item" type="button"><a href="{{ url_for('logout' )}}">Log
-                                    Out</a></button></li>
+                        <li><a class="dropdown-item" href="{{ url_for('profile', user=session['user']) }}">My Profile</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('logout' )}}">Log Out</a></li>
                     </ul>
                 </div>
                 {% else %}
                 {% if isRegister %}
-                <button type="button" class="btn btn-secondary" id="login"><a href="{{ url_for('login' )}}">Log
-                        In</a></button>
+                <a class="btn btn-secondary" id="login" href="{{ url_for('login' )}}">Log In</a>
                 {% endif %}
                 {% if isLogin %}
-                <button type="button" class="btn btn-secondary" id="login"><a
-                        href="{{ url_for('register' )}}">Register</a></button>
+                <a class="btn btn-secondary" id="register" href="{{ url_for('register' )}}">Register</a>
                 {% endif %}
                 {% endif %}
             </nav>
@@ -82,11 +69,11 @@
 
     <div class="profile">
 
-        {% block profile %}
-        {% endblock %}
+    {% block profile %}
+    {% endblock %}
 
-        {% block editprofile %}
-        {% endblock %}
+    {% block editprofile %}
+    {% endblock %}
 
     </div>
 
@@ -96,8 +83,5 @@
     <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    {% block scripts %}
-    {% endblock %}
 </body>
-
 </html>

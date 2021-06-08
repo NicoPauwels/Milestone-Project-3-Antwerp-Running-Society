@@ -3,7 +3,6 @@
 
 <div id="mapid"></div>
 
-<div class="message-container"></div>
 {% with mainwindowmessages = get_flashed_messages(category_filter=["mainwindowmessage"]) %}
 {% if mainwindowmessages %}
 {% for message in mainwindowmessages %}
@@ -11,17 +10,15 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
-</div>
 
-<div class="upcomingruns" id="upcomingruns">
+<div class="upcomingruns">
     <div class="upcomingruns-header">
         <h5 class="upcomingruns-title">Upcoming Runs ({{ runs|length }})</h5>
         {% if isActiveFilter %}
-        <a href="{{ url_for('show_map') }}"><i class="fas fa-times filter" type="button"></i></a>
+        <a href="{{ url_for('show_map') }}"><i class="fas fa-times filter"></i></a>
         {% else %}
-        <a href="{{ url_for('search') }}"><i class="fas fa-search filter" type="button"></i></a>
+        <a href="{{ url_for('search') }}"><i class="fas fa-search filter"></i></a>
         {% endif %}
-
     </div>
     <div class="upcomingruns-container">
         <div class="upcomingruns-content">
@@ -33,18 +30,19 @@
                     {% endif %}
                 </div>
                 <a href="{{ url_for('expand_run', _anchor='expandedrun' , run_id=run._id) }}" class="expandrun">
-                <div>
-                <p class="cardtext"><i class="fas fa-calendar cardicon"></i>{{ run.date }}<span
-                        class="cardiconposition"><i class="far fa-clock cardicon"></i>{{ run.time }}</span></p>
-                <p class="cardtitle">{{ run.level }} Run - {{ run.distance }}<span class="participantscounter"></i> {{
-                        run.participants|length }}<span></p>
-                            </div></a>
-                        
-                        {% if run._id == id %}
-                            {% block expandrun %}
-                            {% endblock %}
-                        {% endif %}
-                        
+                    <div>
+                        <p class="cardtext"><i class="fas fa-calendar cardicon"></i>{{ run.date }}<span
+                                class="cardiconposition"><i class="far fa-clock cardicon"></i>{{ run.time }}</span></p>
+                        <p class="cardtitle">{{ run.level }} Run - {{ run.distance }}<span
+                                class="participantscounter">{{ run.participants|length }}</span></p>
+                    </div>
+                </a>
+
+                {% if run._id == id %}
+                {% block expandrun %}
+                {% endblock %}
+                {% endif %}
+
             </div>
             {% endfor %}
         </div>
@@ -91,7 +89,7 @@
     // add custom icon to map
 
     greenIcon = L.icon({
-        iconUrl: "{{ url_for('static', filename="css/images/marker-icon.png") }}",
+        iconUrl: "{{ url_for('static', filename='css/images/marker-icon.png') }}",
         iconSize: [20, 20],
         iconAnchor: [0, 20],
         popupAnchor: [121, 8] //point from which the popup should open relative to the iconAnchor
