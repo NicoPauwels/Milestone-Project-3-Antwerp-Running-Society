@@ -1,4 +1,4 @@
-// add run form distance slider
+// addrun form distance slider
 
 function updateDistanceInput(val) {
   document.getElementById('distance').value=val + " km";
