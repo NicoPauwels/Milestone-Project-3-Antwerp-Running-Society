@@ -8,7 +8,7 @@
 
 ## Strategy
 
-The purpose of Impala is bringing Runners together and easily keep track of who is running with who, when and where. The idea of this came from the fact that I am a pretty experienced runner myself and mostly when I ask others to join me, I get a negative answer because they say I run too fast. So what if there was an application that determines your user level and makes it easy to find other runners in a certain area? The idea of Impala was born.
+The purpose of Impala is bringing Runners together and easily keep track of who is running with who, when and where. So what if there was an application that determines your user level and makes it easy to find other runners in a certain area? The idea of Impala was born.
 
 ### Site Goals
 
@@ -45,7 +45,7 @@ Planned Features:<br>
 * Map to provide an overview of the runs and searchable to all users;
 * Profile page which can be editted; 
 * Login functionality;
-* Logout functionality;
+* Logout functionality.
 
 ## Structure
 
@@ -256,12 +256,16 @@ I believe a lot is possible with this application. I have tried to set up Impala
     * This project uses HTML as the main language used to complete the structure of the website.
 * [CSS3](https://en.wikipedia.org/wiki/CSS)
     * This project uses custom written CSS to style the website.
+* [Bootstrap](https://getbootstrap.com/)
+    * Bootstrap was mainly used for button and dropdown menu functionality.
 * [Font Awesome](https://fontawesome.com/start) 
     * Font Awesome was used to import some icons.
 * [Google Fonts](https://fonts.google.com/)
     * Google fonts was used to import some fonts.
 * [Javascript](https://en.wikipedia.org/wiki/JavaScript)
     * A few lines of Javascript were used for the slider used in the forms.
+* [jQuery](https://jquery.com/)
+    * Supports bootstrap functionality
 * [Leaflet](https://leafletjs.com/)
     * Leaflet is the leading open-source JavaScript library for mobile-friendly interactive maps. Weighing just about 39 KB of JS, it has all the mapping features most developers ever need.
 * [Mapbox](https://www.mapbox.com/)
