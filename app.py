@@ -57,7 +57,7 @@ def register():
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("email").lower()
-        flash("Please fill out the form below so we can provide you with an optimal application experience.",
+        flash("Please fill out the form below so we can provide you with an optimal application experience.", 
               "completeprofilemessage")
         return redirect(url_for("edit_profile", user=session["user"]))
     return render_template("register.html", isRegister=True)
@@ -105,7 +105,7 @@ def show_map():
                 if 'isCurrentUser' not in run:
                     run['isCurrentUser'] = False
 
-            return render_template("map.html", runs=runs, user=user, isGetRuns=True)
+            return render_template("map.html", runs=runs, user=user)
     except:
         return render_template("login.html", isLogin=True)
 
@@ -143,7 +143,8 @@ def search():
                 else:
                     user = mongo.db.users.find_one({"email": session['user']})
                     flash("Filter Active", "mainwindowmessage")
-                    return render_template("searchresults.html", runs=runs, user=user, isActiveFilter=True)
+                    return render_template("searchresults.html", runs=runs, 
+                                           user=user, isActiveFilter=True)
 
             user = mongo.db.users.find_one({"email": session['user']})
             runs = list(mongo.db.runs.find({
@@ -154,7 +155,8 @@ def search():
                 ]
             }).sort("timestamp", 1))
 
-            return render_template("search.html", runs=runs, user=user, isActiveFilter=False)
+            return render_template("search.html", runs=runs, user=user, 
+                                   isActiveFilter=False)
     except:
         return render_template("login.html", isLogin=True)
 
@@ -192,7 +194,11 @@ def add_run():
                 meetingpointlng = meetingpoint_geocode_result[0]["geometry"]["location"]["lng"]
 
                 participant = mongo.db.users.find_one({"email": session['user']}, {
-                    "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
+                    "_id": 1, 
+                    "firstname": 1, 
+                    "lastname": 1, 
+                    "initials": 1, 
+                    "email": 1})
                 creatorrunninglevel = mongo.db.users.find_one(
                     {"email": session['user']}).get('userlevel')
 
@@ -269,7 +275,12 @@ def join_run(run_id):
     try:
         if session["user"]:
             participant = mongo.db.users.find_one({"email": session['user']}, {
-                                                  "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1, "userlevel": 1})
+                                                  "_id": 1, 
+                                                  "firstname": 1, 
+                                                  "lastname": 1, 
+                                                  "initials": 1, 
+                                                  "email": 1, 
+                                                  "userlevel": 1})
             run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
 
             if run['levelrestriction'] == "on":
@@ -280,8 +291,8 @@ def join_run(run_id):
                         {"_id": ObjectId(run_id)},
                         {"$push": {"participants": participant}})
                 else:
-                    flash(
-                        "Only people from the same level can attend this run", "mainwindowmessage")
+                    flash("Only people from the same level can attend this run", 
+                          "mainwindowmessage")
                     return redirect(url_for("show_map"))
             else:
                 flash("You have been added to the participtantlist",
@@ -302,7 +313,11 @@ def leave_run(run_id):
     try:
         if session["user"]:
             participant = mongo.db.users.find_one({"email": session['user']}, {
-                                                  "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
+                                                  "_id": 1, 
+                                                  "firstname": 1, 
+                                                  "lastname": 1, 
+                                                  "initials": 1, 
+                                                  "email": 1})
             mongo.db.runs.update_one(
                 {"_id": ObjectId(run_id)},
                 {"$pull": {"participants": participant}}
@@ -347,7 +362,11 @@ def edit_run(run_id):
                 meetingpointlng = geocode_result[0]["geometry"]["location"]["lng"]
 
                 participant = mongo.db.users.find_one({"email": session['user']}, {
-                                                      "_id": 1, "firstname": 1, "lastname": 1, "initials": 1, "email": 1})
+                                                      "_id": 1, 
+                                                      "firstname": 1, 
+                                                      "lastname": 1, 
+                                                      "initials": 1, 
+                                                      "email": 1})
                 creatorrunninglevel = mongo.db.users.find_one(
                     {"email": session['user']}).get('userlevel')
 
@@ -375,8 +394,8 @@ def edit_run(run_id):
                     "participants": [participant]
                 }
                 if runtimestamp.date() < date.today():
-                    flash(
-                        "Please make sure your run is scheduled in the future", "mainwindowmessage")
+                    flash("Please make sure your run is scheduled in the future", 
+                          "mainwindowmessage")
                     return redirect(url_for("edit_run", run_id=run_id))
 
                 mongo.db.runs.update({"_id": ObjectId(run_id)}, editrun)
@@ -453,8 +472,11 @@ def edit_profile(user):
                 dobstring = dob.strftime("%d/%m/%Y")
                 age = int((date.today() - dob.date()).days / days_in_year)
 
-                formbesttime = "{}:{}:{}".format(request.form.get(
-                    "hours"), request.form.get("minutes"), request.form.get("seconds"))
+                formbesttime = "{}:{}:{}".format(
+                                                 request.form.get("hours"), 
+                                                 request.form.get("minutes"), 
+                                                 request.form.get("seconds"))
+
                 besttime = datetime.strptime(formbesttime, "%H:%M:%S")
                 besttimestring = besttime.strftime("%H:%M:%S")
                 userlevel = determine_user_level(age, besttime)
@@ -487,7 +509,8 @@ def edit_profile(user):
                 }
                 mongo.db.users.update_one(
                     {"email": user}, {"$set": completeprofile})
-                flash("Your profile was successfully updated", "mainwindowmessage")
+                flash("Your profile was successfully updated", 
+                      "mainwindowmessage")
                 return redirect(url_for("show_map", user=session["user"]))
 
             genders = mongo.db.genders.find()
