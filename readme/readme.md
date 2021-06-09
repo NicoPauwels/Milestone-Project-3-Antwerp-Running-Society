@@ -1,7 +1,8 @@
 # Milestone Project 3: Impala
 
-[View the live project here.](https://milestone-project-3-impala.herokuapp.com/)<br>
+![MS3-impala-responsiveness](https://github.com/NicoPauwels/Milestone-Project-3-Impala/blob/master/readme/images/header-image.png)
 
+[View the live project here.](https://milestone-project-3-impala.herokuapp.com/)<br>
 
 # UX
 
