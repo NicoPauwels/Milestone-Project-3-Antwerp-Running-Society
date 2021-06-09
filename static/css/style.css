@@ -171,7 +171,7 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
 }
 
 .dropdown-menu[data-bs-popper] {
-    margin-top: -1px;
+    margin-top: -2px;
 }
 
 .dropdown-item {
