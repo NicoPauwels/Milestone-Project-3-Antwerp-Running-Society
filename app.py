@@ -33,6 +33,7 @@ days_in_year = 365.2425
 @app.route("/")
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """ renders register page with input for e-mail address and two password boxes (1 for confirmation) """
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
@@ -65,6 +66,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """ renders login page with input for registered user e-mail address and password """
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
@@ -88,6 +90,8 @@ def login():
 
 @app.route("/map")
 def show_map():
+    """ renders map with future runs based on users location """
+    """ checks if current user is found in participantlist of each run """
     try:
         if session["user"]:
             user = mongo.db.users.find_one({"email": session['user']})
@@ -114,6 +118,7 @@ def show_map():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    """ renders map and runs based on search criteria """
     try:
         if session["user"]:
             if request.method == "POST":
@@ -129,12 +134,12 @@ def search():
                 runs = list(mongo.db.runs.find({
                     "$and": [
                         {"city": querylocation},
-                        {"$and": [{"timestamp": {"$gte": querymindate}}, {
-                            "timestamp": {"$lte": querymaxdate}}]},
-                        {"$and": [{"intdistance": {"$gte": querymindistance}}, {
-                            "intdistance": {"$lte": querymaxdistance}}]}
+                        {"$and": [{"timestamp": {"$gte": querymindate}}, 
+                        {"timestamp": {"$lte": querymaxdate}}]},
+                        {"$and": [{"intdistance": {"$gte": querymindistance}}, 
+                        {"intdistance": {"$lte": querymaxdistance}}]}
                     ]
-                }).sort("timestamp", 1))
+                    }).sort("timestamp", 1))
 
                 if len(runs) == 0:
                     flash("No runs found with such criteria",
@@ -165,6 +170,8 @@ def search():
 
 @app.route("/add_run", methods=["GET", "POST"])
 def add_run():
+    """ renders add run form,  adds a run to the database based on inputform 
+    & translates the location to coordinates for use on the map """
     try:
         if session["user"]:
             if request.method == "POST":
@@ -251,6 +258,7 @@ def add_run():
 
 @app.route("/expandrun/<run_id>", methods=["GET", "POST"])
 def expand_run(run_id):
+    """ renders expand run which is used to dipslay run details on mobile version """
     run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
     id = run.get('_id')
     user = mongo.db.users.find_one({"email": session['user']})
@@ -272,6 +280,8 @@ def expand_run(run_id):
 
 @app.route("/join_run/<run_id>", methods=["GET", "POST"])
 def join_run(run_id):
+    """ adds user to particular run, checks for level restriction, compares 
+    active user to the particular run level if level restriction is active """
     try:
         if session["user"]:
             participant = mongo.db.users.find_one({"email": session['user']}, {
@@ -310,6 +320,7 @@ def join_run(run_id):
 
 @app.route("/leave_run/<run_id>", methods=["GET", "POST"])
 def leave_run(run_id):
+    """ removes a user from a runs participant list """
     try:
         if session["user"]:
             participant = mongo.db.users.find_one({"email": session['user']}, {
@@ -333,6 +344,9 @@ def leave_run(run_id):
 
 @app.route("/edit_run/<run_id>", methods=["GET", "POST"])
 def edit_run(run_id):
+    """ edits a run based on the input of the edit run form, 
+    parses text time into actual timestamp & translates the locations
+    to coordinates for use on the map """
     try:
         if session["user"]:
             if request.method == "POST":
@@ -420,6 +434,7 @@ def edit_run(run_id):
 
 @app.route("/delete_run/<run_id>")
 def delete_run(run_id):
+    """ renders a remove confirmation for that particular run """
     try:
         if session["user"]:
             run = mongo.db.runs.find_one({"_id": ObjectId(run_id)})
@@ -435,6 +450,7 @@ def delete_run(run_id):
 
 @app.route("/permanently_delete_run/<run_id>")
 def permanently_delete_run(run_id):
+    """ permanently deletes a run """
     try:
         if session["user"]:
             mongo.db.runs.remove({"_id": ObjectId(run_id)})
@@ -448,6 +464,7 @@ def permanently_delete_run(run_id):
 
 @app.route("/profile/<user>", methods=["GET", "POST"])
 def profile(user):
+    """ renders active user profile """
     try:
         if session["user"] == user:
             genders = mongo.db.genders.find()
@@ -463,6 +480,8 @@ def profile(user):
 
 @app.route("/edit_profile/<user>", methods=["GET", "POST"])
 def edit_profile(user):
+    """ renders edit profile page, updates the user in the database,
+    translates user location to coordinates to set map location """
     try:
         if session["user"] == user:
             if request.method == "POST":
@@ -525,6 +544,7 @@ def edit_profile(user):
 
 @app.route("/delete_profile/<user>")
 def delete_profile(user):
+    """ renders a template to confirm user deletion """
     try:
         if session["user"] == user:
             user = mongo.db.users.find_one({"email": user})
@@ -538,6 +558,7 @@ def delete_profile(user):
 
 @app.route("/permanently_delete_profile/<user>")
 def permanently_delete_profile(user):
+    """ permanently deletes the user from the database """
     try:
         if session["user"] == user:
             mongo.db.users.remove({"email": user})
@@ -550,6 +571,7 @@ def permanently_delete_profile(user):
 
 @app.route("/logout")
 def logout():
+    """ logs out the active user """
     session.pop("user")
     return redirect(url_for("login"))
 
