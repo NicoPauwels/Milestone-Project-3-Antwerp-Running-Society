@@ -386,7 +386,8 @@ Enable automatic deployment:
 
 ## Acknowledgments
 
-* Antonio Rodriguez, my mentor for the continuous support and helpful feedback.
-* John Traas, Code Institute tutor, for the continuous support and helpful feedback.
-* Sean Murphy, Code Institute tutor , for the continuous support an helpful feedback.
+* Antonio Rodriguez, my mentor for the continuous support and helpful feedback;
+* Kevin Loughrey, Code Institute tutor, for showing me the way on how to properly work with chronotimes;
+* John Traas, Code Institute tutor, for the continuous support and helpful feedback;
+* Sean Murphy, Code Institute tutor , for the continuous support an helpful feedback;
 * Daisy McGirr, Code Institue mentor, for the continous support and helpful feedback. 
