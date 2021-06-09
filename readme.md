@@ -381,9 +381,12 @@ Enable automatic deployment:
 
 ## Code
 
-### Tutorials
+## Sources and documentation used
 
-* Various ongoing problems were solved looking for solutions found on [Stackoverflow](https://www.stackoverflow.com) and [W3Schools](https://www.w3schools.com).
+* Various issues were solved looking for solutions found on [Stackoverflow](https://www.stackoverflow.com) and [W3Schools](https://www.w3schools.com)
+* [MongoDB](https://docs.mongodb.com/) documentation was constantly used throughout the project.
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/) documentation was constantly used throughout the project.
+* [Python](https://docs.python.org/3/) documentation was constantly used throughout the project.
 
 ## Acknowledgments
 
