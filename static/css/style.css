@@ -429,20 +429,16 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     border-left: solid 5px #00BF00;
 }
 
-.profile {
-    position: relative;
-    width: 100%;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-}
 
 .profile-container {
     position: absolute;
-    padding-top: 1rem;
-    left: 50%;
-    margin-left: -210px;
-    width: 420px;
+    z-index: 0;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    margin-top: 1rem;
+    background-color: rgba(18, 23, 30, 1);
 }
 
 #mainwindowmessage {
@@ -833,6 +829,10 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     padding: .375rem .75rem;
 }
 
+input[type="text"]:disabled {
+    color: #4D5765;
+  }
+
 .myprofile {
     border: none;
     background-color: #12171E;
@@ -1058,10 +1058,12 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
 
     .profile-container {
         position: absolute;
+        z-index: 0;
         left: 0px;
         width: 100vw;
         height: 100vh;
         margin: 0;
+        margin-top: 1rem;
         background-color: rgba(18, 23, 30, 1);
     }
 
