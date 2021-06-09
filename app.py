@@ -33,7 +33,8 @@ days_in_year = 365.2425
 @app.route("/")
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """ renders register page with input for e-mail address and two password boxes (1 for confirmation) """
+    """ renders register page with input for e-mail address, a choose password input,
+    and a confirm password input """
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
@@ -66,7 +67,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """ renders login page with input for registered user e-mail address and password """
+    """ renders login page with input to fill in login credentials """
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
@@ -90,8 +91,8 @@ def login():
 
 @app.route("/map")
 def show_map():
-    """ renders map with future runs based on users location """
-    """ checks if current user is found in participantlist of each run """
+    """ renders map with future runs based on users location and
+    checks if current user is found in participantlist of each run """
     try:
         if session["user"]:
             user = mongo.db.users.find_one({"email": session['user']})
