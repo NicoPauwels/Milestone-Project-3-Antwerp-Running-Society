@@ -168,6 +168,9 @@ textarea:hover, input:hover, textarea:active, input:active, textarea:focus, inpu
     background: #12171E;
     border: solid 1px #1A1F28;
     border-radius: 0;
+}
+
+.dropdown-menu .show {
     margin-top: -1px;
 }
 
