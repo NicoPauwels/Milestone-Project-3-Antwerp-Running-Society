@@ -242,10 +242,12 @@ Database connection details are set up in env.py for development, for security r
 
 ## Features left to implement
 I believe a lot is possible with this application. I have tried to set up Impala like this so that additional features can be build quite fluently upon this basis. <br><br>Some possibilities:
-* Better level determination: For now manual user input is used to determine user levels, the application would definitely benefit from data input from applications that keep track of sporting efforts such as Strava;
+* Better level determination: for now manual user input is used to determine user levels, the application would definitely benefit from data input from applications that keep track of sporting efforts such as Strava;
 * More restrictions: I have implemented a same user level restriction when a run event is being created but this feature easily can be translated to ie. same gender only restriction;
-* Crew or private Runs: Creating user groups to organize crew runs, only members of the crew can view that particular run.
+* Crew or private Runs: creating user groups to organize crew runs, only members of the crew can view that particular run.
 * Better view on participantslist: For now I have chosen to display the initials of users, but in a future versions profile pictures can be used and the lists become expandable so you can see the name of the users who registered to participate in that particular run.
+* Linkage of runcards and map markers: clicking on a runcard in the left pane resulting in only displaying that particular marker on the map.
+* Underlying data for better location determination.
 
 # Technologies 
 
@@ -305,24 +307,35 @@ I believe a lot is possible with this application. I have tried to set up Impala
 
 * [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)<br><br>No errors were found in the CSS.
 * [jshint.com](https://jshint.com/)<br><br>No errors were found in the script.js.
-* [PEP8 Validator](http://pep8online.com/)<br><br>The check resulted in a a few errors.<br>All of them said "line too long", as some of them were a bit longer than 79 characters. 
+* [PEP8 Validator](http://pep8online.com/)<br><br>The check resulted in a a few errors.<br>All of them said "line too long", as some of them were a bit longer than 79 characters, none of them exceeded the limit with 30 characters.
 
 ## Testing user stories discussed earlier
 
 * First time Visitor Goals
     * As a first time visitor, I want to be able to register for Impala;
+        * When a user lands on the Impala root he is presented with a form to register consisting out of a field for his or hers e-mail address, and two fields to choose a password. The second is used to check whether the chosen passwords match.
     * As a first time visitor, I want to be able to login to Impala;
+        * If a user already has an account, he or she can easily swich from the register page to the login page with a button displayed on top of the screen or a text link below the form. Once on the login page the user can insert his credentials and login. 
     * As a first time visitor, I want to fill out my profile and have my level determined;
+        * If a user registers, he or she is redirected to the edit profile page with a notification request to fill out his or her profile. The application determines the users running level based on his or her age (derived from date of birth) and best time on 10 km.
     * As a first time visitor, I want to get an overview of the scheduled runs in my area on a map on tablet and desktop, and a list overview on mobile;
+        * Once the profile has been filled out, the user is redirected to the main overview. Also on desktop and tablet a message is displayed to inform the user that his profile was succesfully updated.
     * As a first time visitor, I want to be able to set my attendance for a run;
+        * Details of a run can be checked by clicking the markers on the map, depending on whether a user is already participating or not, the popup displays a button to join or leave the run. When clicked the user is notified with a message to inform him or her on his attendance.
     * As a first time visitor, I want to be able to schedule or create a run;
+        * In the navigationbar the add run button is displayed. Once clicked a form will popup asking the user to fill in the details of the run he or she wants to schedule. The user is requested to fill out the date, time, meetingpoint, planned distance and a checkbox for the levelrestriction functionality. On the bottom of the form two buttons are displayed namely a button to add the run which creates the run in the database and a button to cancel which redirects the user to the main overview without writing any data to the database. When a user decides to save the run he or she will be notified with a notification that the run was added succesfully.
     * As a first time visitor, I want to be able to make changes or edit a run scheduled by me;
+        * Runs created by the active user are easily to spot cause of the font awesome icon in the top right corner of the runcard. When clicked the user will once again be presented with a form similar to the add run form. The application reads the data of the corresponding run and fills out the form automatically, changes can be made to the run in this form. On the bottom of the form, 3 buttons are displayed: one to save the changes, one to delete the run and one to cancel all changes. When a user decides to save the changes, he or she will be notified with a message that the run was succesfully edited. If he or she decides to cancel all changes are lost, nothing will be adjusted in the database and the user will be redirected once again to the main overview.
     * As a first time visitor, I want to be able to remove or delete a run scheduled by me.
+        * Already mentioned above, I have chosen to treat deletion as an extent of the edit functionality. In the edit form a button delete run can be found. Once clicked the user will have to confirm whether to permanently delete the run from the database or not. When he or she confirm the run will be permanently removed from the database and the user is notified with a message confirming this.
     * As a first time visitor, I want to be able to search for runs in a certain area.
+        * Next to the upcoming runs title in the pane of the left, a search button is implemented. Once clicked, the user will be once again displayed with a form to insert his or hers search criteria. Users can search based on location, give up a date range and set limits to the planned distance of the search results. On the bottom of the search form, once again two buttons are displayed, one to actually search based on the criteria and one to cancel the search. When a user chooses to search based on the criteria, the application will return the result of the search: only runs matching the provided criteria will be displayed in the upcoming run section and the map automatically relocates to the location the users search criteria.
     * As a first time visitor, I want to be able to logout.
+        * In the navigation bar, a user icon is displayed. When clicked, the user is presented with a dropdown menu consisting out of two list elements: my profile, to visit his or her profile page and log out. Clicking the latter will logout the active user and the user will be redirected to the login page.
 * Returning Visitor Goals
     * As a returning visitor, I obviously want the same application experience as a first time visitor;
     * As a returning visitor, I want to be able to edit or remove my profile;
+        * As mentioned above, a user section can be found by clicking the usericon in the navigation bar. If my profile is clicked, the user will be redirected to the profile page. From there on out he has the option to edit or remove his profile.
 
 ## Further Testing
 
@@ -331,36 +344,49 @@ I believe a lot is possible with this application. I have tried to set up Impala
 * The website was viewed in google chrome dev tools to check overall responsiveness.
 * Friends and family members were asked to review the game to point out any bugs and/or user experience issues.
 
-## Known bugs
+## Deployment to Heroku
 
-* On larger screens of desktops when the browser window is maximized, the ball not always bounces off the paddle but just flies through.
-* When multiball has been active and sticky powerup is activated bugs might occur:
-    * the balls don't serve correctly or dont serve at all when sticky powerup is active
-    * the balls that went out of play suddenly appear back on the canvas
+Create application:
 
-# Deployment
+1. Navigate to Heroku.com and login.
+2. Click on the new button.
+3. Select create new app.
+4. Enter the app name.
+5. Select region.
 
-## Github pages
+Set up connection to Github Repository:
 
-The project was deployed to GitHub Pages using the following steps:
+1. Click the deploy tab and select GitHub - Connect to GitHub.
+2. A prompt to find a github repository to connect to will then be displayed.
+3. Enter the repository name for the project and click search.
+4. Once the repo has been found, click the connect button.
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/NicoPauwels/Milestone-Project-2-Breakout).
-2. At the top of the Repository, locate the "Settings" button on the menu.
-3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
-4. Under "Source", click the dropdown called "None" and select "Master Branch".
-5. The page will automatically refresh.
-6. Scroll back down through the page to locate the new published site [link](https://nicopauwels.github.io/Milestone-Project-2-Breakout/) in the "Github Pages" section.
+Set environment variables:
+
+Click the settings tab and then click the Reveal Config Vars button and add the following:
+
+1. key: IP, value: 0.0.0.0
+2. key: PORT, value: 5000
+3. key: MONGO_DBNAME, value: (database name you want to connect to)
+4. key: MONGO_URI, value: (mongo uri - This can be found in MongoDB by going to clusters > connect > connect to your application and substituting the password and dbname that you set up in the link).
+5. key: SECRET_KEY, value: (This is a custom secret key set up for configuration to keep client-side sessions secure).
+
+Enable automatic deployment:
+
+1. Click the Deploy tab
+2. In the Automatic deploys section, choose the branch you want to deploy from then click Enable Automation Deploys.
 
 # Credits
 
 ## Code
 
 ### Tutorials
-* [Tutorial 1](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
-* [Tutorial 2](https://www.youtube.com/c/MtFordStudios/videos)
+
 * Various ongoing problems were solved looking for solutions found on [Stackoverflow](https://www.stackoverflow.com) and [W3Schools](https://www.w3schools.com).
 
 ## Acknowledgments
 
 * Antonio Rodriguez, my mentor for the continuous support and helpful feedback.
-* John Traas, Code Institute alumni, for the continuous support and helpful feedback.
+* John Traas, Code Institute tutor, for the continuous support and helpful feedback.
+* Sean Murphy, Code Institute tutor , for the continuous support an helpful feedback.
+* Daisy McGirr, Code Institue mentor, for the continous support and helpful feedback. 
